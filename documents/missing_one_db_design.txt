@@ -32,10 +32,7 @@ Case
 •	modified_at
 •	disappearance_date
 •	last_known_location
-•	clothing
-•	jewellary
-•	personal_items
-•	circumstances
+>case_details
 •	ncic [NCIC is a computerized index of criminal justice information (i.e.- criminal record history information, fugitives, stolen properties, missing persons)]
 •	other_info
 •	comments:[comment_id]
