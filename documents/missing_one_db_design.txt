@@ -7,7 +7,8 @@ Users
 •	contact_number
 •	registered_helper(Boolean)
 •	created_at
-•	comments:[comment_id]
+> [donations]
+
 
 Case
 •	_ID
@@ -29,12 +30,6 @@ Case
 •	creator
 •	created_at
 •	modified_at
-•	disappearance:[disappearance_details]
-•	comments:[comment_id]
-•	case_statis [open,closed]
-. helpers:[user_id]
-
-case_details
 •	disappearance_date
 •	last_known_location
 •	clothing
@@ -43,6 +38,14 @@ case_details
 •	circumstances
 •	ncic [NCIC is a computerized index of criminal justice information (i.e.- criminal record history information, fugitives, stolen properties, missing persons)]
 •	other_info
+•	comments:[comment_id]
+•	case_statis [open,closed]
+. helpers:[user_id]
+•	comments:[comment_id]
+
+
+
+
 
 comments
 •	comment_text
@@ -56,6 +59,12 @@ replies
 •	user_id
 
 donations
+> _ID
+>user_id
+>amount
+>name
+>case_id
+>isAnonymous
 
 
 
