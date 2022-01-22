@@ -1,0 +1,68 @@
+Users
+•	fname
+•	lname
+•	email
+•	address
+•	relationship
+•	contact_number
+•	registered_helper(Boolean)
+•	created_at
+•	comments:[comment_id]
+
+Case
+•	_ID
+•	firstname
+•	lastname
+•	dob
+•	address
+•	age at disappearance
+•	race
+•	gender
+•	weight
+•	hair color
+•	eye color
+•	identification-marks
+•	mobile_number
+•	license_id
+•	license_plate_no
+•	[image]
+•	creator
+•	created_at
+•	modified_at
+•	disappearance:[disappearance_details]
+•	comments:[comment_id]
+•	case_statis [open,closed]
+
+case_details
+•	disappearance_date
+•	last_known_location
+•	clothing
+•	jewellary
+•	personal_items
+•	circumstances
+•	ncic [NCIC is a computerized index of criminal justice information (i.e.- criminal record history information, fugitives, stolen properties, missing persons)]
+•	other_info
+
+comments
+•	comment_text
+•	created_at
+•	user_id
+•	replies: [replies]
+
+replies
+•	reply_body
+•	created_at
+•	user_id
+
+donations
+
+
+
+
+
+
+
+
+
+
+
