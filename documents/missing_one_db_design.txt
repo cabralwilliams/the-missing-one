@@ -32,6 +32,7 @@ Case
 •	disappearance:[disappearance_details]
 •	comments:[comment_id]
 •	case_statis [open,closed]
+. helpers:[user_id]
 
 case_details
 •	disappearance_date
