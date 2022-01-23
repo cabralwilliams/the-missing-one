@@ -1,17 +1,18 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Users, Comments, Replies, Cases } = require('../models');
+const { User} = require('../models');
 const { signToken } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+// const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
 
   Query: {
+
     me :async (parent, args, context) => {
       if (context.user) {
-        const userData = await Users.findOne({ _id: context.user._id })
+        const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('comments')
-          .populate('created_cases')
+          // .populate('comments')
+          // .populate('created_cases')
           
         return userData;
       }
@@ -19,18 +20,18 @@ const resolvers = {
 
     },
 
-    users: async () => {
-      return Users.find()
+    getusers: async () => {
+      return User.find()
         .select('-__v -password')
-        .populate('created_cases')
-        .populate('comments');
+        // .populate('created_cases')
+       
     },
 
-    user: async (parent, { first_name }) => {
-      return Users.findOne({ first_name })
+    getuser: async (parent, { first_name }) => {
+      return User.findOne({ first_name })
         .select('-__v -password')
-        .populate('created_cases')
-        .populate('comments');
+        // .populate('created_cases')
+      
     },
 
     // Comments : async (parent, { case_id }) =>{
@@ -41,21 +42,17 @@ const resolvers = {
     // comment: async (parent, { _id }) => {
     //   return Comments.findOne({ _id });
     // },
-
-
   },
 
-
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await Users.create(args);
+     addUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
-
-      return { token, user };
+      return {  user , token };
     },
 
     login: async (parent, { email, password }) => {
-      const user = await Users.findOne({ email });
+      const user = await User.findOne({ email });
 
       if (!user) {
         throw new AuthenticationError('Incorrect credentials');
@@ -68,8 +65,9 @@ const resolvers = {
       }
 
       const token = signToken(user);
+      
 
-      return { token, user };
+      return {  user , token };
     },
 
     // addComment: async (parent, { case_id, comment_text}) => {
@@ -88,7 +86,7 @@ const resolvers = {
 
 
 
-  },
+   },
 
 
 

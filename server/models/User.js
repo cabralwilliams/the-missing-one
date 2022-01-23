@@ -24,7 +24,7 @@ const userSchema = new Schema({
         minlength: 6
     },
     contact_number :{
-        type: Number,  
+        type: String,  
     },
     // created_cases: [
     //     {
@@ -43,7 +43,7 @@ const userSchema = new Schema({
     }
 })
 
-// set up pre-save middleware to create password
+//set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
@@ -62,6 +62,6 @@ userSchema.pre('save', async function(next) {
 
 
 
-const Users = model('Users', userSchema);
+const User = model('User', userSchema);
 
-module.exports = Users;
+module.exports = User;
