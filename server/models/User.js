@@ -2,12 +2,12 @@ const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-    firstName: {
+    first_name: {
         type: String,
         required: true,
         trim: true
     },
-    lastName: {
+    last_name: {
         type: String,
         required: true,
         trim: true
@@ -23,21 +23,27 @@ const userSchema = new Schema({
         required: true,
         minlength: 6
     },
-    createdCases: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Case'
-        }
-    ],
-    contributingCases: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Case'
-        }
-    ]
+    contact_number :{
+        type: String,  
+    },
+    // created_cases: [
+    //     {
+    //         type: Schema.Types.ObjectId,
+    //         ref: 'Cases'
+    //     }
+    // ],
+    created_at: {
+        type: Date,
+        default: Date.now
+    },
+
+    registered_helper :{
+        type: Boolean
+        
+    }
 })
 
-// set up pre-save middleware to create password
+//set up pre-save middleware to create password
 userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
       const saltRounds = 10;
@@ -49,9 +55,13 @@ userSchema.pre('save', async function(next) {
   
   // compare the incoming password with the hashed password
   userSchema.methods.isCorrectPassword = async function(password) {
-    return await bcrypt.compare(password, this.password);
+    return bcrypt.compare(password, this.password);
   };
+  
+ 
 
-const User = mongoose.model('User', userSchema);
+
+
+const User = model('User', userSchema);
 
 module.exports = User;
