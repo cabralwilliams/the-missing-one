@@ -36,8 +36,8 @@ const caseSchema = new Schema(
 		},
 		gender: {
 			type: String,
-      minLength: 1,
-      maxLength:2
+			minLength: 1,
+			maxLength: 2,
 		},
 		biograph: {
 			type: String,

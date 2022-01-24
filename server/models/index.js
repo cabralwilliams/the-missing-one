@@ -1,4 +1,7 @@
 
-const Case = require("./Case");
 
-module.exports = { Case};
+const Case = require("./Case");
+const User = require('./User');
+
+module.exports = { User,Case };
+
