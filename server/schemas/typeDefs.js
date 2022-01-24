@@ -3,36 +3,6 @@ const { gql } = require("apollo-server-express");
 
 //create typedefs - defines data to be returned by the query
 const typeDefs = gql`
-	type Thought {
-		_id: ID
-		thoughtText: String
-		createdAt: String
-		username: String
-		reactionCount: Int
-		reactions: [Reaction]
-	}
-	type Reaction {
-		_id: ID
-		reactionBody: String
-		createdAt: String
-		username: String
-	}
-
-	type User {
-		_id: ID
-		username: String
-		email: String
-		password: String
-		friendCount: Int
-		thoughts: [Thought]
-		friends: [User]
-	}
-
-	type Auth {
-		token: ID!
-		user: User
-	}
-
 	input CaseInput {
 		firstname: String
 		lastname: String
@@ -68,22 +38,11 @@ const typeDefs = gql`
 	}
 
 	type Query {
-		me: User
-		users: [User]
-		user(username: String!): User
-		thoughts(username: String): [Thought]
-		thought(_id: ID!): Thought
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
 	}
 
 	type Mutation {
-		login(email: String!, password: String!): Auth
-		addUser(username: String!, email: String!, password: String!): Auth
-		addThought(thoughtText: String!): Thought
-		addReaction(thoughtId: ID!, reactionBody: String!): Thought
-		addFriend(friendId: ID!): User
-
 		createCase(
 			firstname: String!
 			lastname: String!
@@ -107,7 +66,7 @@ const typeDefs = gql`
 		): Case
 
 		updateCase(
-			_id:ID!
+			_id: ID!
 			firstname: String!
 			lastname: String!
 			address: String!
@@ -134,4 +93,3 @@ const typeDefs = gql`
 //export typeDefs
 
 module.exports = typeDefs;
-		
