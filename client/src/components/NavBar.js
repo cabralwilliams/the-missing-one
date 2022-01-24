@@ -9,8 +9,8 @@ const NavBar = () => {
             <h1>The Missing One</h1>
           </Link>
           <nav className="text-center">
-            <Link to="/">Login</Link>
-            <Link to="/">Signup</Link>
+              <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
           </nav>
         </div>
       </header>
