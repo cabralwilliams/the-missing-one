@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User} = require('../models');
+const { User,Case} = require('../models');
 const { signToken } = require('../utils/auth');
 //const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -43,6 +43,14 @@ const resolvers = {
     // comment: async (parent, { _id }) => {
     //   return Comments.findOne({ _id });
     // },
+
+			getCases: async () => {
+			return Case.find();
+		},
+
+		getCaseById: async (parent, { _id }) => {
+			return Case.findOne({ _id });
+		},
   },
 
   Mutation: {
@@ -83,7 +91,19 @@ const resolvers = {
     // },
 
 
+		createCase: async (parent, args, context) => {
+			const newCase = await Case.create({ ...args });
+			return newCase;
+		},
 
+		updateCase: async (parent, args, context) => {
+			const updatedCase = await Case.findByIdAndUpdate(
+				{ _id: args._id },
+				{ ...args },
+				{ new: true }
+			);
+			return updatedCase;
+		},
 
 
 
@@ -93,5 +113,4 @@ const resolvers = {
 
 
 };
-
 module.exports = resolvers;

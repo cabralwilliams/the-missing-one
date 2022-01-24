@@ -17,13 +17,16 @@ Case
 •	dob
 •	address
 •	age at disappearance
-•	race
-•	gender
+•	race - merican Indian or Alaska Native AI, Asian A, Black or African American AF, Native Hawaiian or Other Pacific Islander NH, and White.W 
+•	gender - female F Male M  Transgender T Non-binary/non-conforming NC
+Prefer not to respond NR
 •	weight
 •	hair color
 •	eye color
 •	identification-marks
+> nationality
 •	mobile_number
+>IssuedState
 •	license_id
 •	license_plate_no
 •	[image]
@@ -36,7 +39,7 @@ Case
 •	ncic [NCIC is a computerized index of criminal justice information (i.e.- criminal record history information, fugitives, stolen properties, missing persons)]
 •	other_info
 •	comments:[comment_id]
-•	case_statis [open,closed]
+•	case_status [open,closed]
 . helpers:[user_id]
 •	comments:[comment_id]
 

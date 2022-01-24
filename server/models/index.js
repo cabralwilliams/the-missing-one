@@ -1,4 +1,7 @@
-const User = require('./User');
-//const Comments = require('./Comments');
 
-module.exports = { User };
+
+const Case = require("./Case");
+const User = require('./User');
+
+module.exports = { User,Case };
+
