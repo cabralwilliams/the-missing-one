@@ -96,6 +96,10 @@ const caseSchema = new Schema(
 			maxLength: 1,
 			required: [true, "Case status is the required field"],
 		},
+		comments:[ {
+			type: Schema.Types.ObjectId,
+			ref: 'Comment'
+		}],
 	},
 	{
 		toJSON: {

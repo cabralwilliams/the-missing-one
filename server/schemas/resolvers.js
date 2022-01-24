@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User,Case} = require('../models');
+const { User,Case, Comment} = require('../models');
 const { signToken } = require('../utils/auth');
 //const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -35,11 +35,11 @@ const resolvers = {
       
     },
 
-    // Comments : async (parent, { case_id }) =>{
-    //   const params = case_id ? { case_id } : {};
-    //   return Comments.find(params).sort({ createdAt: -1 });
+    getComments : async (parent, { case_id }) =>{
+      const params = case_id ? { case_id } : {};
+      return Comment.find(params).sort({ createdAt: -1 });
       
-    // },
+    },
     // comment: async (parent, { _id }) => {
     //   return Comments.findOne({ _id });
     // },
@@ -79,16 +79,16 @@ const resolvers = {
       return {  user , token };
     },
 
-    // addComment: async (parent, { case_id, comment_text}) => {
+    addComment: async (parent, ...args ) => {
         
-    //       const updatedCase = await Cases.findOneAndUpdate(
-    //         { _id: case_id },
-    //         { $push: { comments: { comment_text } } },
-    //         { new: true }
-    //       );
-      
-    //       return updatedCase;
-    // },
+          const comment = await Comment.create( { ...args} );
+            await Case.findByIdAndUpdate(
+              { _id: args.case_id },
+          { $push: { comments: comment._id } },
+          { new: true }
+            )
+          return comment;
+    },
 
 
 		createCase: async (parent, args, context) => {
