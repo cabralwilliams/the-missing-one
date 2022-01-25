@@ -1,4 +1,6 @@
 import React from 'react';
+//Import the CaseList - a list of Card-like displays composed of the SimpleCase component
+import CaseList from '../components/CaseList';
 const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg"
 
 const Home = () => {
