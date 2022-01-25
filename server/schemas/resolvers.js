@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Case, Donation } = require("../models");
+const { User, Case, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
+
 //const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
@@ -8,11 +9,9 @@ const resolvers = {
 		me: async (parent, args, context) => {
 			if (context.user) {
 				const userData = await User.findOne({ _id: context.user._id }).select(
-					"-__v -password"
-				);
+					"-__v -password"				);
 				// .populate('comments')
 				// .populate('created_cases')
-
 				return userData;
 			}
 			throw new AuthenticationError("Not logged in");
@@ -28,17 +27,14 @@ const resolvers = {
 			// .populate('created_cases')
 		},
 
-		// Comments : async (parent, { case_id }) =>{
-		//   const params = case_id ? { case_id } : {};
-		//   return Comments.find(params).sort({ createdAt: -1 });
-
-		// },
-		// comment: async (parent, { _id }) => {
-		//   return Comments.findOne({ _id });
-		// },
-
 		getCases: async () => {
-			return Case.find().populate("helpers");
+			return Case.find()
+				.populate({
+					path: "comments",
+					select: "-__v",
+				})
+				.populate({ path: "helpers", select: "-__v" })
+				.populate("replies");
 		},
 
 		getCaseById: async (parent, { _id }) => {
@@ -48,27 +44,21 @@ const resolvers = {
 		searchCases: async (parent, args) => {
 			return Case.find({ ...args });
 		},
-
-		// getDonations: async (parent, { case_id, user_id }) => {
-		// 	const params = {};
-		// 	if (case_id && user_id) {
-		// 		params = { case_id, user_id };
-		// 	} else if (case_id) {
-		// 		params = { case_id };
-		// 	} else if (user_id) {
-		// 		params = { user_id };
-		// 	}
-		// 	return Donation.find(params).sort({ createdAt: -1 });
-		// },
 	},
 
 	Mutation: {
 		addUser: async (parent, args) => {
-			console.log(args);
-			const user = await User.create({ ...args });
-
+			const user = await User.create(args);
 			const token = signToken(user);
 			return { user, token };
+		},
+		updateUser: async (parent, args, context) => {
+			const updatedUser = await User.findByIdAndUpdate(
+				{ _id: args._id },
+				{ ...args },
+				{ new: true }
+			);
+			return updatedUser;
 		},
 
 		login: async (parent, { email, password }) => {
@@ -89,16 +79,21 @@ const resolvers = {
 			return { user, token };
 		},
 
-		// addComment: async (parent, { case_id, comment_text}) => {
-
-		//       const updatedCase = await Cases.findOneAndUpdate(
-		//         { _id: case_id },
-		//         { $push: { comments: { comment_text } } },
-		//         { new: true }
-		//       );
-
-		//       return updatedCase;
-		// },
+		addComment: async (parent, args) => {
+			const comment = await Comment.create({ ...args });
+			await Case.findByIdAndUpdate(
+				{ _id: args.case_id },
+				{ $push: { comments: comment._id } }
+			);
+			return comment;
+		},
+		addReply: async (parent, args) => {
+			const updatedComment = await Comment.findOneAndUpdate(
+				{ _id: args.commentId },
+				{ $push: { replies: { ...args } } }
+			);
+			return updatedComment;
+		},
 
 		createCase: async (parent, args, context) => {
 			if (context.user) {
@@ -120,33 +115,6 @@ const resolvers = {
 				{ new: true }
 			);
 			return updatedCase;
-		},
-
-		addDonation: async (parent, args, context) => {
-			if (context.user) {
-				console.log(context.user);
-				const updatedUser = await User.findByIdAndUpdate(
-					{ _id: context.user._id },
-					{
-						$push: {
-							donations: { user_id:context.user.id,case_id: args.case_id, amount: args.amount },
-						},
-					},
-					{ new: true }
-				);
-				const updatedCase = await Case.findByIdAndUpdate(
-					{ _id: args.case_id },
-					{
-						$push: {
-							donations: {user_id:context.user.id, case_id: args.case_id, amount: args.amount },
-						},
-					},
-					{ new: true }
-				);
-				console.log(updatedUser.case_id);
-				return updatedUser;
-			}
-			return new AuthenticationError("Please sign in to donate");
 		},
 	},
 };

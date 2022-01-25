@@ -1,8 +1,8 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const dateFormat = require("../utils/dateFormat");
-
 const donationSchema = require("./Donation");
+const replySchema = require ('./Reply')
 const caseSchema = new Schema(
 	{
 		firstname: {
@@ -107,6 +107,11 @@ const caseSchema = new Schema(
 			},
 		],
 		donations: [donationSchema],
+		comments:[ {
+			type: Schema.Types.ObjectId,
+			ref: 'Comment'
+		}],
+		replies: [replySchema],
 	},
 	{
 		toJSON: {
