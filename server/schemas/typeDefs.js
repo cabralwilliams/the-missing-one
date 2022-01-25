@@ -13,6 +13,14 @@ const typeDefs = gql`
 		created_cases:[Case]
 		created_at: String
 		registered_helper: Boolean
+		donations: [Donation]
+	}
+
+	type Donation {
+		user_id: ID
+		amount: Int
+		case_id: ID
+		createdAt: String
 	}
 	type Comment {
 		_id: ID
@@ -65,9 +73,18 @@ const typeDefs = gql`
 		last_known_location: String
 		ncic: String
 		other_info: String
-		case_status: String
+		case_status: Boolean		
 		comments:[Comment]
 		images: [String]
+		helpers: [User]
+		donations: [Donation]
+	}
+
+	type Donation {
+		_id: ID
+		user_id: ID
+		amount: Int
+		case_id: ID
 	}
 
 	type Query {
@@ -76,6 +93,14 @@ const typeDefs = gql`
 		getuser(first_name: String!): User
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
+
+		searchCases(
+			race: String
+			gender: String
+			case_status: Boolean
+			ncic: String
+		): [Case]
+
 
 		
 	}
@@ -108,47 +133,49 @@ const typeDefs = gql`
 		createCase(
 			firstname: String!
 			lastname: String!
-			address: String!
-			dob: String!
+			address: String
+			dob: String
 			age: Int!
 			gender: String!
 			last_known_location: String!
-			case_status: String!
-			creator_id: ID!
-			biograph: String!
-			nationality: String!
-			mobile: String!
-			licenseId: String!
-			issuedState: String!
-			licensePlate: String!
-			disappearance_date: String!
-			ncic: String!
-			other_info: String!
-			images: [String]!
+			creator_id: ID
+			biograph: String
+			nationality: String
+			mobile: String
+			licenseId: String
+			issuedState: String
+			licensePlate: String
+			disappearance_date: String
+			ncic: String
+			other_info: String
+			images: [String]
+			helpers: [ID!]
 		): Case
 
 		updateCase(
 			_id: ID!
-			firstname: String!
-			lastname: String!
-			address: String!
-			dob: String!
-			age: Int!
-			gender: String!
-			last_known_location: String!
-			case_status: String!
-			creator_id: ID!
-			biograph: String!
-			nationality: String!
-			mobile: String!
-			licenseId: String!
-			issuedState: String!
-			licensePlate: String!
-			disappearance_date: String!
-			ncic: String!
-			other_info: String!
-			images: [String]!
+			firstname: String
+			lastname: String
+			address: String
+			dob: String
+			age: Int
+			gender: String
+			last_known_location: String
+			case_status: Boolean
+			creator_id: ID
+			biograph: String
+			nationality: String
+			mobile: String
+			licenseId: String
+			issuedState: String
+			licensePlate: String
+			disappearance_date: String
+			ncic: String
+			other_info: String
+			images: [String]
 		): Case
+
+		addDonation(case_id: ID, amount: Int): User
 	}
 `;
 //createCase(firstname: String!, lastname: String!, address: String!): Case
