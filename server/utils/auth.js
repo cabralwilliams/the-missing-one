@@ -31,4 +31,11 @@ module.exports = {
 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
+
+  sigTokenOut: function ({first_name, email, _id}){
+
+    return jwt.sign({ data: payload }, secret, { expiresIn:1 });
+
+
+  }
 };

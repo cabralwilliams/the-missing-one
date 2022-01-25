@@ -1,5 +1,5 @@
 const { Schema , model} = require("mongoose");
-//const repliesSchema = require('./Replies');
+const replySchema = require('./Reply');
 const Case = require ('./Case')
 const CommentSchema = new Schema({
     comment_text: {
@@ -20,7 +20,7 @@ const CommentSchema = new Schema({
         ref: 'Case'
     },
 
-    // replies: [repliesSchema],
+    replies: [replySchema],
     
 },
 {
@@ -33,4 +33,4 @@ const CommentSchema = new Schema({
 );
 
 const Comment = model('Comment', CommentSchema);
-module.exports = CommentSchema;
+module.exports = Comment;

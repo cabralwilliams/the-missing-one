@@ -20,7 +20,14 @@ const typeDefs = gql`
 		created_by: String
 		created_at: String
 		case_id: ID
-		# replies:[Reply]
+		 replies:[Reply]
+	}
+
+	type Reply {
+		_id: ID
+		createdAt: String
+		reply_body: String
+		name: String
 	}
 
 	type Auth {
@@ -69,7 +76,8 @@ const typeDefs = gql`
 		getuser(first_name: String!): User
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
-		getComments(case_id: ID!):Comment
+
+		
 	}
 
 	type Mutation {
@@ -82,10 +90,20 @@ const typeDefs = gql`
 			registered_helper: Boolean
 		): Auth
     
-		#   updateUser(first_name: String, last_name: String, email: String, password: String): Users
+		updateUser(
+			_id : ID!
+			first_name: String!
+			last_name: String!
+			email: String!
+			password: String!
+			contact_number: String
+			registered_helper: Boolean
+			): User
+
 		login(email: String!, password: String!): Auth
-		addComment(comment_text:String! case_id:ID! ): Comment
-		# addReply(commentId:Id!, reply_body:String): Comment
+		logout(email: String!, password: String!): Auth
+		addComment(comment_text:String!, case_id:ID!,created_by:String! ): Comment
+		addReply(commentId:ID!, reply_body:String!, name:String!): Comment
 
 		createCase(
 			firstname: String!
