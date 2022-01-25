@@ -15,6 +15,8 @@ const CaseList = () => {
         <div>
             {
                 data && data.getCases.map(missing => {
+                    //Placeholder value
+                    missing.img_src = "https://missingone.s3.amazonaws.com/0.jpg";
                     return(
                         <SimpleCase key={missing._id} {...missing} />
                     )
