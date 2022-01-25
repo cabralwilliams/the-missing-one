@@ -11,6 +11,7 @@ import Home   from './pages/Home';
 import NoMatch from './pages/NoMatch';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 import CreateCase from './pages/CreateCase'
 
 const httpLink = createHttpLink({
@@ -42,6 +43,7 @@ function App() {
           <div className="container">
             <Switch>
                 <Route exact path="/" component={Home} />
+                <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/CreateCase" component={CreateCase} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
