@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
+const Case = require ('./Case')
 const bcrypt = require("bcrypt");
+const donationSchema = require("./Donation");
 
 const userSchema = new Schema({
 	first_name: {
@@ -26,12 +28,18 @@ const userSchema = new Schema({
 	contact_number: {
 		type: String,
 	},
-	// created_cases: [
-	//     {
-	//         type: Schema.Types.ObjectId,
-	//         ref: 'Cases'
-	//     }
-	// ],
+	created_cases: [
+	    {
+	        type: Schema.Types.ObjectId,
+	        ref: 'Case'
+	    }
+	],
+
+    comments:[ {
+                type: Schema.Types.ObjectId,
+                ref: 'Comment'
+            }],
+
 	created_at: {
 		type: Date,
 		default: Date.now,
@@ -39,7 +47,8 @@ const userSchema = new Schema({
 
 	registered_helper: {
 		type: Boolean,
-	},
+    },
+    donations:[donationSchema]
 });
 
 //set up pre-save middleware to create password
