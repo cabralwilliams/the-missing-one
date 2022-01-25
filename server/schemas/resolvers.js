@@ -1,99 +1,111 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { User,Case} = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { User, Case, Comment } = require("../models");
+const { signToken } = require("../utils/auth");
+
 //const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
-
 const resolvers = {
+	Query: {
+		me: async (parent, args, context) => {
+			if (context.user) {
+				const userData = await User.findOne({ _id: context.user._id }).select(
+					"-__v -password"				);
+				// .populate('comments')
+				// .populate('created_cases')
+				return userData;
+			}
+			throw new AuthenticationError("Not logged in");
+		},
 
-  Query: {
+		getusers: async () => {
+			return User.find().select("-__v -password");
+			// .populate('created_cases')
+		},
 
-    me :async (parent, args, context) => {
-      if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          // .populate('comments')
-          // .populate('created_cases')
-          
-        return userData;
-      }
-      throw new AuthenticationError('Not logged in');
+		getuser: async (parent, { first_name }) => {
+			return User.findOne({ first_name }).select("-__v -password");
+			// .populate('created_cases')
+		},
 
-    },
-
-    getusers: async () => {
-      return User.find()
-        .select('-__v -password')
-        // .populate('created_cases')
-       
-    },
-
-    getuser: async (parent, { first_name }) => {
-      return User.findOne({ first_name })
-        .select('-__v -password')
-        // .populate('created_cases')
-      
-    },
-
-    // Comments : async (parent, { case_id }) =>{
-    //   const params = case_id ? { case_id } : {};
-    //   return Comments.find(params).sort({ createdAt: -1 });
-      
-    // },
-    // comment: async (parent, { _id }) => {
-    //   return Comments.findOne({ _id });
-    // },
-
-			getCases: async () => {
-			return Case.find();
+		getCases: async () => {
+			return Case.find()
+				.populate({
+					path: "comments",
+					select: "-__v",
+				})
+				.populate({ path: "helpers", select: "-__v" })
+				.populate("replies");
 		},
 
 		getCaseById: async (parent, { _id }) => {
 			return Case.findOne({ _id });
 		},
-  },
 
-  Mutation: {
-     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
-      return {  user , token };
-    },
+		searchCases: async (parent, args) => {
+			return Case.find({ ...args });
+		},
+	},
 
-    login: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
+	Mutation: {
+		addUser: async (parent, args) => {
+			const user = await User.create(args);
+			const token = signToken(user);
+			return { user, token };
+		},
+		updateUser: async (parent, args, context) => {
+			const updatedUser = await User.findByIdAndUpdate(
+				{ _id: args._id },
+				{ ...args },
+				{ new: true }
+			);
+			return updatedUser;
+		},
 
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
+		login: async (parent, { email, password }) => {
+			const user = await User.findOne({ email });
 
-      const correctPw = await user.isCorrectPassword(password);
+			if (!user) {
+				throw new AuthenticationError("Incorrect credentials");
+			}
 
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
+			const correctPw = await user.isCorrectPassword(password);
 
-      const token = signToken(user);
-      
+			if (!correctPw) {
+				throw new AuthenticationError("Incorrect credentials");
+			}
 
-      return {  user , token };
-    },
+			const token = signToken(user);
 
-    // addComment: async (parent, { case_id, comment_text}) => {
-        
-    //       const updatedCase = await Cases.findOneAndUpdate(
-    //         { _id: case_id },
-    //         { $push: { comments: { comment_text } } },
-    //         { new: true }
-    //       );
-      
-    //       return updatedCase;
-    // },
+			return { user, token };
+		},
 
+		addComment: async (parent, args) => {
+			const comment = await Comment.create({ ...args });
+			await Case.findByIdAndUpdate(
+				{ _id: args.case_id },
+				{ $push: { comments: comment._id } }
+			);
+			return comment;
+		},
+		addReply: async (parent, args) => {
+			const updatedComment = await Comment.findOneAndUpdate(
+				{ _id: args.commentId },
+				{ $push: { replies: { ...args } } }
+			);
+			return updatedComment;
+		},
 
 		createCase: async (parent, args, context) => {
-			const newCase = await Case.create({ ...args });
-			return newCase;
+			if (context.user) {
+				const newCase = await Case.create({
+					...args,
+					creator_id: context.user._id,
+				});
+				return newCase;
+			}
+			return new AuthenticationError(
+				"Please login / signup to enter the case details."
+			);
 		},
 
 		updateCase: async (parent, args, context) => {
@@ -104,13 +116,6 @@ const resolvers = {
 			);
 			return updatedCase;
 		},
-
-
-
-   },
-
-
-
-
+	},
 };
 module.exports = resolvers;
