@@ -85,24 +85,7 @@ const resolvers = {
       return {  user , token };
     },
 
-    logout: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-
-      if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const correctPw = await user.isCorrectPassword(password);
-
-      if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
-      }
-
-      const token = sigTokenOut(user);
-      
-
-      return {  user , token };
-    },
+    
 
     addComment: async (parent, args ) => {
         
