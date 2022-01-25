@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Case = require ('./Case')
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema({
@@ -26,12 +27,18 @@ const userSchema = new Schema({
 	contact_number: {
 		type: String,
 	},
-	// created_cases: [
-	//     {
-	//         type: Schema.Types.ObjectId,
-	//         ref: 'Cases'
-	//     }
-	// ],
+	created_cases: [
+	    {
+	        type: Schema.Types.ObjectId,
+	        ref: 'Case'
+	    }
+	],
+
+    comments:[ {
+                type: Schema.Types.ObjectId,
+                ref: 'Comment'
+            }],
+
 	created_at: {
 		type: Date,
 		default: Date.now,

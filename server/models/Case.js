@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const dateFormat = require("../utils/dateFormat");
+const replySchema = require ('./Reply')
 const caseSchema = new Schema(
 	{
 		firstname: {
@@ -96,6 +97,11 @@ const caseSchema = new Schema(
 			maxLength: 1,
 			required: [true, "Case status is the required field"],
 		},
+		comments:[ {
+			type: Schema.Types.ObjectId,
+			ref: 'Comment'
+		}],
+		replies: [replySchema],
 	},
 	{
 		toJSON: {

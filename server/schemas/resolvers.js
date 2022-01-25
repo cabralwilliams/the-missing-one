@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User,Case} = require('../models');
+const { User,Case, Comment} = require('../models');
 const { signToken } = require('../utils/auth');
 //const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -35,17 +35,15 @@ const resolvers = {
       
     },
 
-    // Comments : async (parent, { case_id }) =>{
-    //   const params = case_id ? { case_id } : {};
-    //   return Comments.find(params).sort({ createdAt: -1 });
-      
-    // },
-    // comment: async (parent, { _id }) => {
-    //   return Comments.findOne({ _id });
-    // },
-
 			getCases: async () => {
-			return Case.find();
+			return Case.find()
+      .populate({
+        path: 'comments',
+      select: '-__v'
+      })
+      .populate('replies')
+      
+
 		},
 
 		getCaseById: async (parent, { _id }) => {
@@ -59,6 +57,14 @@ const resolvers = {
       const token = signToken(user);
       return {  user , token };
     },
+    updateUser: async (parent, args, context) => {
+			const updatedUser = await User.findByIdAndUpdate(
+				{ _id: args._id },
+				{ ...args },
+				{ new: true }
+			);
+			return updatedUser;
+		},
 
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -79,16 +85,27 @@ const resolvers = {
       return {  user , token };
     },
 
-    // addComment: async (parent, { case_id, comment_text}) => {
+    
+
+    addComment: async (parent, args ) => {
         
-    //       const updatedCase = await Cases.findOneAndUpdate(
-    //         { _id: case_id },
-    //         { $push: { comments: { comment_text } } },
-    //         { new: true }
-    //       );
+          const comment = await Comment.create( { ...args} );
+            await Case.findByIdAndUpdate(
+              { _id: args.case_id },
+          { $push: { comments: comment._id } },
+         
+            ) 
+          return comment;
+    },
+    addReply: async (parent, args) => {
       
-    //       return updatedCase;
-    // },
+        const updatedComment = await Comment.findOneAndUpdate(
+          { _id: args.commentId },
+          { $push: { replies: { ...args }} },
+        );
+        return updatedComment;
+      
+    },
 
 
 		createCase: async (parent, args, context) => {
@@ -105,7 +122,7 @@ const resolvers = {
 			return updatedCase;
 		},
 
-
+    
 
    },
 
