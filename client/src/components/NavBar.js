@@ -7,14 +7,14 @@ const NavBar = () => {
     if (Auth.loggedIn()) {
       return (
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-          <li className="mx-1">
-            <Link to="/">
-              Profile
+          <li className="nav-item fs-5 active">
+            <Link className="nav-link" aria-current="page" to="/CreateCase">
+              Create Case
             </Link>
           </li>
           <li className="nav-item fs-5 active">
             {/* this is not using the Link component to logout or user and then refresh the application to the start */}
-            <a href="/" onClick={() => Auth.logout()}>
+            <a className="nav-link" aria-current="page" href="/" onClick={() => Auth.logout()}>
               Logout
             </a>
           </li>
