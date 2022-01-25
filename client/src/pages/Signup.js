@@ -5,7 +5,8 @@ import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 
 function Signup(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: '', password: '', contact_number: '' });
+
   const [addUser] = useMutation(ADD_USER);
 
   const handleFormSubmit = async (event) => {
@@ -16,6 +17,7 @@ function Signup(props) {
         password: formState.password,
         first_name: formState.firstName,
         last_name: formState.lastName,
+        contact_number: formState.contact_number
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -31,14 +33,13 @@ function Signup(props) {
   };
 
   return (
-    <div className="container my-1">
-      <Link to="/login">← Go to Login</Link>
-
-      <h2>Signup</h2>
-      <form onSubmit={handleFormSubmit}>
+    <div className="container my-1 contact-form">
+       <legend>Sign Up</legend>
+      <form id="contact-form" onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
           <label htmlFor="firstName">First Name:</label>
-          <input
+          <input 
+            className="form-control"
             placeholder="First"
             name="firstName"
             type="firstName"
@@ -49,6 +50,7 @@ function Signup(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="lastName">Last Name:</label>
           <input
+            className="form-control"
             placeholder="Last"
             name="lastName"
             type="lastName"
@@ -59,6 +61,7 @@ function Signup(props) {
         <div className="flex-row space-between my-2">
           <label htmlFor="email">Email:</label>
           <input
+            className="form-control"
             placeholder="youremail@test.com"
             name="email"
             type="email"
@@ -67,8 +70,20 @@ function Signup(props) {
           />
         </div>
         <div className="flex-row space-between my-2">
+          <label htmlFor="phone">Phone Number:</label>
+          <input
+            className="form-control"
+            placeholder="your phone number"
+            name="contact_number"
+            type="contact_number"
+            id="contact_number"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="flex-row space-between my-2">
           <label htmlFor="pwd">Password:</label>
           <input
+            className="form-control"
             placeholder="******"
             name="password"
             type="password"
@@ -80,7 +95,9 @@ function Signup(props) {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <Link to="/login">← Go to Login</Link>
     </div>
+    
   );
 }
 
