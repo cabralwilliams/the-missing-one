@@ -8,6 +8,11 @@ const NavBar = () => {
       return (
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item fs-5 active">
+            <Link className="nav-link" aria-current="page" to="/Profile">
+              Profile
+            </Link>
+          </li>
+          <li className="nav-item fs-5 active">
             <Link className="nav-link" aria-current="page" to="/CreateCase">
               Create Case
             </Link>
