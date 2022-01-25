@@ -1,17 +1,21 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 const dateFormat = require("../utils/dateFormat");
+
+const donationSchema = require("./Donation");
 const caseSchema = new Schema(
 	{
 		firstname: {
 			type: String,
 			required: true,
 			trim: true,
+			unique: false,
 		},
 		lastname: {
 			type: String,
 			required: [true, "Last Name is the required field"],
 			trim: true,
+			unique: false,
 		},
 		address: {
 			type: String,
@@ -92,10 +96,17 @@ const caseSchema = new Schema(
 			maxLength: 500,
 		},
 		case_status: {
-			type: String,
-			maxLength: 1,
+			type: Boolean,
+			default: true,
 			required: [true, "Case status is the required field"],
 		},
+		helpers: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: "User",
+			},
+		],
+		donations: [donationSchema],
 	},
 	{
 		toJSON: {
@@ -105,6 +116,10 @@ const caseSchema = new Schema(
 );
 
 // set up pre-save middleware to create password
+
+caseSchema.virtual("helpers_count").get(function () {
+	return this.helpers.length;
+});
 
 const Case = model("Case", caseSchema);
 
