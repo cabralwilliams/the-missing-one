@@ -1,10 +1,51 @@
-body {
+
+/* Define vars*/
+:root {
+  --primary-color: #fff;
+  --secondary-color: darkred ;
+  --tertiary-color: black;
+  --error: rgb(228, 46, 1);
+  --spacing-one: calc(1rem * 0.5);
+  --spacing-two: calc(1rem);
+  --spacing-five: calc(2.5rem);
+  --special-color: darkred ;
+}
+/* tell browser to fix box model calculations */
+/* get rid of browser's margins*/
+* {
+  box-sizing: border-box;
+}
+/*setup font-style*/
+html, body, #root{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0px;
+  min-height: 100vh;
+  color: var(--tertiary-color);
+  font-size: 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* HEADER / NAV BAR STYLES START */
+nav h1 {
+  font-weight: bold;
+  margin: 0;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  background-color: var(--secondary-color);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+nav ul li a {
+  padding: 10px 15px;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 code {
