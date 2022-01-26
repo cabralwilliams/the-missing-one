@@ -102,6 +102,11 @@ const resolvers = {
 				const newCase = await Case.create({
 					...args
 				});
+
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { created_cases: newCase._id }}
+          );
 				return newCase;
 			}
 			return new AuthenticationError(
