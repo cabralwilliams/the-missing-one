@@ -28,10 +28,15 @@ const resolvers = {
        
     },
 
-    getuser: async (parent, { first_name }) => {
-      return User.findOne({ first_name })
+    getuser: async (parent, { _id }) => {
+      const user = await User.findOne({_id});
+      if (user)
+      {
+        return User.findOne({ _id })
         .select('-__v -password')
-        // .populate('created_cases')
+        .populate('created_cases')
+      }
+      return new AuthenticationError('User not found!');
       
     },
 
@@ -42,7 +47,6 @@ const resolvers = {
       select: '-__v'
       })
       .populate('replies')
-      
 
 		},
 
@@ -66,6 +70,14 @@ const resolvers = {
 			return updatedUser;
 		},
 
+    deleteUser:async(parent,{_id})=>{
+      const user = await User.findOne({_id});
+      if (user) {
+        return User.findByIdAndDelete({_id})
+      }
+      return new AuthenticationError('User not found!');
+    },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -85,8 +97,6 @@ const resolvers = {
       return {  user , token };
     },
 
-    
-
     addComment: async (parent, args ) => {
         
           const comment = await Comment.create( { ...args} );
@@ -97,6 +107,15 @@ const resolvers = {
             ) 
           return comment;
     },
+    deleteComment: async (parent , args) =>{
+      
+        const deletedComment = await Case.findByIdAndUpdate(
+        {_id : args.case_id},
+        {$pull:{comments:{commentId:args.commentId}}},
+      );
+      return deletedComment
+    },
+
     addReply: async (parent, args) => {
       
         const updatedComment = await Comment.findOneAndUpdate(

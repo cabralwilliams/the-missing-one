@@ -73,7 +73,7 @@ const typeDefs = gql`
 	type Query {
 		getusers: [User]
 		me: User
-		getuser(first_name: String!): User
+		getuser(_id:ID!): User
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
 
@@ -100,9 +100,10 @@ const typeDefs = gql`
 			registered_helper: Boolean
 			): User
 
+		deleteUser(_id:ID!) : User
 		login(email: String!, password: String!): Auth
-		logout(email: String!, password: String!): Auth
 		addComment(comment_text:String!, case_id:ID!,created_by:String! ): Comment
+		deleteComment(commentId:ID!,case_id:ID! ): Comment
 		addReply(commentId:ID!, reply_body:String!, name:String!): Comment
 
 		createCase(
