@@ -96,10 +96,11 @@ const resolvers = {
 		},
 
 		createCase: async (parent, args, context) => {
+      console.log(args);
 			if (context.user) {
+        
 				const newCase = await Case.create({
-					...args,
-					creator_id: context.user._id,
+					...args
 				});
 				return newCase;
 			}
