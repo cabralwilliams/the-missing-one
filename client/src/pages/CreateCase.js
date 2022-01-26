@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import {PutObjectCommand} from "@aws-sdk/client-s3";
-import { s3Client } from "../utils/s3Client.js"
+import { s3Client } from "../utils/s3client.js"
 
 const S3_BUCKET ='missingone';
 

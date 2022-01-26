@@ -9,9 +9,9 @@ const resolvers = {
 		me: async (parent, args, context) => {
 			if (context.user) {
 				const userData = await User.findOne({ _id: context.user._id }).select(
-					"-__v -password"				);
-				// .populate('comments')
-				// .populate('created_cases')
+					"-__v -password")
+				 .populate('comments')
+				 .populate('created_cases')
 				return userData;
 			}
 			throw new AuthenticationError("Not logged in");
@@ -20,7 +20,7 @@ const resolvers = {
     getusers: async () => {
       return User.find()
         .select('-__v -password')
-        // .populate('created_cases')
+        .populate('created_cases')
        
     },
 
