@@ -35,15 +35,17 @@ Prefer not to respond NR
 •	modified_at
 •	disappearance_date
 •	last_known_location
->case_details
 •	ncic [NCIC is a computerized index of criminal justice information (i.e.- criminal record history information, fugitives, stolen properties, missing persons)]
 •	other_info
 •	comments:[comment_id]
-•	case_status [open,closed]
+•	case_status [true,false]
 . helpers:[user_id]
-•	comments:[comment_id]
+•
 
-
+donations
+user_id
+amount
+case_id
 
 
 

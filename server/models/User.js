@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const Case = require ('./Case')
 const bcrypt = require("bcrypt");
+const donationSchema = require("./Donation");
 
 const userSchema = new Schema({
 	first_name: {
@@ -46,7 +47,8 @@ const userSchema = new Schema({
 
 	registered_helper: {
 		type: Boolean,
-	},
+    },
+    donations:[donationSchema]
 });
 
 //set up pre-save middleware to create password

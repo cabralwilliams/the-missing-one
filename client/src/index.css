@@ -1,13 +1,122 @@
-body {
+
+/* Define vars*/
+:root {
+  --primary-color: #fff;
+  --secondary-color: darkred ;
+  --tertiary-color: black;
+  --error: rgb(228, 46, 1);
+  --spacing-one: calc(1rem * 0.5);
+  --spacing-two: calc(1rem);
+  --spacing-five: calc(2.5rem);
+  --special-color: darkred ;
+}
+/* tell browser to fix box model calculations */
+/* get rid of browser's margins*/
+* {
+  box-sizing: border-box;
+}
+/*setup font-style*/
+html, body, #root{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0px;
+  min-height: 100vh;
+  color: var(--tertiary-color);
+  font-size: 1rem;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* HEADER / NAV BAR STYLES START */
+nav h1 {
+  font-weight: bold;
+  margin: 0;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  background-color: var(--secondary-color);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+nav ul li a {
+  padding: 10px 15px;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.contact-form {
+  width: 50%;
+  background-color: #efefef;
+  border: 1px solid #dcdcdc;
+  border-radius: 10px;
+  margin: 5px;
+}
+.form-control {
+    width: 90%;
+ }
+ .contact-form legend {
+    width: 100%;
+    margin: auto;
+    background-color: var(--secondary-color);
+    text-decoration: underline;
+    color: var(--primary-color);
+    font-weight: bold;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 150%;
+  }
+  .contact-form label{
+    margin: 1% 5% 1% 5%;
+    line-height: 120%;
+    font-size: 150%
+ }
+
+ .contact-form input{
+  border-bottom: 1px dotted #dcdcdc;
+  font-size: 150%;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  width: 90%;
+  margin: 1% 5% 1% 5%;
+}
+
+.contact-form input:focus {
+  border: 1px dotted #dcdcdc;
+  outline: none;
+}
+
+.contact-form button {
+  color: #444444;
+  font-size: 180%;
+  text-shadow: 0px 1px 1px #ffffff;
+  width: 90%; /* Full width */
+  border-bottom: 2px solid #b2b2b2;
+  background-color: #b9e4e3;
+  background: -webkit-gradient(linear, left top, left bottom, from(#beeae9), to(#a8cfce));
+  background: -moz-linear-gradient(top, #beeae9, #a8cfce);
+  background: -o-linear-gradient(top, #beeae9, #a8cfce);
+  background: -ms-linear-gradient(top, #beeae9, #a8cfce);
+  margin: 1% 5% 5% 5%;
+}
+.contact-form button:hover{
+  color: #333333;
+  border: 1px solid #a4a4a4;
+  border-top: 2px solid #b2b2b2;
+  background-color: #a0dbc4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a8cfce), to(#beeae9));
+  background: -moz-linear-gradient(top, #a8cfce, #beeae9);
+  background: -o-linear-gradient(top, #a8cfce, #beeae9);
+  background: -ms-linear-gradient(top, #a8cfce, #beeae9);
+}
+
