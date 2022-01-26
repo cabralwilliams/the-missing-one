@@ -1,24 +1,36 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { GET_CASES } from "../utils/queries";
+
 import SimpleCase from "./SimpleCase";
 import { useQuery } from "@apollo/client";
 import Moment from "react-moment";
 
 const CaseList = () => {
 	const { data, loading } = useQuery(GET_CASES);
+	const dispatch = useDispatch();
 
-	if (loading) {
-		return <h2>Cases are loading...</h2>;
-	} else console.log(data);
-	const cases = data?.getCases || [];
+	// if (loading) {
+	// 	return <h2>Cases are loading...</h2>;
+	// } else console.log(data);
+
 	console.log("in caselist");
-	console.log(cases);
 
-	// useEffect(() => {
-	//     if (data) {
-
-	//     }
-	// })
+	useEffect(() => {
+		if (data) {
+			console.log("executing dispatch to update state");
+			dispatch(
+				{
+					type: "UPDATE_CASES",
+					cases: data.getCases,
+				},
+				[data, dispatch]
+			);
+		}
+	});
+	const filterCases = useSelector((state) => state.cases);
+	console.log("filtering cases");
+	console.log(filterCases);
 	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
 	const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
 	const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
@@ -29,8 +41,8 @@ const CaseList = () => {
 		<div>
 			<div className="clearfix">
 				<div className="row">
-					{cases.length &&
-						cases.map((missing) => (
+					{filterCases.length &&
+						filterCases.map((missing) => (
 							<div
 								className="col-md-4 my-2 animated fadeIn text-center rounded "
 								key={missing._id}

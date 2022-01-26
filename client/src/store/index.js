@@ -8,9 +8,12 @@ const initialState = {
 	user: {},
 };
 const missingoneReducer = (state = { ...initialState }, action) => {
-  switch(action.type){
-    case UPDATE_CASES:
-  }
+	switch (action.type) {
+		case UPDATE_CASES:
+			return { ...state }, { cases: [...action.cases] };
+		default:
+			return { ...state };
+	}
 };
 
 const store = createStore(missingoneReducer);
