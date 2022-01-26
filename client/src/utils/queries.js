@@ -49,3 +49,17 @@ export const GET_CASES = gql`
 		}
 	}
 `;
+
+
+ export const QUERY_ME = gql`
+    {
+        me {
+            _id
+            first_name
+            last_name
+            created_cases {
+                _id
+            }
+        }
+    }
+ `;
