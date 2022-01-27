@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { GET_CASES } from "../utils/queries";
-
 import SimpleCase from "./SimpleCase";
 import { useQuery } from "@apollo/client";
-import Moment from "react-moment";
+
+
 
 const CaseList = () => {
 	const { data, loading } = useQuery(GET_CASES);
@@ -46,8 +46,14 @@ const CaseList = () => {
 							<div
 								className="col-md-4 my-2 animated fadeIn text-center rounded "
 								key={missing._id}
+
 							>
-								<div className="card">
+
+								
+								<SimpleCase _id={missing._id} firstname={missing.firstname} lastname={missing.lastname} age={missing.age} disappearance_date={missing.disappearance_date} last_known_location={missing.last_known_location} img_src="">
+
+								</SimpleCase>
+								{/* <div className="card">
 									<div className="card-body">
 										<div className="avtar">
 											<img
@@ -72,7 +78,7 @@ const CaseList = () => {
 											</span>
 										</p>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						))}
 				</div>
