@@ -23,7 +23,6 @@ import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 
 
-
 const httpLink = createHttpLink({
 	uri: "/graphql",
 });
@@ -48,11 +47,11 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-			
-        <div className="flex-column justify-flex-start min-100-vh">
-		    <Provider store={store}>
-          	<Header/>
-				<div className="container">
+				<div className="flex-column justify-flex-start min-100-vh">
+					<Provider store={store}>
+						<Header />
+						{/* <NavBar /> */}
+						<div className="container">
 							<Switch>
 								<Route exact path="/" component={Home} />
 								<Route exact path="/Profile" component={Profile} />
@@ -61,12 +60,10 @@ function App() {
 								<Route exact path="/signup" component={Signup} />
 								<Route component={NoMatch} />
 							</Switch>
-					
 						</div>
 						<Footer />
-					  </Provider>
-					</div>
-					
+					</Provider>
+				</div>
 			</Router>
 		</ApolloProvider>
 	);

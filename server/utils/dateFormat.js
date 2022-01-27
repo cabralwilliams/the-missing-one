@@ -29,7 +29,7 @@ module.exports = (
 	} = {}
 ) => {
 	// create month object
-	console.log(moment(timestamp).format(format));
+
 	return moment(timestamp).format(format);
 	// const months = {
 	// 	0: monthLength === "short" ? "Jan" : "January",
