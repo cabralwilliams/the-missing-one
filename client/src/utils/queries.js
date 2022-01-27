@@ -52,14 +52,33 @@ export const GET_CASES = gql`
 
 
  export const QUERY_ME = gql`
-    {
-        me {
+ {
+    me {
+      _id
+      first_name
+      last_name
+      email
+      contact_number
+      registered_helper
+      created_cases{
+        _id
+        firstname
+        lastname
+        address
+        last_known_location
+        age
+        comments {
+          _id
+          created_at
+          comment_text
+          created_by
+          replies{
             _id
-            first_name
-            last_name
-            created_cases {
-                _id
-            }
+            reply_body
+            name
+          }
         }
+      }
     }
- `;
+  }
+`;
