@@ -30,8 +30,6 @@ const initialState = {
 // Add a photo to s3 bucket
 const UploadImageToS3WithNativeSdk = () => {
 	const [selectedFile, setSelectedFile] = useState(null);
-
-	const [selectedFile, setSelectedFile] = useState(null);
 	const [formState, setFormState] = useState(initialState);
 	const [locationState, setLocationState] = useState("");
 	const { data, loading } = useQuery(QUERY_ME);

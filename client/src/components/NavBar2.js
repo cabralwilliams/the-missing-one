@@ -3,52 +3,6 @@ import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 
 const NavBar2 = () => {
-	// function showNavigation() {
-	// 	if (Auth.loggedIn()) {
-	// 		return (
-	// 			<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-	// 				<li className="nav-item fs-5 active">
-	// 					<Link className="nav-link" aria-current="page" to="/Profile">
-	// 						Profile
-	// 					</Link>
-	// 				</li>
-	// 				<li className="nav-item fs-5 active">
-	// 					<Link className="nav-link" aria-current="page" to="/CreateCase">
-	// 						Create Case
-	// 					</Link>
-	// 				</li>
-	// 				<li className="nav-item fs-5 active">
-	// 					{/* this is not using the Link component to logout or user and then refresh the application to the start */}
-	// 				<Link
-	// 						className="nav-link"
-	// 						aria-current="page"
-	// 						to="/"
-	// 						onClick={() => Auth.logout()}
-	// 					>
-	// 						Logout
-	// 					</Link>
-	// 				</li>
-	// 			</ul>
-	// 		);
-	// 	} else {
-	// 		return (
-	// 			<ul className="navbar-nav me-auto mb-2 mb-lg-0">
-	// 				<li className="nav-item fs-5 active">
-	// 					<Link className="nav-link" aria-current="page" to="/login">
-	// 						Login
-	// 					</Link>
-	// 				</li>
-	// 				<li className="nav-item fs-5">
-	// 					<Link className="nav-link" to="/signup">
-	// 						Signup
-	// 					</Link>
-	// 				</li>
-	// 			</ul>
-	// 		);
-	// 	}
-	// }
-
-	console.log(Auth.loggedIn());
 	return (
 		<div className="collapse navbar-collapse d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between">
 			<Link to="/">
@@ -68,7 +22,7 @@ const NavBar2 = () => {
 					</li>
 
 					<li>
-						<Link to="/" className="nav-link text-white">
+						<Link to="/CreateCase" className="nav-link text-white">
 							<svg
 								className="bi d-block mx-auto mb-1"
 								width="24"
@@ -78,7 +32,7 @@ const NavBar2 = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="/" className="nav-link text-white">
+						<Link to="/Profile" className="nav-link text-white">
 							<svg
 								className="bi d-block mx-auto mb-1"
 								width="24"

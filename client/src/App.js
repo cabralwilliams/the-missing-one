@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Provider } from "react-redux";
 import {
 	ApolloProvider,
 	ApolloClient,
@@ -18,7 +19,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-import NavBar2 from "./components/NavBar2";
+import store from "./utils/store";
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -44,9 +45,9 @@ function App() {
 	return (
 		<ApolloProvider client={client}>
 			<Router>
-			
-        <div className="flex-column justify-flex-start min-100-vh">
-          	<Header/>
+				<div className="flex-column justify-flex-start min-100-vh">
+					<Provider store={store}>
+						<Header />
 						{/* <NavBar /> */}
 						<div className="container">
 							<Switch>
@@ -59,8 +60,8 @@ function App() {
 							</Switch>
 						</div>
 						<Footer />
-					</div>
-			
+					</Provider>
+				</div>
 			</Router>
 		</ApolloProvider>
 	);
