@@ -68,7 +68,7 @@ const NavBar2 = () => {
 					</li>
 
 					<li>
-						<Link to="/" className="nav-link text-white">
+						<Link to="/CreateCase" className="nav-link text-white">
 							<svg
 								className="bi d-block mx-auto mb-1"
 								width="24"
@@ -78,7 +78,7 @@ const NavBar2 = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="/" className="nav-link text-white">
+						<Link to="/Profile" className="nav-link text-white">
 							<svg
 								className="bi d-block mx-auto mb-1"
 								width="24"

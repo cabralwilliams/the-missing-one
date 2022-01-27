@@ -9,7 +9,10 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import "./index.css";
 
-import NavBar from "./components/NavBar";
+//inport redux store
+import { Provider } from 'react-redux';
+import store from './utils/store';
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -18,7 +21,8 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-import NavBar2 from "./components/NavBar2";
+
+
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -46,9 +50,9 @@ function App() {
 			<Router>
 			
         <div className="flex-column justify-flex-start min-100-vh">
+		    <Provider store={store}>
           	<Header/>
-						{/* <NavBar /> */}
-						<div className="container">
+				<div className="container">
 							<Switch>
 								<Route exact path="/" component={Home} />
 								<Route exact path="/Profile" component={Profile} />
@@ -57,10 +61,12 @@ function App() {
 								<Route exact path="/signup" component={Signup} />
 								<Route component={NoMatch} />
 							</Switch>
+					
 						</div>
 						<Footer />
+					  </Provider>
 					</div>
-			
+					
 			</Router>
 		</ApolloProvider>
 	);
