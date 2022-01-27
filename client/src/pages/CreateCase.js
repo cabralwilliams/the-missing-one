@@ -1,35 +1,34 @@
-import React ,{useState} from 'react';
-import {PutObjectCommand} from "@aws-sdk/client-s3";
-import { s3Client } from "../utils/s3client.js"
-import Auth from '../utils/auth';
-import { QUERY_ME } from '../utils/queries.js';
-import { CREATE_CASE } from '../utils/mutations.js';
-import { useQuery, useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3Client } from "../utils/s3Client.js";
+import Auth from "../utils/auth";
+import { QUERY_ME } from "../utils/queries.js";
+import { CREATE_CASE } from "../utils/mutations.js";
+import { useQuery, useMutation } from "@apollo/client";
 
-const S3_BUCKET ='missingone';
+const S3_BUCKET = "missingone";
 const initialState = {
-    firstname: null,
-    lastname: null,
-    address: null,
-    dob: null,
-    age: null,
-    gender: null,
-    last_known_location: null,
-    creator_id: null,
-    biograph: null,
-    nationality: null,
-    mobile: null,
-    licenseId: null,
-    issuedState: null,
-    licensePlate: null,
-    disappearance_date: null,
-    ncic: null,
-    other_info: null
-}
+	firstname: null,
+	lastname: null,
+	address: null,
+	dob: null,
+	age: null,
+	gender: null,
+	last_known_location: null,
+	creator_id: null,
+	biograph: null,
+	nationality: null,
+	mobile: null,
+	licenseId: null,
+	issuedState: null,
+	licensePlate: null,
+	disappearance_date: null,
+	ncic: null,
+	other_info: null,
+};
 
 // Add a photo to s3 bucket
 const UploadImageToS3WithNativeSdk = () => {
-
     const [selectedFile, setSelectedFile] = useState(null);
     const [formState, setFormState] = useState(initialState);
     const [locationState, setLocationState] = useState('');
@@ -43,17 +42,17 @@ const UploadImageToS3WithNativeSdk = () => {
     // console.log(userData);
     // console.log(data);
 
-    const handleFileInput = (e) => {
-        setSelectedFile(e.target.files[0]);
-    }
+	const handleFileInput = (e) => {
+		setSelectedFile(e.target.files[0]);
+	};
 
-    const updateLocation = e => {
-        const locVal = e.target.value;
-        //console.log(locVal);
-        setLocationState(locVal);
-        //console.log(locationState);
-        setFormState({ ...formState, last_known_location: locVal });
-    }
+	const updateLocation = (e) => {
+		const locVal = e.target.value;
+		//console.log(locVal);
+		setLocationState(locVal);
+		//console.log(locationState);
+		setFormState({ ...formState, last_known_location: locVal });
+	};
 
     const updateAddress = e => {
         const locVal = e.target.value;
@@ -91,21 +90,21 @@ const UploadImageToS3WithNativeSdk = () => {
         }
     }
 
-    //Update the form field(s)
-    const handleChange = e => {
-        const { name, value } = e.target;
-        if(name === 'age') {
-            setFormState({
-                ...formState,
-                age: parseInt(value)
-            })
-        } else {
-            setFormState({
-                ...formState,
-                [name]: value
-            });
-        }
-    };
+	//Update the form field(s)
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		if (name === "age") {
+			setFormState({
+				...formState,
+				age: parseInt(value),
+			});
+		} else {
+			setFormState({
+				...formState,
+				[name]: value,
+			});
+		}
+	};
 
     //Submit Form
     const handleFormSubmit = async e => {
@@ -144,11 +143,9 @@ const UploadImageToS3WithNativeSdk = () => {
         window.location.replace('/');
     }
 
-    if(loading) {
-        return(
-            <h2>Data is loading - please wait...</h2>
-        );
-    };
+	if (loading) {
+		return <h2>Data is loading - please wait...</h2>;
+	}
 
     return(
         <div>
@@ -247,4 +244,3 @@ const UploadImageToS3WithNativeSdk = () => {
 }
 
 export default UploadImageToS3WithNativeSdk;
-
