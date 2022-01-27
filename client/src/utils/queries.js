@@ -25,6 +25,7 @@ export const QUERY_ME = gql`
         firstname
         lastname
         address
+        disappearance_date
         last_known_location
         age
         comments {
@@ -56,3 +57,5 @@ export const QUERY_ME = gql`
         }
     }
  `;
+
+ 

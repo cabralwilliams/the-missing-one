@@ -116,11 +116,11 @@ const typeDefs = gql`
 		): Auth
     
 		updateUser(
-			_id : ID!
-			first_name: String!
-			last_name: String!
-			email: String!
-			password: String!
+		
+			first_name: String
+			last_name: String
+			email: String
+			password: String
 			contact_number: String
 			registered_helper: Boolean
 			): User
