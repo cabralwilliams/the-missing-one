@@ -1,32 +1,34 @@
-
 /* Define vars*/
 :root {
-  --primary-color: #fff;
-  --secondary-color: darkred ;
-  --tertiary-color: black;
-  --error: rgb(228, 46, 1);
-  --spacing-one: calc(1rem * 0.5);
-  --spacing-two: calc(1rem);
-  --spacing-five: calc(2.5rem);
-  --special-color: darkred ;
+	--primary-color: #fff;
+	--secondary-color: darkred;
+	--tertiary-color: black;
+	--error: rgb(228, 46, 1);
+	--spacing-one: calc(1rem * 0.5);
+	--spacing-two: calc(1rem);
+	--spacing-five: calc(2.5rem);
+	--special-color: darkred;
+	--cardBorderColor: #c0c0c0;
 }
 /* tell browser to fix box model calculations */
 /* get rid of browser's margins*/
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 /*setup font-style*/
-html, body, #root{
-  margin: 0;
-  padding: 0px;
-  min-height: 100vh;
-  color: var(--tertiary-color);
-  font-size: 1rem;
-  font-family: Helvetica, Arial, sans-serif;
+html,
+body,
+#root {
+	margin: 0;
+	padding: 0px;
+	min-height: 100vh;
+	color: var(--tertiary-color);
+	font-size: 1rem;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 /* HEADER / NAV BAR STYLES START */
-nav h1 {
+/* nav h1 {
   font-weight: bold;
   margin: 0;
   color: var(--primary-color);
@@ -46,77 +48,147 @@ nav ul li a {
   padding: 10px 15px;
   font-size: 2rem;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */
+.navigation h2 {
+	font-weight: bold;
+	margin: 0;
+	color: var(--primary-color);
+	text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.navigation {
+	background-color: var(--secondary-color);
+}
+
+.navigation a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+/*-----------------------------*/
+col-md-4 {
+	margin-bottom: 30px;
+}
+
+.card {
+	padding: 30px;
+	border: solid 2px var(--cardBorderColor);
+	cursor: pointer;
+	background-color: #eee;
+}
+.card:hover {
+	box-shadow: 0 0 12px 3px rgba(34, 33, 33, 0.08);
+}
+.card-title {
+	margin-top: 20px;
+}
+.card-text {
+	font-size: 14px;
+	color: rgba(0, 0, 0, 0.6);
+}
+.card-text .fa {
+	font-size: 26px;
+}
+.avtar {
+	margin: auto;
+	width: 80%;
+	border: "1px solid green";
+	margin: auto;
+}
+.avtar img {
+	border: solid 6px transparent;
+
+	border-radius: 50%;
+}
+.card:hover .avtar img {
+	border-color: rgb(99, 204, 131);
+}
+
+/*-----------------------------*/
+/* nav ul li a {
+  padding: 10px 15px;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 .contact-form {
-  width: 50%;
-  background-color: #efefef;
-  border: 1px solid #dcdcdc;
-  border-radius: 10px;
-  margin: 5px;
+	width: 50%;
+	background-color: #efefef;
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	margin: 5px;
 }
 .form-control {
-    width: 90%;
- }
- .contact-form legend {
-    width: 100%;
-    margin: auto;
-    background-color: var(--secondary-color);
-    text-decoration: underline;
-    color: var(--primary-color);
-    font-weight: bold;
-    border: 1px solid #dcdcdc;
-    border-radius: 10px;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 150%;
-  }
-  .contact-form label{
-    margin: 1% 5% 1% 5%;
-    line-height: 120%;
-    font-size: 150%
- }
+	width: 90%;
+}
+.contact-form legend {
+	width: 100%;
+	margin: auto;
+	background-color: var(--secondary-color);
+	text-decoration: underline;
+	color: var(--primary-color);
+	font-weight: bold;
+	border: 1px solid #dcdcdc;
+	border-radius: 10px;
+	padding: 10px 20px;
+	text-align: center;
+	font-size: 150%;
+}
+.contact-form label {
+	margin: 1% 5% 1% 5%;
+	line-height: 120%;
+	font-size: 150%;
+}
 
- .contact-form input{
-  border-bottom: 1px dotted #dcdcdc;
-  font-size: 150%;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  width: 90%;
-  margin: 1% 5% 1% 5%;
+.contact-form input {
+	border-bottom: 1px dotted #dcdcdc;
+	font-size: 150%;
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	width: 90%;
+	margin: 1% 5% 1% 5%;
 }
 
 .contact-form input:focus {
-  border: 1px dotted #dcdcdc;
-  outline: none;
+	border: 1px dotted #dcdcdc;
+	outline: none;
 }
 
 .contact-form button {
-  color: #444444;
-  font-size: 180%;
-  text-shadow: 0px 1px 1px #ffffff;
-  width: 90%; /* Full width */
-  border-bottom: 2px solid #b2b2b2;
-  background-color: #b9e4e3;
-  background: -webkit-gradient(linear, left top, left bottom, from(#beeae9), to(#a8cfce));
-  background: -moz-linear-gradient(top, #beeae9, #a8cfce);
-  background: -o-linear-gradient(top, #beeae9, #a8cfce);
-  background: -ms-linear-gradient(top, #beeae9, #a8cfce);
-  margin: 1% 5% 5% 5%;
+	color: #444444;
+	font-size: 180%;
+	text-shadow: 0px 1px 1px #ffffff;
+	width: 90%; /* Full width */
+	border-bottom: 2px solid #b2b2b2;
+	background-color: #b9e4e3;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(#beeae9),
+		to(#a8cfce)
+	);
+	background: -moz-linear-gradient(top, #beeae9, #a8cfce);
+	background: -o-linear-gradient(top, #beeae9, #a8cfce);
+	background: -ms-linear-gradient(top, #beeae9, #a8cfce);
+	margin: 1% 5% 5% 5%;
 }
-.contact-form button:hover{
-  color: #333333;
-  border: 1px solid #a4a4a4;
-  border-top: 2px solid #b2b2b2;
-  background-color: #a0dbc4;
-  background: -webkit-gradient(linear, left top, left bottom, from(#a8cfce), to(#beeae9));
-  background: -moz-linear-gradient(top, #a8cfce, #beeae9);
-  background: -o-linear-gradient(top, #a8cfce, #beeae9);
-  background: -ms-linear-gradient(top, #a8cfce, #beeae9);
+.contact-form button:hover {
+	color: #333333;
+	border: 1px solid #a4a4a4;
+	border-top: 2px solid #b2b2b2;
+	background-color: #a0dbc4;
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		from(#a8cfce),
+		to(#beeae9)
+	);
+	background: -moz-linear-gradient(top, #a8cfce, #beeae9);
+	background: -o-linear-gradient(top, #a8cfce, #beeae9);
+	background: -ms-linear-gradient(top, #a8cfce, #beeae9);
 }
-
