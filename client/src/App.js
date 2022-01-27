@@ -21,7 +21,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-
+import Edit from "./pages/Edit";
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -58,6 +58,7 @@ function App() {
 								<Route exact path="/CreateCase" component={CreateCase} />
 								<Route exact path="/login" component={Login} />
 								<Route exact path="/signup" component={Signup} />
+                <Route exact path="/edit" component={Edit} />
 								<Route component={NoMatch} />
 							</Switch>
 						</div>

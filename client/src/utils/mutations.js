@@ -1,5 +1,32 @@
 import { gql } from '@apollo/client';
 
+export const UPDATEUSER = gql`
+mutation updateUser(
+      $_id : ID
+			$first_name: String
+			$last_name: String
+			$email: String
+			$contact_number: String
+			$registered_helper: Boolean){
+        
+        updateUser(_id : $ID
+			first_name: $String
+			last_name: $String
+			email: $String
+			password: $String
+			contact_number: $String
+			registered_helper: $Boolean){
+        _id
+        first_name
+        last_name
+        email
+      
+      }
+      }
+      
+    
+`;
+
 export const LOGIN = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -35,6 +62,7 @@ export const ADD_USER = gql`
     }
   }
 `;
+
 
 export const QUICK_CREATE_CASE = gql`
   mutation createCase($firstname: String!, $lastname: String!, $age: Int!, $gender: String!, $last_known_location: String!) {

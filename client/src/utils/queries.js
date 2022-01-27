@@ -51,8 +51,8 @@ export const GET_CASES = gql`
 `;
 
 
- export const QUERY_ME = gql`
- {
+export const QUERY_ME = gql`
+  {
     me {
       _id
       first_name
@@ -65,6 +65,7 @@ export const GET_CASES = gql`
         firstname
         lastname
         address
+        disappearance_date
         last_known_location
         age
         comments {
