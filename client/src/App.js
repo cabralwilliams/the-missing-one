@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from "react-redux";
 import {
 	ApolloProvider,
 	ApolloClient,
@@ -10,7 +9,10 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import "./index.css";
 
-import NavBar from "./components/NavBar";
+//inport redux store
+import { Provider } from 'react-redux';
+import store from './utils/store';
+
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -19,7 +21,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-import store from "./utils/store";
+
 
 const httpLink = createHttpLink({
 	uri: "/graphql",

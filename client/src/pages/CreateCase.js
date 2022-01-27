@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
-import { s3Client } from "../utils/s3client.js";
+import { s3Client } from "../utils/s3Client.js";
 import Auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries.js";
 import { CREATE_CASE } from "../utils/mutations.js";
