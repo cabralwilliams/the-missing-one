@@ -24,10 +24,10 @@ const CaseList = () => {
 					type: "UPDATE_CASES",
 					cases: data.getCases,
 				},
-				[data, dispatch]
+				
 			);
 		}
-	});
+	})[data, dispatch] ;
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
