@@ -1,36 +1,132 @@
 import React from "react";
-import NavBar2 from "./NavBar2";
-const Header = () => {
+import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
+const Header2 = () => {
 	return (
-		<header>
-			<div className="px-3 py-2 navigation text-white">
-				<nav className="container">
-					<NavBar2 />
-				</nav>
-			</div>
-			<div className="px-3 py-2 border-bottom mb-3">
-				<div className="container d-flex flex-wrap justify-content-center">
-					<form className="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto">
-						<div>
-							{" "}
-							<input
-								type="search"
-								className="form-control"
-								placeholder="Case ID"
-								aria-label="Search"
-							/>
-						</div>
-					</form>
+		<nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom ">
+			<div className="container-fluid navigation">
+				{/* <button className="btn btn-primary" id="sidebarToggle">
+					Toggle Menu
+				</button> */}
+				<Link to="/">
+					<h2>The Missing One</h2>
+				</Link>
+				<button
+					className="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent"
+					aria-expanded="false"
+					aria-label="Toggle navigation"
+				>
+					<span className="navbar-toggler-icon"></span>
+				</button>
 
-					<div className="text-end">
-						<button type="button" className="btn btn-primary">
-							Search
-						</button>
-					</div>
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
+					{Auth.loggedIn() ? (
+						<ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li className="nav-item active">
+								<Link to="/" className="nav-link text-light">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									Home
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link to="/CreateCase" className="nav-link text-light">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									New Case
+								</Link>
+							</li>
+
+							<li className="nav-item">
+								<Link to="/Profile" className="nav-link text-white">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									Profile
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link to="#" className="nav-link text-white">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									Donations
+								</Link>
+							</li>
+
+							<li className="nav-item">
+								<Link
+									className="nav-link text-light"
+									aria-current="page"
+									to="/"
+									onClick={() => Auth.logout()}
+								>
+									{" "}
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									Logout{" "}
+								</Link>
+							</li>
+						</ul>
+					) : (
+						<ul className="navbar-nav ms-auto mt-2 mt-lg-0">
+							<li className="nav-item">
+								<Link to="/" className="nav-link text-light">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>
+									Home
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link
+									className="nav-link text-light"
+									aria-current="page"
+									to="/login"
+								>
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="24"
+										height="24"
+									></svg>{" "}
+									Login
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="nav-link text-light " to="/signup">
+									<svg
+										className="bi d-block mx-auto mb-1"
+										width="10"
+										height="17"
+									></svg>{" "}
+									<span className="btn btn-primary">Signup</span>
+								</Link>
+							</li>
+						</ul>
+					)}
 				</div>
 			</div>
-		</header>
+		</nav>
 	);
 };
 
-export default Header;
+export default Header2;

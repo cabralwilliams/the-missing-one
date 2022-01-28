@@ -22,7 +22,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_CASES:
-        return { ...state }, { cases: [...action.cases] };
+      return { ...state }, { cases: [...action.cases] ,};
    
     case ADD_TO_CART:
       return {

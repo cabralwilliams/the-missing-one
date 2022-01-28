@@ -10,8 +10,8 @@ import { setContext } from "@apollo/client/link/context";
 import "./index.css";
 
 //inport redux store
-import { Provider } from 'react-redux';
-import store from './utils/store';
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
@@ -22,7 +22,9 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import Edit from "./pages/Edit";
-
+import SideBar from "./components/SideBar";
+import { GoSearch } from "react-icons/go";
+import { BiArrowToLeft } from "react-icons/bi";
 const httpLink = createHttpLink({
 	uri: "/graphql",
 });
@@ -37,6 +39,30 @@ const authLink = setContext((_, { headers }) => {
 	};
 });
 
+window.addEventListener("DOMContentLoaded", (event) => {
+	// Toggle the side navigation
+	const sidebarToggle = document.body.querySelector("#sidebarToggle");
+	if (sidebarToggle) {
+		// Uncomment Below to persist sidebar toggle between refreshes
+		// if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+		//     document.body.classList.toggle('sb-sidenav-toggled');
+		// }
+		sidebarToggle.addEventListener("click", (event) => {
+			event.preventDefault();
+			document.body.classList.toggle("sb-sidenav-toggled");
+			console.log(document.body.classList);
+			console.log(event.target.innerHTML);
+			if (document.body.classList.contains("sb-sidenav-toggled"))
+				event.target.innerHTML = "Close";
+			else event.target.innerHTML = "<BiArrowToLeft />&nbsp;&nbsp; Search";
+			localStorage.setItem(
+				"sb|sidebar-toggle",
+				document.body.classList.contains("sb-sidenav-toggled")
+			);
+		});
+	}
+});
+
 const client = new ApolloClient({
 	link: authLink.concat(httpLink),
 	cache: new InMemoryCache(),
@@ -44,23 +70,36 @@ const client = new ApolloClient({
 
 function App() {
 	console.log("App component");
+
 	return (
 		<ApolloProvider client={client}>
 			<Router>
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Provider store={store}>
-						<Header />
+						{/* <Header /> */}
+
 						{/* <NavBar /> */}
-						<div className="container">
-							<Switch>
-								<Route exact path="/" component={Home} />
-								<Route exact path="/Profile" component={Profile} />
-								<Route exact path="/CreateCase" component={CreateCase} />
-								<Route exact path="/login" component={Login} />
-								<Route exact path="/signup" component={Signup} />
-                <Route exact path="/edit" component={Edit} />
-								<Route component={NoMatch} />
-							</Switch>
+						{/* /<div className="container"> */}
+						<Header />
+						<div className="d-flex Container" id="wrapper">
+							<SideBar />
+							<div id="page-content-wrapper">
+								<button className="btn btn-primary" id="sidebarToggle">
+									<BiArrowToLeft />
+									&nbsp;&nbsp; Search
+								</button>
+								<div class="container-fluid width-80">
+									<Switch>
+										<Route exact path="/" component={Home} />
+										<Route exact path="/Profile" component={Profile} />
+										<Route exact path="/CreateCase" component={CreateCase} />
+										<Route exact path="/login" component={Login} />
+										<Route exact path="/signup" component={Signup} />
+										<Route exact path="/edit" component={Edit} />
+										<Route component={NoMatch} />
+									</Switch>
+								</div>
+							</div>
 						</div>
 						<Footer />
 					</Provider>

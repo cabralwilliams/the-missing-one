@@ -1,7 +1,7 @@
 /* Define vars*/
 :root {
 	--primary-color: #fff;
-	--secondary-color: darkred;
+	--secondary-color: #8b0000;
 	--tertiary-color: black;
 	--error: rgb(228, 46, 1);
 	--spacing-one: calc(1rem * 0.5);
@@ -9,6 +9,16 @@
 	--spacing-five: calc(2.5rem);
 	--special-color: darkred;
 	--cardBorderColor: #c0c0c0;
+
+	/* color pallette */
+	/*
+$maroon-web: #7e0000ff;
+$dark-red: #8b0000ff;
+$dark-red-2: #990000ff;
+$oxford-blue: #002147ff;
+$midnight-blue: #191970ff;
+$cerulean-blue: #2a52beff;
+$maximum-blue-purple: #95a8e0ff;*/
 }
 /* tell browser to fix box model calculations */
 /* get rid of browser's margins*/
@@ -27,28 +37,33 @@ body,
 	font-family: Helvetica, Arial, sans-serif;
 }
 
-/* HEADER / NAV BAR STYLES START */
-/* nav h1 {
-  font-weight: bold;
-  margin: 0;
-  color: var(--primary-color);
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+#wrapper {
+	overflow-x: hidden;
 }
 
-nav {
-  background-color: var(--secondary-color);
+#page-content-wrapper {
+	min-width: 100vw;
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--primary-color);
+body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
+	margin-left: 0;
+}
+/*---SIDE BAR --*/
+#sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	transition: margin 0.50s ease-out;
 }
 
-nav ul li a {
-  padding: 10px 15px;
-  font-size: 2rem;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-} */
+#sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+	width: 15rem;
+}
+
 .navigation h2 {
 	font-weight: bold;
 	margin: 0;
@@ -65,10 +80,17 @@ nav ul li a {
 	color: var(--primary-color);
 }
 /*-----------------------------*/
+
+.width-80 {
+	width: 80%;
+}
+
 col-md-4 {
 	margin-bottom: 30px;
 }
-
+col-md-3 {
+	margin-bottom: 40px;
+}
 .card {
 	padding: 30px;
 	border: solid 2px var(--cardBorderColor);
@@ -90,7 +112,7 @@ col-md-4 {
 }
 .avtar {
 	margin: auto;
-	width: 80%;
+	width: 50%;
 	border: "1px solid green";
 	margin: auto;
 }
@@ -101,6 +123,12 @@ col-md-4 {
 }
 .card:hover .avtar img {
 	border-color: rgb(99, 204, 131);
+}
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1040px;
+	}
 }
 
 /*-----------------------------*/
