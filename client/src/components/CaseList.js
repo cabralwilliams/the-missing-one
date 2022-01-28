@@ -15,24 +15,12 @@ const CaseList = () => {
 	useEffect(() => {
 		if (data) {
 			console.log("executing dispatch to update state");
-<<<<<<< HEAD
-			dispatch(
-				{
-					type: "UPDATE_CASES",
-					cases: data.getCases,
-				},
-				
-			);
-		}
-	},[data, dispatch]);
-=======
 			dispatch({
 				type: "UPDATE_CASES",
 				cases: data.getCases,
 			});
 		}
 	}, [data, dispatch]);
->>>>>>> f5ffc21ab3cec10040a33ac87e749d3af87f2f5a
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);

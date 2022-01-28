@@ -157,7 +157,32 @@ const resolvers = {
 				"Please login / signup to enter the case details."
 			);
 		},
-
+        addDonation: async (parent, args, context) => {
+			if (context.user) {
+				console.log(context.user);
+				const updatedUser = await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{
+						$push: {
+							donations: { user_id:context.user.id,case_id: args.case_id, amount: args.amount },
+						},
+					},
+					{ new: true }
+				);
+				const updatedCase = await Case.findByIdAndUpdate(
+					{ _id: args.case_id },
+					{
+						$push: {
+							donations: {user_id:context.user.id, case_id: args.case_id, amount: args.amount },
+						},
+					},
+					{ new: true }
+				);
+				console.log(updatedUser.case_id);
+				return updatedUser;
+			}
+			return new AuthenticationError("Please sign in to donate");
+		},
 		updateCase: async (parent, args, context) => {
 			const updatedCase = await Case.findByIdAndUpdate(
 				{ _id: args._id },

@@ -25,6 +25,8 @@ import Edit from "./pages/Edit";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
+import DonationCart from "./pages/DonationCart";
+
 const httpLink = createHttpLink({
 	uri: "/graphql",
 });
@@ -79,6 +81,7 @@ function App() {
 						{/* <Header /> */}
 
 						{/* <NavBar /> */}
+<<<<<<< HEAD
 						{/* /<div className="container"> */}
 						<Header />
 						<div className="d-flex Container" id="wrapper">
@@ -100,6 +103,19 @@ function App() {
 									</Switch>
 								</div>
 							</div>
+=======
+						<div className="container">
+							<Switch>
+								<Route exact path="/" component={Home} />
+								<Route exact path="/Profile" component={Profile} />
+								<Route exact path="/CreateCase" component={CreateCase} />
+								<Route exact path="/login" component={Login} />
+								<Route exact path="/signup" component={Signup} />
+								<Route exact path="/DonationCart" component={DonationCart} />
+                <Route exact path="/edit" component={Edit} />
+								<Route component={NoMatch} />
+							</Switch>
+>>>>>>> 692ecdab0b713d0f8a8772c535a5bca30df51693
 						</div>
 						<Footer />
 					</Provider>
