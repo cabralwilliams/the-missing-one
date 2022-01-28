@@ -4,8 +4,6 @@ import { GET_CASES } from "../utils/queries";
 import SimpleCase from "./SimpleCase";
 import { useQuery } from "@apollo/client";
 
-
-
 const CaseList = () => {
 	const { data, loading } = useQuery(GET_CASES);
 	const dispatch = useDispatch();
@@ -19,15 +17,12 @@ const CaseList = () => {
 	useEffect(() => {
 		if (data) {
 			console.log("executing dispatch to update state");
-			dispatch(
-				{
-					type: "UPDATE_CASES",
-					cases: data.getCases,
-				},
-				[data, dispatch]
-			);
+			dispatch({
+				type: "UPDATE_CASES",
+				cases: data.getCases,
+			});
 		}
-	});
+	}, [data, dispatch]);
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
@@ -40,19 +35,22 @@ const CaseList = () => {
 	return (
 		<div>
 			<div className="clearfix">
-				<div className="row">
+				<div className="row width-80">
 					{filterCases.length &&
 						filterCases.map((missing) => (
 							<div
-								className="col-md-4 my-2 animated fadeIn text-center rounded "
+								className="col-md-4 my-3 animated fadeIn text-center rounded "
 								key={missing._id}
-
 							>
-
-								
-								<SimpleCase _id={missing._id} firstname={missing.firstname} lastname={missing.lastname} age={missing.age} disappearance_date={missing.disappearance_date} last_known_location={missing.last_known_location} img_src="">
-
-								</SimpleCase>
+								<SimpleCase
+									_id={missing._id}
+									firstname={missing.firstname}
+									lastname={missing.lastname}
+									age={missing.age}
+									disappearance_date={missing.disappearance_date}
+									last_known_location={missing.last_known_location}
+									img_src=""
+								></SimpleCase>
 								{/* <div className="card">
 									<div className="card-body">
 										<div className="avtar">

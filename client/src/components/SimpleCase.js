@@ -16,18 +16,6 @@ const SimpleCase = (props) => {
 
 	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
 	return (
-		// <div>
-		//     <h3>{firstname} {lastname}</h3>
-		//     <div className="photo-div">
-		//         <img src={img_src} alt={`${firstname} ${lastname}`} />
-		//     </div>
-		//     <div>Age: {age}</div>
-		//     <div>Last Seen: {disappearance_date}</div>
-		//     <div>Location: {last_known_location}</div>
-		//     <Link to={`/cases/${_id}`}>
-		//         <p>See More Information</p>
-		//     </Link>
-		// </div>
 		<div className="card">
 			<div className="card-body">
 				<div className="avtar">
@@ -48,15 +36,15 @@ const SimpleCase = (props) => {
 					</span>
 				</p>
 			</div>
-			<div class="d-flex justify-content-between align-items-center">
+			<div className="d-flex justify-content-between align-items-center">
 				<Link to={`/cases/${_id}`}>
-					<div class="btn-group">
-						<button type="button" class="btn btn-sm btn-outline-primary">
+					<div className="btn-group">
+						<button type="button" className="btn btn-sm btn-outline-primary">
 							View Details
 						</button>
 					</div>
 				</Link>
-				<small class="text-muted">9 comments</small>
+				<small className="text-muted">9 comments</small>
 			</div>
 		</div>
 	);
