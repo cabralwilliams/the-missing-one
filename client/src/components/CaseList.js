@@ -27,7 +27,7 @@ const CaseList = () => {
 				
 			);
 		}
-	})[data, dispatch] ;
+	},[data, dispatch]);
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
