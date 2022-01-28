@@ -50,6 +50,7 @@ export const GET_CASES = gql`
 	}
 `;
 
+
 export const QUERY_ME = gql`
   {
     me {
@@ -79,11 +80,6 @@ export const QUERY_ME = gql`
           }
         }
       }
-      
     }
   }
 `;
- 
-
- 
-
