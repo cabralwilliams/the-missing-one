@@ -28,11 +28,16 @@ function Edit() {
       }
       
       ) 
-      //console.log(...formState)
+
+      if (mutationResponse){
+        window.location.replace('/Profile')
+      }
+      
 
     } catch (e) {
       console.log(e);
     };
+    
 
   };
   const handleChange = (event) => {
@@ -47,7 +52,7 @@ function Edit() {
   return (
    
     <div className="container my-1 contact-form">
-    Auth.loggedIn() ?
+    
     <legend>Edit Profile</legend>
     <form id="contact-form" onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
