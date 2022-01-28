@@ -16,18 +16,6 @@ const SimpleCase = (props) => {
 
 	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
 	return (
-		// <div>
-		//     <h3>{firstname} {lastname}</h3>
-		//     <div className="photo-div">
-		//         <img src={img_src} alt={`${firstname} ${lastname}`} />
-		//     </div>
-		//     <div>Age: {age}</div>
-		//     <div>Last Seen: {disappearance_date}</div>
-		//     <div>Location: {last_known_location}</div>
-		//     <Link to={`/cases/${_id}`}>
-		//         <p>See More Information</p>
-		//     </Link>
-		// </div>
 		<div className="card">
 			<div className="card-body">
 				<div className="avtar">
