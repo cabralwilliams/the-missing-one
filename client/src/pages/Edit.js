@@ -9,13 +9,14 @@ function Edit() {
   const { _id: userParam } = useParams();
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me || {};
-  console.log(user);
+  // console.log(user);
   const [formState, setFormState] = useState({ first_name: user.first_name, last_name: user.last_name, email: user.email, contact_number: user.contact_number });
   const [updateUser, { error }] = useMutation(UPDATEUSER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(formState)
       const mutationResponse = await updateUser({
         variables: {
           first_name: formState.first_name, last_name: formState.last_name,
@@ -24,7 +25,9 @@ function Edit() {
         },
         
         
-      });
+      }
+      
+      ) 
       //console.log(...formState)
 
     } catch (e) {
@@ -42,7 +45,9 @@ function Edit() {
   };
 
   return (
-    <di className="container my-1 contact-form">
+   
+    <div className="container my-1 contact-form">
+    Auth.loggedIn() ?
     <legend>Edit Profile</legend>
     <form id="contact-form" onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
@@ -90,7 +95,9 @@ function Edit() {
           <button type="submit">Save Changes</button>
         </div>
         </form>
-    </di>
+        :
+                <span>(log in to check out)</span>
+    </div>
   )
 
 };
