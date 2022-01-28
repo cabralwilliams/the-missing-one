@@ -42,7 +42,7 @@ function Edit() {
   };
 
   return (
-    <di className="container my-1 contact-form">
+    <div className="container my-1 contact-form">
     <legend>Edit Profile</legend>
     <form id="contact-form" onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
@@ -90,7 +90,7 @@ function Edit() {
           <button type="submit">Save Changes</button>
         </div>
         </form>
-    </di>
+    </div>
   )
 
 };
