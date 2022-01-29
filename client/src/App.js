@@ -27,6 +27,7 @@ import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
 import Success from "./pages/Success";
+import OrderHistory from "./pages/OrderHistory"
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -101,6 +102,7 @@ function App() {
 										<Route exact path="/DonationCart" component={DonationCart} />
 										<Route exact path="/edit" component={Edit} />
 										<Route exact path="/success" component={Success} />
+										<Route exact path="/OrderHistory" component={OrderHistory} />
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

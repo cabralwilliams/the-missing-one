@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { useMutation, useLazyQuery } from '@apollo/client';
 import { loadStripe } from '@stripe/stripe-js';
-//import { ADD_DONATION} from '../utils/mutations';
+
 import { QUERY_CHECKOUT } from '../utils/queries';
 import Auth from '../utils/auth';
 import { saveDonationAmount } from '../utils/helpers';
@@ -12,15 +12,9 @@ const DonationCart = () => {
     const [formState, setFormState] = useState({ amount: 1});
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-   // const [addDonation] = useMutation(ADD_DONATION);
- 
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-    //   const mutationResponse = await addDonation({
-    //     variables: {
-    //       amount: formState.amount,
-    //     },
-    //   });
+
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
       if(!token) {
@@ -53,14 +47,16 @@ const DonationCart = () => {
         [name]: value,
       });
     };
-  
-    function submitCheckout() {
-    }
-    
+
     return (
-    <div className="container my-1">
-       <h2>Donation Cart</h2>
-       <form id="donation-form" onSubmit={handleFormSubmit}>
+      <section className="container" >
+            <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <div className="lh-1">
+                    <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
+                    <p className="text-center"> Viewing Donation's Cart.</p>
+                    </h1>
+                </div>
+            </div>
          <div className="flex-row space-between my-2">
                 <label htmlFor="amount">Donation Amount:</label>
                 <input 
@@ -71,15 +67,16 @@ const DonationCart = () => {
                     onChange={handleChange}
                 />
           </div>     
-          <div className="flex-row flex-end">
-          {Auth.loggedIn() ? (
-              <button onClick={submitCheckout}>Checkout</button>
-            ) : (
-              <span>(log in to check out)</span>
-            )}
-          </div>
-        </form>
+          <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+              <div className="flex-row flex-end text-center">
+                  {Auth.loggedIn() ? (
+                      <button className= "btn btn-primary" onClick={handleFormSubmit}>Checkout</button>
+                    ) : (
+                      <span className='text-black'>(Please log in to check out)</span>
+                    )}
+              </div>
         </div>
+     </section>   
     );
   }
 export default DonationCart;
