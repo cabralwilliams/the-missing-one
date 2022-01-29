@@ -31,32 +31,30 @@ const Profile = () => {
 
 
     return (
-        <section class="container" >
+        <section className="container" >
             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-                <div class="lh-1">
+                <div className="lh-1">
                     <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
-                    <p class="text-center"> Viewing {user.first_name}'s profile.</p>
+                    <p className="text-center"> Viewing {user.first_name}'s profile.</p>
                     </h1>
                 </div>
             </div>
 
 
             <div className="col-lg-8 col-xl-6 bg-purple rounded shadow-sm">
-                <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
-
-                   <p> First Name: {user.first_name}</p></h1>
-                <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
-
-                <p> Last Name: {user.last_name}</p></h1>
-
-              <p>  <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
-
-                    Email :{user.email}</h1></p>
-               <p> <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
-
-                    Phone Number :{user.contact_number}<br/></h1></p><br/>
-
-
+                <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
+                    First Name: {user.first_name}
+                </h2>
+                <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
+                    Last Name: {user.last_name}
+                </h2>
+                <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
+                    Email: {user.email}
+                </h2>
+                <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
+                    Phone Number: {user.contact_number}<br/>
+                </h2>
+                <br/>
             </div>
             {user.created_cases.length > 0 && (
                 <div className="container">
@@ -69,7 +67,7 @@ const Profile = () => {
 
                     <div className="row width-80">
                         {user.created_cases.map(cases => (
-                            <div className="col-md-4 my-3 animated fadeIn text-center rounded ">
+                            <div className="col-md-4 my-3 animated fadeIn text-center rounded " key={cases._id}>
 
                                 <SimpleCase
                                     _id={cases._id}
