@@ -50,7 +50,7 @@ function Edit() {
   };
 
   return (
-
+    
     <div className="container  my-1 contact-form">
     <div className='row justify-content-md-center'>
       <legend>Edit Profile</legend>

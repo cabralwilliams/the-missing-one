@@ -2,7 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Case, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
 
-//const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
 	Query: {
@@ -58,6 +58,42 @@ const resolvers = {
 			return Case.find({ ...args });
 		},
 
+    checkout: async (parent, args, context) => {
+      console.log(args);
+      if(context.user) {
+        console.log(args);
+        //To parse out the referring URL
+        const url = new URL(context.headers.referer).origin;
+        console.log(`url: ${url}`);
+        //console.log(stripe);
+        //const donation = new Donation({ user_id: context.user._id , amount: args.amount });
+        const product = await stripe.products.create({
+            name: "Donation for the Missing"
+          });
+          console.log(`Product: ${product}`);
+          const price = await stripe.prices.create({
+            product: product.id,
+            unit_amount: args.amount * 100,
+            currency: 'usd',
+          });
+          console.log(`Price: ${price}`);
+          const session = await stripe.checkout.sessions.create({
+          payment_method_types: ['card'],
+          line_items:[
+              {
+              price: price.id,
+              quantity: 1,
+              }
+          ],
+          mode: 'payment',
+          success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${url}/`
+        });
+        console.log(session.id)
+        return { session: session.id };
+      }
+      
+    }
 		// getDonations: async (parent, { case_id, user_id }) => {
 		// 	const params = {};
 		// 	if (case_id && user_id) {
@@ -157,7 +193,32 @@ const resolvers = {
 				"Please login / signup to enter the case details."
 			);
 		},
-
+        addDonation: async (parent, args, context) => {
+			if (context.user) {
+				console.log(context.user);
+				const updatedUser = await User.findByIdAndUpdate(
+					{ _id: context.user._id },
+					{
+						$push: {
+							donations: { user_id: context.user._id, amount: args.amount },
+						},
+					},
+					{ new: true }
+				);
+				// const updatedCase = await Case.findByIdAndUpdate(
+				// 	{ _id: args.case_id },
+				// 	{
+				// 		$push: {
+				// 			donations: {user_id:context.user.id, case_id: args.case_id, amount: args.amount },
+				// 		},
+				// 	},
+				// 	{ new: true }
+				// );
+				console.log(updatedUser);
+				return updatedUser;
+			}
+			return new AuthenticationError("Please sign in to donate");
+		},
 		updateCase: async (parent, args, context) => {
 			const updatedCase = await Case.findByIdAndUpdate(
 				{ _id: args._id },
@@ -167,40 +228,6 @@ const resolvers = {
 			return updatedCase;
 		},
 
-		addDonation: async (parent, args, context) => {
-			if (context.user) {
-				console.log(context.user);
-				const updatedUser = await User.findByIdAndUpdate(
-					{ _id: context.user._id },
-					{
-						$push: {
-							donations: {
-								user_id: context.user.id,
-								case_id: args.case_id,
-								amount: args.amount,
-							},
-						},
-					},
-					{ new: true }
-				);
-				const updatedCase = await Case.findByIdAndUpdate(
-					{ _id: args.case_id },
-					{
-						$push: {
-							donations: {
-								user_id: context.user.id,
-								case_id: args.case_id,
-								amount: args.amount,
-							},
-						},
-					},
-					{ new: true }
-				);
-				console.log(updatedUser.case_id);
-				return updatedUser;
-			}
-			return new AuthenticationError("Please sign in to donate");
-		},
 	},
 };
 module.exports = resolvers;
