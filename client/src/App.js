@@ -22,6 +22,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import Edit from "./pages/Edit";
+import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
@@ -96,7 +97,7 @@ function App() {
 										<Route exact path="/login" component={Login} />
 										<Route exact path="/signup" component={Signup} />
 										<Route exact path="/edit" component={Edit} />
-										
+										<Route exact path="/Donation" component={DonationCart} />
 										<Route component={NoMatch} />
 									</Switch>
 								</div>
