@@ -121,3 +121,11 @@ export const SEARCH_CASES = gql`
 		}
 	}
 `;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($amount: Float!) {
+    checkout(amount: $amount) {
+      session
+    }
+  }
+`;

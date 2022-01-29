@@ -43,6 +43,10 @@ const typeDefs = gql`
 		user: User
 	}
 
+	type Checkout {
+		session: ID
+	}
+
 	input CaseInput {
 		firstname: String
 		lastname: String
@@ -80,13 +84,6 @@ const typeDefs = gql`
 		donations: [Donation]
 	}
 
-	type Donation {
-		_id: ID
-		user_id: ID
-		amount: Int
-		case_id: ID
-	}
-
 	type Query {
 		getusers: [User]
 		me: User
@@ -95,6 +92,8 @@ const typeDefs = gql`
 		getCaseById(_id: ID!): Case
 
 		searchCases(firstname: String, lastname: String): [Case]
+
+		checkout(amount: Float!): Checkout
 	}
 
 	type Mutation {
@@ -170,8 +169,7 @@ const typeDefs = gql`
 			other_info: String
 			images: [String]
 		): Case
-
-		addDonation(case_id: ID, amount: Int): User
+		addDonation(amount: Float): User
 	}
 `;
 //createCase(firstname: String!, lastname: String!, address: String!): Case

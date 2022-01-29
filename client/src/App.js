@@ -22,9 +22,12 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import Edit from "./pages/Edit";
+import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
+import Success from "./pages/Success";
+
 const httpLink = createHttpLink({
 	uri: "/graphql",
 });
@@ -88,6 +91,7 @@ function App() {
 									<BiArrowToLeft />
 									&nbsp;&nbsp; Search
 								</button>
+
 								<div className="container-fluid width-80">
 									<Switch>
 										<Route exact path="/" component={Home} />
@@ -95,7 +99,13 @@ function App() {
 										<Route exact path="/CreateCase" component={CreateCase} />
 										<Route exact path="/login" component={Login} />
 										<Route exact path="/signup" component={Signup} />
+										<Route
+											exact
+											path="/DonationCart"
+											component={DonationCart}
+										/>
 										<Route exact path="/edit" component={Edit} />
+										<Route exact path="/success" component={Success} />
 										<Route component={NoMatch} />
 									</Switch>
 								</div>
