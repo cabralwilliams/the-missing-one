@@ -26,7 +26,6 @@ import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
-import DonationCart from "./pages/DonationCart";
 import Success from "./pages/Success";
 
 const httpLink = createHttpLink({
