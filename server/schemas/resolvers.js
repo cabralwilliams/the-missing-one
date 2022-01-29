@@ -31,14 +31,14 @@ const resolvers = {
 			return new AuthenticationError("User not found!");
 		},
 
-		getCases: async () => {
-			return Case.find()
-				.populate({
-					path: "comments",
-					select: "-__v",
-				})
-				.populate("replies");
-		},
+		// getCases: async () => {
+		// 	return Case.find()
+		// 		.populate({
+		// 			path: "comments",
+		// 			select: "-__v",
+		// 		})
+		// 		.populate("replies");
+		// },
 
 		getCases: async () => {
 			return Case.find()
@@ -54,8 +54,22 @@ const resolvers = {
 			return Case.findOne({ _id });
 		},
 
-		searchCases: async (parent, args) => {
-			return Case.find({ ...args });
+		searchCases: async (parent, { firstname, lastname }) => {
+			console.log("searching for " + firstname + " " + lastname);
+			const params = {};
+			if (firstname) {
+				params.firstname = {
+					$regex: firstname,
+				};
+			}
+			if (lastname) {
+				params.lastname = {
+					$regex: lastname,
+				};
+			}
+			console.log(params);
+			return await Case.find(params);
+			//	return await Case.find({ ...args });
 		},
 
 		// getDonations: async (parent, { case_id, user_id }) => {

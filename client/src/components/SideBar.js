@@ -1,6 +1,38 @@
+import { StatsEvent } from "@aws-sdk/client-s3";
 import React, { useState } from "react";
+import { useLazyQuery } from "@apollo/client";
 import { GoSearch } from "react-icons/go";
+import { SEARCH_CASES } from "../utils/queries";
 const SideBar = () => {
+	const [getSearchResults, { loading, error, data }] =
+		useLazyQuery(SEARCH_CASES);
+	const initialFormState = {
+		firstname: "",
+		lastname: "",
+		ncic: "",
+	};
+	const [formState, setFormState] = useState(initialFormState);
+	const handleChange = (e) => {
+		var msg = "";
+		console.log(e.target.name + " " + e.target.value);
+		if (e.target.name === "firstname") {
+			setFormState({ ...formState, firstname: e.target.value });
+		} else if (e.target.name === "lastname") {
+			// console.log("firstname" + e.target.value)
+			setFormState({ ...formState, lastname: e.target.value });
+		} else {
+			// console.log("ncic" + e.target.value)
+			setFormState({ ...formState, ncic: e.target.value });
+		}
+	};
+
+	const searchHandler = (e) => {
+		console.log(formState);
+	};
+	if (loading) return <p>Loading ...</p>;
+	if (error) return `Error! ${error}`;
+	console.log("searchResults");
+	console.log(data);
 	return (
 		<div className="border-end bg-white" id="sidebar-wrapper">
 			<div className="sidebar-heading border-bottom bg-light">Search Cases</div>
@@ -13,40 +45,51 @@ const SideBar = () => {
 					Dashboard
 				</a> */}
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="firstname">
+						<label className="form-label" htmlFor="firstname">
 							First Name
 						</label>
 						<input
 							type="text"
 							className="form-control"
 							id="firstname"
+							name="firstname"
 							placeholder="First Name"
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="lastname">
+						<label className="form-label" htmlFor="lastname">
 							Last Name
 						</label>
 						<input
 							type="text"
+							name="lastname"
 							className="form-control"
 							id="lastname"
 							placeholder="Last Name"
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="ncic">
+						<label className="form-label" htmlFor="ncic">
 							NCIC#
 						</label>
 						<input
 							type="text"
 							className="form-control"
 							id="ncic"
+							name="ncic"
 							placeholder="NCIC#"
+							onChange={handleChange}
 						/>
 					</div>
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2 text-center">
-						<button type="button" className="btn btn-primary w-75">
+						<button
+							type="button"
+							className="btn btn-primary w-75"
+							id="searchCases"
+							onClick={() => getSearchResults({ variables: { ...formState } })}
+						>
 							{" "}
 							<GoSearch />
 							&nbsp;&nbsp;Search

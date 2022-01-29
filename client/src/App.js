@@ -88,7 +88,7 @@ function App() {
 									<BiArrowToLeft />
 									&nbsp;&nbsp; Search
 								</button>
-								<div class="container-fluid width-80">
+								<div className="container-fluid width-80">
 									<Switch>
 										<Route exact path="/" component={Home} />
 										<Route exact path="/Profile" component={Profile} />
