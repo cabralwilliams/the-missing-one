@@ -21,28 +21,28 @@ function Edit() {
         variables: {
           first_name: formState.first_name, last_name: formState.last_name,
           email: formState.email, contact_number: formState.contact_number
-          
-        },
-        
-        
-      }
-      
-      ) 
 
-      if (mutationResponse){
+        },
+
+
+      }
+
+      )
+
+      if (mutationResponse) {
         window.location.replace('/Profile')
       }
-      
+
 
     } catch (e) {
       console.log(e);
     };
-    
+
 
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setFormState({
       ...formState,
       [name]: value,
@@ -50,12 +50,13 @@ function Edit() {
   };
 
   return (
-   
-    <div className="container my-1 contact-form">
-    
-    <legend>Edit Profile</legend>
-    <form id="contact-form" onSubmit={handleFormSubmit}>
+
+    <div className="container  my-1 contact-form">
+    <div className='row justify-content-md-center'>
+      <legend>Edit Profile</legend>
+      <form id="contact-form" onSubmit={handleFormSubmit} className='text-center'>
         <div className="flex-row space-between my-2">
+
           <label htmlFor="first name">First Name:</label>
           <input
             className="form-control"
@@ -74,8 +75,8 @@ function Edit() {
             id="last_name"
             onChange={handleChange}
           />
-        
-        
+
+
           <label htmlFor="Email">Email:</label>
           <input
             className="form-control"
@@ -94,14 +95,13 @@ function Edit() {
             id="contact_number"
             onChange={handleChange}
           />
-          
+
         </div>
         <div className="flex-row flex-end">
           <button type="submit">Save Changes</button>
         </div>
-        </form>
-        :
-                <span>(log in to check out)</span>
+      </form>
+      </div>
     </div>
   )
 
