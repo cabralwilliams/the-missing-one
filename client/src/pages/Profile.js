@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 import { useParams, Redirect } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
+import SimpleCase from '../components/SimpleCase'
 const Profile = () => {
     const { _id: userParam } = useParams();
     const { loading, data } = useQuery(QUERY_ME, {
@@ -11,7 +12,7 @@ const Profile = () => {
     });
     const user = data?.me || {};
     console.log(user);
-    
+
     if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
 
         return <Redirect to="/login" />;
@@ -30,47 +31,72 @@ const Profile = () => {
 
 
     return (
-        <div>
-            <div className="flex-row mb-3">
-                <h2 className=" text-secondary p-3 display-inline-block">
-                    Viewing {user.first_name}'s profile.
-                </h2>
-            </div>
-
-            <div >
-                <h4>Personal Information</h4>
-                First Name: {user.first_name}<br />
-                Last Name: {user.last_name}<br />
-                Email :{user.email}<br />
-                Phone Number :{user.contact_number}<br />
-                {user.created_cases.length > 0 && (
-                    <div className="container">
-                        Cases you created :
-                        <div className="row">
-                       { user.created_cases.map (cases =>(
-                           
-                           <div className="col-sm">
-                           <li>First name: {cases.firstname}</li>
-                           <li>Last name: {cases.lastname}</li>
-                           <li>Age:{cases.age}</li>
-                           <li> Last seen Location:{cases.last_known_location}</li>
-                             <li>Dissapeared on: {cases.disappearance_date}</li>
-                             </div>
-                        
-                       ) ) }
-                       </div>
-                   
-
-                    </div>
-                )}
-
-                <div>
-                   <Link to ="/edit"> <button className="btn btn-primary" >Edit Profile </button></Link>
+        <section class="container" >
+            <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <div class="lh-1">
+                    <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
+                    <p class="text-center"> Viewing {user.first_name}'s profile.</p>
+                    </h1>
                 </div>
+            </div>
+
+
+            <div className="col-lg-8 col-xl-6 bg-purple rounded shadow-sm">
+                <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
+
+                   <p> First Name: {user.first_name}</p></h1>
+                <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
+
+                <p> Last Name: {user.last_name}</p></h1>
+
+              <p>  <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
+
+                    Email :{user.email}</h1></p>
+               <p> <h1 className="h5 mb-2  lh-1 text-left event-mgr-header">
+
+                    Phone Number :{user.contact_number}<br/></h1></p><br/>
 
 
             </div>
-        </div>
+            {user.created_cases.length > 0 && (
+                <div className="container">
+                <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                    <h1 className=" h3 mb-0  lh-1 event-mgr-header text-primary">
+                    <br/>
+                    <p className="text-center">  Cases you created </p>
+                    </h1>
+                    </div>
+
+                    <div className="row width-80">
+                        {user.created_cases.map(cases => (
+                            <div className="col-md-4 my-3 animated fadeIn text-center rounded ">
+
+                                <SimpleCase
+                                    _id={cases._id}
+                                    firstname={cases.firstname}
+                                    lastname={cases.lastname}
+                                    age={cases.age}
+                                    disappearance_date={cases.disappearance_date}
+                                    last_known_location={cases.last_known_location}
+                                    img_src=""
+                                ></SimpleCase>
+                            </div>
+
+
+                        ))} </div>
+
+
+
+
+                </div>)}
+
+
+            <Link to="/edit"> <br/><p className="text-center"><button className="btn btn-primary" >Edit Profile </button></p></Link>
+
+
+        </section >
+
+
 
     );
 };

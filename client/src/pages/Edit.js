@@ -9,32 +9,40 @@ function Edit() {
   const { _id: userParam } = useParams();
   const { loading, data } = useQuery(QUERY_ME);
   const user = data?.me || {};
-  console.log(user);
+  // console.log(user);
   const [formState, setFormState] = useState({ first_name: user.first_name, last_name: user.last_name, email: user.email, contact_number: user.contact_number });
   const [updateUser, { error }] = useMutation(UPDATEUSER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log(formState)
       const mutationResponse = await updateUser({
         variables: {
           first_name: formState.first_name, last_name: formState.last_name,
           email: formState.email, contact_number: formState.contact_number
-          
+
         },
-        
-        
-      });
-      //console.log(...formState)
+
+
+      }
+
+      )
+
+      if (mutationResponse) {
+        window.location.replace('/Profile')
+      }
+
 
     } catch (e) {
       console.log(e);
     };
 
+
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setFormState({
       ...formState,
       [name]: value,
@@ -42,10 +50,13 @@ function Edit() {
   };
 
   return (
-    <di className="container my-1 contact-form">
-    <legend>Edit Profile</legend>
-    <form id="contact-form" onSubmit={handleFormSubmit}>
+
+    <div className="container  my-1 contact-form">
+    <div className='row justify-content-md-center'>
+      <legend>Edit Profile</legend>
+      <form id="contact-form" onSubmit={handleFormSubmit} className='text-center'>
         <div className="flex-row space-between my-2">
+
           <label htmlFor="first name">First Name:</label>
           <input
             className="form-control"
@@ -64,8 +75,8 @@ function Edit() {
             id="last_name"
             onChange={handleChange}
           />
-        
-        
+
+
           <label htmlFor="Email">Email:</label>
           <input
             className="form-control"
@@ -84,13 +95,14 @@ function Edit() {
             id="contact_number"
             onChange={handleChange}
           />
-          
+
         </div>
         <div className="flex-row flex-end">
           <button type="submit">Save Changes</button>
         </div>
-        </form>
-    </di>
+      </form>
+      </div>
+    </div>
   )
 
 };
