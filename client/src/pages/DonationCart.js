@@ -1,7 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import { useMutation, useLazyQuery } from '@apollo/client';
 import { loadStripe } from '@stripe/stripe-js';
-//import { ADD_DONATION} from '../utils/mutations';
 import { QUERY_CHECKOUT } from '../utils/queries';
 import Auth from '../utils/auth';
 import { saveDonationAmount } from '../utils/helpers';
@@ -12,17 +11,10 @@ const DonationCart = () => {
     const [formState, setFormState] = useState({ amount: 1});
     const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
-   // const [addDonation] = useMutation(ADD_DONATION);
  
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-    //   const mutationResponse = await addDonation({
-    //     variables: {
-    //       amount: formState.amount,
-    //     },
-    //   });
       const token = Auth.loggedIn() ? Auth.getToken() : null;
-
       if(!token) {
         return false;
       }

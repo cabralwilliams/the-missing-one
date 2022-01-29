@@ -23,10 +23,10 @@ import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import Edit from "./pages/Edit";
 import DonationCart from "./pages/DonationCart";
+import OrderHistory from "./pages/OrderHistory";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
-import DonationCart from "./pages/DonationCart";
 import Success from "./pages/Success";
 
 const httpLink = createHttpLink({
@@ -102,6 +102,7 @@ function App() {
 										<Route exact path="/DonationCart" component={DonationCart} />
 										<Route exact path="/edit" component={Edit} />
 										<Route exact path="/success" component={Success} />
+										<Route exact path="/OrderHistory" component={OrderHistory} />
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

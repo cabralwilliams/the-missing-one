@@ -31,11 +31,11 @@ const Profile = () => {
 
 
     return (
-        <section class="container" >
+        <section className="container" >
             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
                 <div class="lh-1">
                     <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
-                    <p class="text-center"> Viewing {user.first_name}'s profile.</p>
+                    <p className ="text-center"> Viewing {user.first_name}'s profile.</p>
                     </h1>
                 </div>
             </div>
@@ -69,9 +69,10 @@ const Profile = () => {
 
                     <div className="row width-80">
                         {user.created_cases.map(cases => (
-                            <div className="col-md-4 my-3 animated fadeIn text-center rounded ">
-
-                                <SimpleCase
+                            <div className="col-md-4 my-3 animated fadeIn text-center rounded "
+                                 key={cases._id}
+                            >
+                                 <SimpleCase
                                     _id={cases._id}
                                     firstname={cases.firstname}
                                     lastname={cases.lastname}
@@ -84,12 +85,7 @@ const Profile = () => {
 
 
                         ))} </div>
-
-
-
-
                 </div>)}
-
 
             <Link to="/edit"> <br/><p className="text-center"><button className="btn btn-primary" >Edit Profile </button></p></Link>
 
