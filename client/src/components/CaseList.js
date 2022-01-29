@@ -1,11 +1,25 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_CASES } from "../utils/queries";
+import { GET_CASES, SEARCH_CASES } from "../utils/queries";
 import SimpleCase from "./SimpleCase";
 import { useQuery } from "@apollo/client";
 
 const CaseList = () => {
-	const { data, loading } = useQuery(GET_CASES);
+	const state = useSelector((state) => state);
+	const caseFilter = state.caseFilter;
+	//	const { data, loading } = useQuery(GET_CASES);
+	console.log("state now ");
+	console.log(state);
+	let firstname1 = "",
+		lastname1 = "";
+	if (Object.keys(caseFilter).length > 0) {
+		firstname1 = caseFilter.firstname;
+		lastname1 = caseFilter.lastname;
+		console.log(firstname1, lastname1);
+	}
+	const { data, loading } = useQuery(SEARCH_CASES, {
+		variables: { firstname: firstname1, lastname: lastname1 },
+	});
 	const dispatch = useDispatch();
 
 	// if (loading) {
@@ -15,14 +29,22 @@ const CaseList = () => {
 	console.log("in caselist");
 
 	useEffect(() => {
+		// //	if (Object.keys(caseFilter).length > 0) {
+		// 		console.log("casefilter exists");
+		// 		dispatch({
+		// 			type: "UPDATE_CASES",
+		// 			cases: data.searchCases,
+		// 		});
+		// //	} else
 		if (data) {
 			console.log("executing dispatch to update state");
 			dispatch({
 				type: "UPDATE_CASES",
-				cases: data.getCases,
+				cases: data.searchCases,
 			});
 		}
 	}, [data, dispatch]);
+
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
