@@ -121,3 +121,17 @@ export const CREATE_CASE = gql`
       }
   }
 `;
+
+export const ADD_DONATION = gql`
+  mutation addDonation($amount: Float!) {
+      addDonation(amount: $amount) {
+          _id
+          first_name
+          last_name
+          email
+          donations {
+              amount
+          }
+      }
+  }
+`

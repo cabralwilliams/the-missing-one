@@ -58,7 +58,7 @@ const Header2 = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<Link to="#" className="nav-link text-white">
+								<Link to="/DonationCart" className="nav-link text-white">
 									<svg
 										className="bi d-block mx-auto mb-1"
 										width="24"

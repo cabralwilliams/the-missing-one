@@ -13,7 +13,7 @@ const SideBar = () => {
 					Dashboard
 				</a> */}
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="firstname">
+						<label className="form-label" htmlFor="firstname">
 							First Name
 						</label>
 						<input
@@ -24,7 +24,7 @@ const SideBar = () => {
 						/>
 					</div>
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="lastname">
+						<label className="form-label" htmlFor="lastname">
 							Last Name
 						</label>
 						<input
@@ -35,7 +35,7 @@ const SideBar = () => {
 						/>
 					</div>
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
-						<label className="form-label" for="ncic">
+						<label className="form-label" htmlFor="ncic">
 							NCIC#
 						</label>
 						<input

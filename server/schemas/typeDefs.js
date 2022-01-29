@@ -43,6 +43,10 @@ const typeDefs = gql`
 		user: User
 	}
 
+	type Checkout {
+		session: ID
+	  }
+
 	input CaseInput {
 		firstname: String
 		lastname: String
@@ -93,7 +97,8 @@ const typeDefs = gql`
 			case_status: Boolean
 			ncic: String
 		): [Case]
-
+		
+		checkout(amount: Float!): Checkout
 
 		
 	}
@@ -168,7 +173,7 @@ const typeDefs = gql`
 			other_info: String
 			images: [String]
 		): Case
-		addDonation(case_id: ID, amount: Int): User
+		addDonation(amount: Float): User
 	}
 `;
 //createCase(firstname: String!, lastname: String!, address: String!): Case
