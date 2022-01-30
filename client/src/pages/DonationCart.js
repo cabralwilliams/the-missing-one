@@ -53,7 +53,7 @@ const DonationCart = () => {
             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
                 <div className="lh-1">
                     <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
-                    <p className="text-center"> Viewing Donation's Cart.</p>
+                    <p className="text-center"> Viewing Donation's  Cart.</p>
                     </h1>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import { CREATE_CASE } from "../utils/mutations.js";
 import { useQuery, useMutation } from "@apollo/client";
 
 const S3_BUCKET = "missingone";
+const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
+
 const initialState = {
 	firstname: null,
 	lastname: null,
@@ -80,7 +82,7 @@ const UploadImageToS3WithNativeSdk = () => {
         const params = {
             Body: file,
             Bucket: S3_BUCKET,
-            Key:"4.jpg" 
+            Key: file
         };
         try {
             const data = await s3Client.send(new PutObjectCommand(params));
@@ -128,7 +130,9 @@ const UploadImageToS3WithNativeSdk = () => {
             const newCase = await createCase({ variables: { ...newOb }});
             if(!newCase) {
                 console.log('Something went terribly wrong.');
-            }
+            } else {
+                 //upload file
+            };
         } catch(err) {
             console.error(err);
         }
@@ -161,9 +165,14 @@ const UploadImageToS3WithNativeSdk = () => {
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="text-primary">Picture</span>
                             </h4>
-                            <ul className="list-group mb-3">
-                            </ul>
-                            <div className="card p-2">
+                            <div class="card">
+                                  <div className="card-body">
+				                        <div className="avtar">
+                                           <img src={photoUrl} className="card-img-top" alt="firstimage"></img>{" "}
+                                        </div>
+	                    			</div>
+                            </div>
+                             <div className="card p-2">
                                 <input className="form-control" type="file" onChange={handleFileInput}/>
                                 <button className="w-100 btn btn-primary btn-lg" onClick={() => uploadFile(selectedFile)}> Upload Image</button>
                             </div>

@@ -81,7 +81,6 @@ const typeDefs = gql`
 		comments: [Comment]
 		images: [String]
 		helpers: [User]
-		donations: [Donation]
 	}
 
 	type Query {

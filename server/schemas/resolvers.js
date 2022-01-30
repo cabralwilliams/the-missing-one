@@ -115,17 +115,6 @@ const resolvers = {
 				return { session: session.id };
 			}
 		},
-		// getDonations: async (parent, { case_id, user_id }) => {
-		// 	const params = {};
-		// 	if (case_id && user_id) {
-		// 		params = { case_id, user_id };
-		// 	} else if (case_id) {
-		// 		params = { case_id };
-		// 	} else if (user_id) {
-		// 		params = { user_id };
-		// 	}
-		// 	return Donation.find(params).sort({ createdAt: -1 });
-		// },
 	},
 
 	Mutation: {

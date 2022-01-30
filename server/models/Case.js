@@ -110,8 +110,7 @@ const caseSchema = new Schema(
 				ref: "User",
 			},
 		],
-		donations: [donationSchema],
-		comments: [
+	    comments: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: "Comment",
