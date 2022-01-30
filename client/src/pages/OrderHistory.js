@@ -1,6 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
+import Moment from "react-moment";
 
 
 function OrderHistory() {
@@ -25,7 +26,7 @@ function OrderHistory() {
             {user.donations.map((order) => (
               <div key={order._id} className="my-2">
                 <h3>
-                  On Day {new Date(parseInt(order.createdAt)).toLocaleDateString()} the amount of: 
+                  On Day {new Date(parseInt(order.createdAt)).toLocaleDateString()} you donated the amount of: 
                
                    <span>${order.amount}</span>
                    </h3>

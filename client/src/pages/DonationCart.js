@@ -70,7 +70,7 @@ const DonationCart = () => {
                  </div>
                  
                 <hr className="my-4"></hr>
-                <div class="col-md-12 text-center">
+                <div className="col-md-12 text-center">
                    {Auth.loggedIn() ? (
                       <button className= "btn btn-primary text-center" onClick={handleFormSubmit}>Checkout</button>
                    ) : (

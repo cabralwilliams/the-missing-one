@@ -7,7 +7,7 @@ import { CREATE_CASE } from "../utils/mutations.js";
 import { useQuery, useMutation } from "@apollo/client";
 
 const S3_BUCKET = "missingone";
-const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
+const photo = "https://missingone.s3.amazonaws.com/0.jpg";
 
 const initialState = {
 	firstname: null,
@@ -41,12 +41,10 @@ const UploadImageToS3WithNativeSdk = () => {
     const [createCase, { error }] = useMutation(CREATE_CASE);
     
     const userData = data?.me || {};
-    // console.log(userData);
-    // console.log(data);
 
 	const handleFileInput = (e) => {
 		setSelectedFile(e.target.files[0]);
-	};
+  	};
 
 	const updateLocation = (e) => {
 		const locVal = e.target.value;
@@ -74,15 +72,14 @@ const UploadImageToS3WithNativeSdk = () => {
         setFormState({ ...formState, other_info: locVal });
     }
 
-    const uploadFile = async (file) => {
-        //const fileName = file.name;
-        if (!file) {
-            return alert("Choose a file to upload first.");
-        }
+    const uploadFile = async (file,filename) => {
+        // if (!file) { Thi was moved to sunmit button}
+            // return alert("Choose a file to upload first.");
+        // }
         const params = {
             Body: file,
             Bucket: S3_BUCKET,
-            Key: file
+            Key: filename
         };
         try {
             const data = await s3Client.send(new PutObjectCommand(params));
@@ -125,13 +122,22 @@ const UploadImageToS3WithNativeSdk = () => {
                 newOb[property] = formState[property];
             }
         }
+        //check if the user selected a image to upload.
+        if (!selectedFile) {
+            return alert("Choose a file to upload first.");
+        }
         console.log(newOb);
+        //only create the case
         try {
             const newCase = await createCase({ variables: { ...newOb }});
             if(!newCase) {
                 console.log('Something went terribly wrong.');
             } else {
-                 //upload file
+                 //upload function - Image to s3Bucket after creating the case
+                 const filename=newCase.data.createCase._id;
+                 console.log (newCase.data.createCase)
+                 console.log(filename)
+                 uploadFile(selectedFile,filename)
             };
         } catch(err) {
             console.error(err);
@@ -144,7 +150,7 @@ const UploadImageToS3WithNativeSdk = () => {
         for(const el of textAreaEls) {
             el.value = '';
         }
-        window.location.replace('/');
+        //window.location.replace('/');
     }
 
 	if (loading) {
@@ -165,17 +171,16 @@ const UploadImageToS3WithNativeSdk = () => {
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="text-primary">Picture</span>
                             </h4>
-                            <div class="card">
+                            <div className="card">
                                   <div className="card-body">
 				                        <div className="avtar">
-                                           <img src={photoUrl} className="card-img-top" alt="firstimage"></img>{" "}
+                                           <img src={photo} className="card-img-top" alt="firstimage"></img>{" "}
                                         </div>
 	                    			</div>
                             </div>
                              <div className="card p-2">
                                 <input className="form-control" type="file" onChange={handleFileInput}/>
-                                <button className="w-100 btn btn-primary btn-lg" onClick={() => uploadFile(selectedFile)}> Upload Image</button>
-                            </div>
+                             </div>
                     </div> 
                     <div className="col-md-7 col-lg-8">
                         <form onSubmit={handleFormSubmit}>
@@ -202,7 +207,7 @@ const UploadImageToS3WithNativeSdk = () => {
                                             <label  className="form-label" htmlFor='age'>Age:</label>
                                             <input className="form-control" type="number" name='age' min='0' step='1' value={formState.age === null ? 0 : formState.age} onChange={handleChange}  required/>
                                         </div>
-                                        <div class="col-12">
+                                        <div className="col-12">
                                             <label  className="form-label" htmlFor='last_known_location'>Location Last Seen:</label>
                                             <textarea className="form-control" name='last_known_location' onChange={updateLocation} required></textarea>
                                         </div>  
@@ -256,7 +261,7 @@ const UploadImageToS3WithNativeSdk = () => {
                                 </div>
                             </div>  
                         <hr className="my-4"></hr>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <div className="d-grid gap-2 d-md-flex justify-content-md-center">
                             <button className="btn btn-primary btn-lg me-md-2" type='submit'>Create Case</button>
                             <button className="btn btn-danger btn-lg" type="button" >Cancel</button>
                          </div>
