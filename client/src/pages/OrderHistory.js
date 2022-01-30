@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
 
@@ -13,18 +12,23 @@ function OrderHistory() {
   return (
     <>
       <div className="container my-1">
-        <Link to="/">← Back to Home</Link>
+
         {user ? (
           <>
-            <h2>
-              Donation History for {user.firstName} {user.lastName}
-            </h2>
+               <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                <div className="lh-1">
+                    <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
+                    <p className="text-center"> Viewing Donation's History for {user.first_name} {user.last_name}.</p>
+                    </h1>
+                </div>
+              </div>
             {user.donations.map((order) => (
               <div key={order._id} className="my-2">
                 <h3>
-                  {new Date(parseInt(order.createdAt)).toLocaleDateString()}
-                </h3>
+                  On Day {new Date(parseInt(order.createdAt)).toLocaleDateString()} the amount of: 
+               
                    <span>${order.amount}</span>
+                   </h3>
                </div>
             ))}
           </>

@@ -47,10 +47,6 @@ export const GET_CASES = gql`
 				first_name
 				last_name
 			}
-			donations {
-				case_id
-				amount
-			}
 		}
 	}
 `;
@@ -118,10 +114,6 @@ export const SEARCH_CASES = gql`
 			helpers {
 				first_name
 				last_name
-			}
-			donations {
-				case_id
-				amount
 			}
 		}
 	}
