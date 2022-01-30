@@ -50,6 +50,51 @@ export const GET_CASES = gql`
 	}
 `;
 
+export const GET_CASE_ById = gql`
+
+
+	query
+	getCaseById($id:ID!)
+	{
+		getCaseById(_id:$id){
+			_id
+			firstname
+			lastname
+			address
+			dob
+			age
+			race
+			gender
+			biograph
+			nationality
+			mobile
+			licenseId
+			issuedState
+			licensePlate
+			creator_id
+			disappearance_date
+			last_known_location
+			ncic
+			other_info
+			case_status
+			images
+			comments {
+         		 _id
+          		created_at
+          		comment_text
+          		created_by
+          		replies{
+           			 _id
+            		reply_body
+            		name
+          		}		
+       	 	}
+			
+		} 
+	}
+
+
+`;
 
 export const QUERY_ME = gql`
   {
