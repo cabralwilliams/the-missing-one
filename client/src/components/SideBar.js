@@ -1,17 +1,12 @@
 import { StatsEvent } from "@aws-sdk/client-s3";
 import React, { useState } from "react";
-import { useLazyQuery } from "@apollo/client";
 import { GoSearch } from "react-icons/go";
-import { SEARCH_CASES } from "../utils/queries";
 import { useDispatch, useSelector } from "react-redux";
-
+import { useHistory } from "react-router-dom";
 const SideBar = () => {
-	// const [getSearchResults, { loading, error, data }] =
-	// 	useLazyQuery(SEARCH_CASES);
-
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
-
+	let history = useHistory();
 	const initialFormState = {
 		firstname: "",
 		lastname: "",
@@ -39,22 +34,19 @@ const SideBar = () => {
 			caseFilter: { ...formState },
 		});
 	};
-	// if (loading) return <p>Loading ...</p>;
-	// if (error) return `Error! ${error}`;
-	// console.log("searchResults");
-	// console.log(data);
-	console.log(state);
+
+	if (Object.keys(state.caseFilter).length > 0) {
+		console.log("Print state filter ");
+		console.log(state.caseFilter);
+		history.push("/");
+	}
+
+	console.log("Sidebar component");
 	return (
 		<div className="border-end bg-white" id="sidebar-wrapper">
 			<div className="sidebar-heading border-bottom bg-light">Search Cases</div>
 			<form>
 				<div className="list-group list-group-flush">
-					{/* <a
-					className="list-group-item list-group-item-action list-group-item-light p-3"
-					href="#!"
-				>
-					Dashboard
-				</a> */}
 					<div className="mb-3 list-group-item list-group-item-action list-group-item-light p-2">
 						<label className="form-label" htmlFor="firstname">
 							First Name
@@ -100,7 +92,6 @@ const SideBar = () => {
 							className="btn btn-primary w-75"
 							id="searchCases"
 							onClick={searchHandler}
-							// onClick={() => getSearchResults({ variables: { ...formState } })}
 						>
 							{" "}
 							<GoSearch />

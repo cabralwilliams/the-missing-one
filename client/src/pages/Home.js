@@ -12,10 +12,10 @@ const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
 const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
 const Home = () => {
-	console.log("H")
+	console.log("Home component");
 	return (
-        <main>
-            <CaseList/>
+		<main>
+			<CaseList />
 			{/* <section className="jumbotron text-center">
 				<div className="container">
 					<h1 className="jumbotron-heading">Missing People</h1>
