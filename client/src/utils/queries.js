@@ -3,11 +3,16 @@ import { gql } from "@apollo/client";
 export const QUERY_USER = gql`
 	{
 		user {
-			firstName
-			lastName
+			_id
+			first_name
+			last_name
 			email
 			contact_number
 			registered_helper
+			donations {
+				amount
+				createdAt
+			}
 		}
 	}
 `;
