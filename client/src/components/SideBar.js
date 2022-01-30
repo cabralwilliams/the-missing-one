@@ -22,10 +22,10 @@ const SideBar = () => {
 		var msg = "";
 		console.log(e.target.name + " " + e.target.value);
 		if (e.target.name === "firstname") {
-			setFormState({ ...formState, firstname: e.target.value });
+			setFormState({ ...formState, firstname: e.target.value.toLowerCase() });
 		} else if (e.target.name === "lastname") {
 			// console.log("firstname" + e.target.value)
-			setFormState({ ...formState, lastname: e.target.value });
+			setFormState({ ...formState, lastname: e.target.value.toLowerCase() });
 		} else {
 			// console.log("ncic" + e.target.value)
 			setFormState({ ...formState, ncic: e.target.value });
