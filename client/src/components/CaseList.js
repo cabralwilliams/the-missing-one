@@ -11,14 +11,21 @@ const CaseList = () => {
 	console.log("state now ");
 	console.log(state);
 	let firstname1 = "",
-		lastname1 = "";
+		lastname1 = "",
+		ncic = "";
 	if (Object.keys(caseFilter).length > 0) {
-		firstname1 = caseFilter.firstname;
-		lastname1 = caseFilter.lastname;
-		console.log(firstname1, lastname1);
+		if (caseFilter.ncic.trim().length > 0) {
+			firstname1 = "";
+			lastname1 = "";
+			ncic = caseFilter.ncic;
+		} else {
+			firstname1 = caseFilter.firstname;
+			lastname1 = caseFilter.lastname;
+			console.log(firstname1, lastname1);
+		}
 	}
 	const { data, loading } = useQuery(SEARCH_CASES, {
-		variables: { firstname: firstname1, lastname: lastname1 },
+		variables: { firstname: firstname1, lastname: lastname1, ncic },
 	});
 	const dispatch = useDispatch();
 

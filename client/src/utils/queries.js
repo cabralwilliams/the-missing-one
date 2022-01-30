@@ -85,8 +85,8 @@ export const QUERY_ME = gql`
 `;
 
 export const SEARCH_CASES = gql`
-	query searchCases($firstname: String, $lastname: String) {
-		searchCases(firstname: $firstname, lastname: $lastname) {
+	query searchCases($firstname: String, $lastname: String, $ncic: String) {
+		searchCases(firstname: $firstname, lastname: $lastname, ncic: $ncic) {
 			_id
 			firstname
 			lastname
@@ -120,9 +120,9 @@ export const SEARCH_CASES = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($amount: Float!) {
-    checkout(amount: $amount) {
-      session
-    }
-  }
+	query getCheckout($amount: Float!) {
+		checkout(amount: $amount) {
+			session
+		}
+	}
 `;

@@ -18,13 +18,14 @@ const resolvers = {
 		},
 		user: async (parent, args, context) => {
 			if (context.user) {
-				const user = await User.findOne({ _id: context.user._id })
-				.select("-__v -password");
-	 		    user.donations.sort((a, b) => b.createdAt - a.createdAt);
-	  		  return user;
-			};
-	  		throw new AuthenticationError('Not logged in');
-		  },
+				const user = await User.findOne({ _id: context.user._id }).select(
+					"-__v -password"
+				);
+				user.donations.sort((a, b) => b.createdAt - a.createdAt);
+				return user;
+			}
+			throw new AuthenticationError("Not logged in");
+		},
 		getusers: async () => {
 			return User.find().select("-__v -password").populate("created_cases");
 		},
@@ -62,8 +63,8 @@ const resolvers = {
 			return Case.findOne({ _id });
 		},
 
-		searchCases: async (parent, { firstname, lastname }) => {
-			console.log("searching for " + firstname + " " + lastname);
+		searchCases: async (parent, { firstname, lastname, ncic }) => {
+		
 			const params = {};
 			if (firstname) {
 				params.firstname = {
@@ -73,6 +74,12 @@ const resolvers = {
 			if (lastname) {
 				params.lastname = {
 					$regex: lastname,
+				};
+			}
+
+			if (ncic) {
+				params.ncic = {
+					$regex: ncic,
 				};
 			}
 			console.log(params);
@@ -216,7 +223,7 @@ const resolvers = {
 					},
 					{ new: true }
 				);
-	     		console.log(updatedUser);
+				console.log(updatedUser);
 				return updatedUser;
 			}
 			return new AuthenticationError("Please sign in to donate");
