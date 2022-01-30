@@ -10,7 +10,7 @@ const typeDefs = gql`
 		email: String
 		password: String
 		contact_number: String
-		created_cases:[Case]
+		created_cases: [Case]
 		created_at: String
 		registered_helper: Boolean
 		donations: [Donation]
@@ -28,7 +28,7 @@ const typeDefs = gql`
 		created_by: String
 		created_at: String
 		case_id: ID
-		 replies:[Reply]
+		replies: [Reply]
 	}
 
 	type Reply {
@@ -45,7 +45,7 @@ const typeDefs = gql`
 
 	type Checkout {
 		session: ID
-	  }
+	}
 
 	input CaseInput {
 		firstname: String
@@ -77,30 +77,21 @@ const typeDefs = gql`
 		last_known_location: String
 		ncic: String
 		other_info: String
-		case_status: Boolean		
-		comments:[Comment]
+		case_status: Boolean
+		comments: [Comment]
 		images: [String]
 		helpers: [User]
-		donations: [Donation]
 	}
 
 	type Query {
 		getusers: [User]
 		me: User
-		getuser(_id:ID!): User
+		getuser(_id: ID!): User
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
-
-		searchCases(
-			race: String
-			gender: String
-			case_status: Boolean
-			ncic: String
-		): [Case]
-		
+		user: User
+		searchCases(firstname: String, lastname: String, ncic: String): [Case]
 		checkout(amount: Float!): Checkout
-
-		
 	}
 
 	type Mutation {
@@ -112,22 +103,25 @@ const typeDefs = gql`
 			contact_number: String
 			registered_helper: Boolean
 		): Auth
-    
+
 		updateUser(
-		
 			first_name: String
 			last_name: String
 			email: String
 			password: String
 			contact_number: String
 			registered_helper: Boolean
-			): User
+		): User
 
-		deleteUser(_id:ID!) : User
+		deleteUser(_id: ID!): User
 		login(email: String!, password: String!): Auth
-		addComment(comment_text:String!, case_id:ID!,created_by:String! ): Comment
-		deleteComment(commentId:ID!,case_id:ID! ): Comment
-		addReply(commentId:ID!, reply_body:String!, name:String!): Comment
+		addComment(
+			comment_text: String!
+			case_id: ID!
+			created_by: String!
+		): Comment
+		deleteComment(commentId: ID!, case_id: ID!): Comment
+		addReply(commentId: ID!, reply_body: String!, name: String!): Comment
 
 		createCase(
 			firstname: String!

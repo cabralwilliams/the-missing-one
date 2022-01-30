@@ -1,2 +1,2 @@
 export const UPDATE_CASES = "UPDATE_CASES";
-
+export const UPDATE_CASE_FILTER = "UPDATE_CASE_FILTER";

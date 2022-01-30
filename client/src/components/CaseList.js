@@ -1,39 +1,67 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_CASES } from "../utils/queries";
+import { GET_CASES, SEARCH_CASES } from "../utils/queries";
 import SimpleCase from "./SimpleCase";
 import { useQuery } from "@apollo/client";
 
 const CaseList = () => {
-	const { data, loading } = useQuery(GET_CASES);
+	const state = useSelector((state) => state);
+	const caseFilter = state.caseFilter;
+	//	const { data, loading } = useQuery(GET_CASES);
+	console.log("state now ");
+	console.log(state);
+	let firstname1 = "",
+		lastname1 = "",
+		ncic = "";
+	if (Object.keys(caseFilter).length > 0) {
+		if (caseFilter.ncic.trim().length > 0) {
+			firstname1 = "";
+			lastname1 = "";
+			ncic = caseFilter.ncic;
+		} else {
+			firstname1 = caseFilter.firstname;
+			lastname1 = caseFilter.lastname;
+			console.log(firstname1, lastname1);
+		}
+	}
+	const { data, loading } = useQuery(SEARCH_CASES, {
+		variables: { firstname: firstname1, lastname: lastname1, ncic },
+	});
 	const dispatch = useDispatch();
-
-	
 
 	console.log("in caselist");
 
 	useEffect(() => {
+		// //	if (Object.keys(caseFilter).length > 0) {
+		// 		console.log("casefilter exists");
+		// 		dispatch({
+		// 			type: "UPDATE_CASES",
+		// 			cases: data.searchCases,
+		// 		});
+		// //	} else
 		if (data) {
 			console.log("executing dispatch to update state");
 			dispatch({
 				type: "UPDATE_CASES",
-				cases: data.getCases,
+				cases: data.searchCases,
 			});
 		}
 	}, [data, dispatch]);
+
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
-	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
-	const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
-	const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
-	const photoUrl3 = "https://missingone.s3.amazonaws.com/3.jpg";
-	const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
-	const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
+	// const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
+	// const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
+	// const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
+	// const photoUrl3 = "https://missingone.s3.amazonaws.com/3.jpg";
+	// const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
+	// const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
-    if (loading) {
+	if (loading) {
 		return <h2>Cases are loading...</h2>;
 	}
+	console.log("caselist component");
 	return (
 		<div>
 			<div className="clearfix">
