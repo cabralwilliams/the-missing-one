@@ -60,7 +60,12 @@ const resolvers = {
 		},
 
 		getCaseById: async (parent, { _id }) => {
-			return Case.findOne({ _id });
+			return Case.findOne({ _id })
+			.populate({
+				path: "comments",
+				select: "-__v",
+			})
+			.populate("replies");
 		},
 
 		searchCases: async (parent, { firstname, lastname, ncic }) => {
