@@ -227,16 +227,7 @@ const resolvers = {
 					},
 					{ new: true }
 				);
-				// const updatedCase = await Case.findByIdAndUpdate(
-				// 	{ _id: args.case_id },
-				// 	{
-				// 		$push: {
-				// 			donations: {user_id:context.user.id, case_id: args.case_id, amount: args.amount },
-				// 		},
-				// 	},
-				// 	{ new: true }
-				// );
-				console.log(updatedUser);
+	     		console.log(updatedUser);
 				return updatedUser;
 			}
 			return new AuthenticationError("Please sign in to donate");

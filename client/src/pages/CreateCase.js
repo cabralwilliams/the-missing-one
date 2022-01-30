@@ -148,98 +148,113 @@ const UploadImageToS3WithNativeSdk = () => {
 	}
 
     return(
-        <div>
-            <input type="file" onChange={handleFileInput}/>
-            <button onClick={() => uploadFile(selectedFile)}> Upload Image</button>
-            <form onSubmit={handleFormSubmit}>
-                <div className='d-flex flex-row justify-content-around'>
-                    <div>
-                        <h2>Required Fields</h2>
-                        <div className='d-flex flex-column'>
-                            <label htmlFor='firstname'>First Name:</label>
-                            <input type="text" name='firstname' value={formState.firstname === null ? '' : formState.firstname} onChange={handleChange} />
-                        </div>
-                        <div className='d-flex flex-column'>
-                            <label htmlFor='lastname'>Last Name:</label>
-                            <input type="text" name='lastname' value={formState.lastname === null ? '' : formState.lastname} onChange={handleChange} />
-                        </div>
-                        <div className='d-flex flex-column'>
-                            <label htmlFor='age'>Age:</label>
-                            <input type="number" name='age' min='0' step='1' value={formState.age === null ? 0 : formState.age} onChange={handleChange} />
-                        </div>
-                        <div className='d-flex flex-column'>
-                            <label htmlFor='gender'>Gender:</label>
-                            <select name='gender' onChange={handleChange}>
-                                <option value='--'>------</option>
-                                <option value='F'>Female</option>
-                                <option value='M'>Male</option>
-                                <option value='NB'>Non-Binary</option>
-                            </select>
-                        </div>
-                        <div className='d-flex flex-column'>
-                            <label htmlFor='last_known_location'>Location Last Seen:</label>
-                            <textarea name='last_known_location' onChange={updateLocation}></textarea>
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Optional Fields</h2>
-                        <div className='d-flex flex-row justify-content-between'>
-                            <div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='address'>Address:</label>
-                                    <textarea name='address' onChange={updateAddress}></textarea>
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='dob'>Date of Birth:</label>
-                                    <input type='date' name='dob' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='biograph'>Biography:</label>
-                                    <textarea name='biograph' onChange={updateBiograph}></textarea>
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='nationality'>Nationality:</label>
-                                    <input type='text' name='nationality' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='mobile'>Mobile Number:</label>
-                                    <input type='text' name='mobile' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='licenseId'>Driver/ID Number:</label>
-                                    <input type='text' name='licenseId' onChange={handleChange} />
-                                </div>
+    <div className="container">
+            <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
+                 <div className="lh-1">
+                    <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
+                       <p className="text-center"> Creating a New Case</p>
+                    </h1>
+                 </div>
+             </div> 
+            <div className="row g-2">
+                    <div className="col-md-5 col-lg-4 order-md-last">
+                            <h4 className="d-flex justify-content-between align-items-center mb-3">
+                                <span className="text-primary">Picture</span>
+                            </h4>
+                            <ul className="list-group mb-3">
+                            </ul>
+                            <div className="card p-2">
+                                <input className="form-control" type="file" onChange={handleFileInput}/>
+                                <button className="w-100 btn btn-primary btn-lg" onClick={() => uploadFile(selectedFile)}> Upload Image</button>
                             </div>
-                            <div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='issuedState'>Issuing State:</label>
-                                    <input type='text' name='issuedState' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='licensePlate'>License Plate:</label>
-                                    <input type='text' name='licensePlate' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='disappearance_date'>Disappearance Date:</label>
-                                    <input type='date' name='disappearance_date' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='ncic'>NCIC Code:</label>
-                                    <input type='text' name='ncic' onChange={handleChange} />
-                                </div>
-                                <div className='d-flex flex-column'>
-                                    <label htmlFor='other_info'>Other Information:</label>
-                                    <textarea name='other_info' onChange={updateOther}></textarea>
-                                </div>
+                    </div> 
+                    <div className="col-md-7 col-lg-8">
+                        <form onSubmit={handleFormSubmit}>
+                                <h4 className="mb-3">Required Fields</h4>
+                                <div className="row g-3">
+                                       <div className="col-sm-6">
+                                            <label className="form-label" htmlFor='firstname'>First Name:</label>
+                                            <input className="form-control" type="text" name='firstname' value={formState.firstname === null ? '' : formState.firstname} onChange={handleChange} required />
+                                        </div>
+                                        <div className="col-sm-5">
+                                            <label  className="form-label" htmlFor='lastname'>Last Name:</label>
+                                            <input className="form-control" type="text" name='lastname' value={formState.lastname === null ? '' : formState.lastname} onChange={handleChange} required />
+                                        </div> 
+                                        <div className="col-md-5">
+                                            <label  className="form-label" htmlFor='gender'>Gender:</label>
+                                            <select className="form-select" name='gender' onChange={handleChange} required>
+                                                <option value='--'>------</option>
+                                                <option value='F'>Female</option>
+                                                <option value='M'>Male</option>
+                                                <option value='NB'>Non-Binary</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-md-3">
+                                            <label  className="form-label" htmlFor='age'>Age:</label>
+                                            <input className="form-control" type="number" name='age' min='0' step='1' value={formState.age === null ? 0 : formState.age} onChange={handleChange}  required/>
+                                        </div>
+                                        <div class="col-12">
+                                            <label  className="form-label" htmlFor='last_known_location'>Location Last Seen:</label>
+                                            <textarea className="form-control" name='last_known_location' onChange={updateLocation} required></textarea>
+                                        </div>  
                             </div>
-                        </div>
+                            <hr className="my-4"></hr>
+                            <div className="row g-3">
+                                <h4 className="mb-3">Optional Fields</h4>
+                                <div className='col-md-12'>
+                                    <label className="form-label" htmlFor='biograph'>Biography:</label>
+                                    <textarea className="form-control" name='biograph' onChange={updateBiograph}></textarea>
+                                </div>
+                                <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='dob'>Date of Birth:</label>
+                                    <input className="form-control" type='date' name='dob' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='disappearance_date'>Disappearance Date:</label>
+                                    <input className="form-control" type='date' name='disappearance_date' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='nationality'>Nationality:</label>
+                                    <input className="form-control" type='text' name='nationality' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-7'>
+                                    <label className="form-label" htmlFor='address'>Address:</label>
+                                    <textarea className="form-control" name='address' onChange={updateAddress}></textarea>
+                                </div>
+                                <div className='col-md-5'>
+                                    <label className="form-label" htmlFor='mobile'>Mobile Number:</label>
+                                    <input className="form-control"type='phone' name='mobile' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='licenseId'>Driver/ID Number:</label>
+                                    <input className="form-control" type='text' name='licenseId' onChange={handleChange} />
+                                </div>
+                                 <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='issuedState'>Issuing State:</label>
+                                    <input className="form-control"type='text' name='issuedState' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-4'>
+                                    <label className="form-label" htmlFor='licensePlate'>License Plate:</label>
+                                    <input className="form-control" type='text' name='licensePlate' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-12'>
+                                    <label className="form-label" htmlFor='ncic'>NCIC Code:</label>
+                                    <input className="form-control" type='text' name='ncic' onChange={handleChange} />
+                                </div>
+                                <div className='col-md-12'>
+                                    <label className="form-label" htmlFor='other_info'>Other Information:</label>
+                                    <textarea className="form-control" name='other_info' onChange={updateOther}></textarea>
+                                </div>
+                            </div>  
+                        <hr className="my-4"></hr>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button className="btn btn-primary btn-lg me-md-2" type='submit'>Create Case</button>
+                            <button className="btn btn-danger btn-lg" type="button" >Cancel</button>
+                         </div>
+                        </form>
                     </div>
-                    <div>
-                        <button type='submit'>Create Case</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+            </div>
+   </div>
     );
 }
 
