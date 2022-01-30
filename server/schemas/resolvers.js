@@ -16,7 +16,15 @@ const resolvers = {
 			}
 			throw new AuthenticationError("Not logged in");
 		},
-
+		user: async (parent, args, context) => {
+			if (context.user) {
+				const user = await User.findOne({ _id: context.user._id })
+				.select("-__v -password");
+	 		    user.donations.sort((a, b) => b.createdAt - a.createdAt);
+	  		  return user;
+			};
+	  		throw new AuthenticationError('Not logged in');
+		  },
 		getusers: async () => {
 			return User.find().select("-__v -password").populate("created_cases");
 		},
