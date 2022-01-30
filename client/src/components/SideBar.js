@@ -1,9 +1,9 @@
 import { StatsEvent } from "@aws-sdk/client-s3";
 import React, { useState } from "react";
-import { useLazyQuery } from "@apollo/client";
 import { GoSearch } from "react-icons/go";
 import { SEARCH_CASES } from "../utils/queries";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
 	// const [getSearchResults, { loading, error, data }] =
