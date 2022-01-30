@@ -27,7 +27,7 @@ import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
 import Success from "./pages/Success";
-import OrderHistory from "./pages/OrderHistory"
+import OrderHistory from "./pages/OrderHistory";
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 			console.log(document.body.classList);
 			console.log(event.target.innerHTML);
 			if (document.body.classList.contains("sb-sidenav-toggled"))
-				event.target.innerHTML = "Close";
+				event.target.innerHTML = "<i className='bi bi-arrow-bar-left'/> Close";
 			else event.target.innerHTML = "<BiArrowToLeft />&nbsp;&nbsp; Search";
 			localStorage.setItem(
 				"sb|sidebar-toggle",
@@ -80,10 +80,6 @@ function App() {
 			<Router>
 				<div className="flex-column justify-flex-start min-100-vh">
 					<Provider store={store}>
-						{/* <Header /> */}
-
-						{/* <NavBar /> */}
-						{/* /<div className="container"> */}
 						<Header />
 						<div className="d-flex Container" id="wrapper">
 							<SideBar />
@@ -107,7 +103,11 @@ function App() {
 										/>
 										<Route exact path="/edit" component={Edit} />
 										<Route exact path="/success" component={Success} />
-										<Route exact path="/OrderHistory" component={OrderHistory} />
+										<Route
+											exact
+											path="/OrderHistory"
+											component={OrderHistory}
+										/>
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

@@ -22,8 +22,6 @@ const CaseList = () => {
 	});
 	const dispatch = useDispatch();
 
-	
-
 	console.log("in caselist");
 
 	useEffect(() => {
@@ -46,16 +44,17 @@ const CaseList = () => {
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
-	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
-	const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
-	const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
-	const photoUrl3 = "https://missingone.s3.amazonaws.com/3.jpg";
-	const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
-	const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
+	// const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
+	// const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
+	// const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
+	// const photoUrl3 = "https://missingone.s3.amazonaws.com/3.jpg";
+	// const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
+	// const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
-    if (loading) {
+	if (loading) {
 		return <h2>Cases are loading...</h2>;
 	}
+	console.log("caselist component");
 	return (
 		<div>
 			<div className="clearfix">
