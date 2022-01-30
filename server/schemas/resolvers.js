@@ -115,17 +115,6 @@ const resolvers = {
 				return { session: session.id };
 			}
 		},
-		// getDonations: async (parent, { case_id, user_id }) => {
-		// 	const params = {};
-		// 	if (case_id && user_id) {
-		// 		params = { case_id, user_id };
-		// 	} else if (case_id) {
-		// 		params = { case_id };
-		// 	} else if (user_id) {
-		// 		params = { user_id };
-		// 	}
-		// 	return Donation.find(params).sort({ createdAt: -1 });
-		// },
 	},
 
 	Mutation: {
@@ -227,16 +216,7 @@ const resolvers = {
 					},
 					{ new: true }
 				);
-				// const updatedCase = await Case.findByIdAndUpdate(
-				// 	{ _id: args.case_id },
-				// 	{
-				// 		$push: {
-				// 			donations: {user_id:context.user.id, case_id: args.case_id, amount: args.amount },
-				// 		},
-				// 	},
-				// 	{ new: true }
-				// );
-				console.log(updatedUser);
+	     		console.log(updatedUser);
 				return updatedUser;
 			}
 			return new AuthenticationError("Please sign in to donate");

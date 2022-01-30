@@ -220,3 +220,6 @@ code {
 	background: -o-linear-gradient(top, #a8cfce, #beeae9);
 	background: -ms-linear-gradient(top, #a8cfce, #beeae9);
 }
+.container {
+	max-width: 960px;
+}
