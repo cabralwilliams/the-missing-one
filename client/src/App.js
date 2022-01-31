@@ -32,7 +32,7 @@ import { BiArrowToLeft } from "react-icons/bi";
 import CaseDetails from "./pages/CaseDetails";
 
 import Success from "./pages/Success";
-import OrderHistory from "./pages/OrderHistory";
+
 
 
 const httpLink = createHttpLink({
@@ -111,13 +111,6 @@ function App() {
 										<Route exact path="/success" component={Success} />
 
 										<Route exact path="/cases/:caseId" component={CaseDetails} />
-
-										<Route
-											exact
-											path="/OrderHistory"
-											component={OrderHistory}
-										/>
-
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

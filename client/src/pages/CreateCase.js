@@ -7,7 +7,7 @@ import { CREATE_CASE } from "../utils/mutations.js";
 import { useQuery, useMutation } from "@apollo/client";
 
 const S3_BUCKET = "missingone";
-const photo = "https://missingone.s3.amazonaws.com/0.jpg";
+const photo = "https://missingone.s3.amazonaws.com/0";
 
 const initialState = {
 	firstname: null,
@@ -73,7 +73,7 @@ const UploadImageToS3WithNativeSdk = () => {
     }
 
     const uploadFile = async (file,filename) => {
-        // if (!file) { Thi was moved to sunmit button}
+        // if (!file) { This was moved to sunmit button}
             // return alert("Choose a file to upload first.");
         // }
         const params = {
