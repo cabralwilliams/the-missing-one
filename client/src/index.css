@@ -9,7 +9,9 @@
 	--spacing-five: calc(2.5rem);
 	--special-color: darkred;
 	--cardBorderColor: #c0c0c0;
-
+	--oxford-blue: #002147;
+	--cerulean-blue: #2a52be;
+	--maximum-blue-purple: #95a8e0;
 	/* color pallette */
 	/*
 $maroon-web: #7e0000ff;
@@ -52,7 +54,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 #sidebar-wrapper {
 	min-height: 100vh;
 	margin-left: -15rem;
-	transition: margin 0.50s ease-out;
+	transition: margin 0.5s ease-out;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -131,6 +133,17 @@ col-md-3 {
 	}
 }
 
+.comment-header {
+	color: var(--cerulean-blue);
+}
+
+.comment-btn {
+	background-color: var(--cerulean-blue);
+	color: white;
+}
+.reply-btn {
+	background-color: var(--maximum-blue-purple);
+}
 /*-----------------------------*/
 /* nav ul li a {
   padding: 10px 15px;

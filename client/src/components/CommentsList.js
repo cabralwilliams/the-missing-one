@@ -1,7 +1,9 @@
 import React from "react";
+import Moment from "react-moment";
+import CommentForm from "./CommentForm";
 
 const CommentsList = (props) => {
-	const { comments } = props;
+	const { comments, case_id, username } = props;
 	console.log("printing comments ");
 	console.log(comments);
 	return (
@@ -21,10 +23,14 @@ const CommentsList = (props) => {
 			</div>
 
 			<div className="my-3 p-3 bg-body rounded shadow-sm">
+				<CommentForm case_id={case_id} username={username} />
 				<h6 className="border-bottom pb-2 mb-0">Recent updates</h6>
 				{comments &&
 					comments.map((comment) => (
-						<div className="d-flex text-muted pt-3">
+						<div
+							className="d-flex text-muted pt-3 border-bottom "
+							key={comment._id}
+						>
 							<svg
 								className="bd-placeholder-img flex-shrink-0 me-2 rounded"
 								width="32"
@@ -42,10 +48,21 @@ const CommentsList = (props) => {
 								</text>
 							</svg>
 
-							<p className="pb-3 mb-0 small lh-sm border-bottom">
-								<strong className="d-block text-gray-dark">@username</strong>
+							<div className="pb-3 mb-0 small lh-sm width-80">
+								<strong className="d-block text-gray-dark comment-header">
+									{`@${comment.created_by} posted on `}{" "}
+									<Moment
+										format="MM/DD/YY hh:mm a"
+										date={comment.created_at}
+									></Moment>
+								</strong>
 								{comment.comment_text}
-							</p>
+								<div className="text-end mt-3">
+									<button className="btn btn btn-outline-primary btn-sm reply-btn">
+										Reply{" "}
+									</button>
+								</div>
+							</div>
 						</div>
 					))}
 			</div>

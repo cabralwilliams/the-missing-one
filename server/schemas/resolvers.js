@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
+const { __TypeKind } = require("graphql");
 const { User, Case, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -60,16 +61,30 @@ const resolvers = {
 		},
 
 		getCaseById: async (parent, { _id }) => {
-			return Case.findOne({ _id })
-			.populate({
-				path: "comments",
-				select: "-__v",
-			})
-			.populate("replies");
+			console.log("resolver - getCaseById " + _id);
+			const casetemp = await Case.findOne({ _id }).populate("comments");
+			console.log(casetemp.comments);
+			return casetemp;
 		},
 
+		// getCases: async () => {
+		// 	return Case.find()
+		// 		.populate({
+		// 			path: "comments",
+		// 			select: "-__v",
+		// 		})
+		// 		.populate({ path: "helpers", select: "-__v" });
+		// },
+
+		// getCaseById: async (parent, { _id }) => {
+		// 	console.log("resolver - getCaseById ");
+		// 	const casetemp = await Case.findOne({ _id })
+		// 		.select("-__v ")
+		// 		.populate("comments");
+		// 	console.log(casetemp);
+		// 	return casetemp;
+		// },
 		searchCases: async (parent, { firstname, lastname, ncic }) => {
-		
 			const params = {};
 			if (firstname) {
 				params.firstname = {
@@ -175,6 +190,8 @@ const resolvers = {
 		},
 
 		addComment: async (parent, args) => {
+			console.log("resolver - addComment");
+			console.log({ ...args });
 			const comment = await Comment.create({ ...args });
 			await Case.findByIdAndUpdate(
 				{ _id: args.case_id },

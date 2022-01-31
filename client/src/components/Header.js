@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
+import { useSelector, useDispatch } from "react-redux";
+import { LOGOUT_USER } from "../utils/actions";
 const Header2 = () => {
+	const dispatch = useDispatch();
+	const state = useSelector((state) => state);
+	function logoutMe() {
+		dispatch({ type: LOGOUT_USER });
+		Auth.logout();
+	}
+	if (!Auth.loggedIn()) console.log(state.user);
+
 	return (
 		<nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom ">
 			<div className="container-fluid navigation">
@@ -82,7 +92,7 @@ const Header2 = () => {
 									className="nav-link text-light"
 									aria-current="page"
 									to="/"
-									onClick={() => Auth.logout()}
+									onClick={() => logoutMe()}
 								>
 									{" "}
 									<svg

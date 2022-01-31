@@ -1,2 +1,4 @@
 export const UPDATE_CASES = "UPDATE_CASES";
 export const UPDATE_CASE_FILTER = "UPDATE_CASE_FILTER";
+export const LOGIN_USER = "LOGIN_USER";
+export const LOGOUT_USER = "LOGOUT_USER";
