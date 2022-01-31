@@ -5,6 +5,7 @@ import { useParams, Redirect } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
 import { Link } from 'react-router-dom';
 import SimpleCase from '../components/SimpleCase'
+
 const Profile = () => {
     const { _id: userParam } = useParams();
     const { loading, data } = useQuery(QUERY_ME, {
@@ -72,15 +73,14 @@ const Profile = () => {
                             </h4>
                                {user ? (
                                 <>
+                                    <h3> On Date:</h3>
                                     {user.donations.map((order) => (
                                     <div key={order._id} className="my-2">
-                                        <h3>
-                                        On Day {new Date(parseInt(order.createdAt)).toLocaleDateString()} you donated the amount of: 
-                                    
-                                        <span>${order.amount}</span>
-                                        </h3>
+                                        <h4>{new Date(parseInt(order.createdAt)).toLocaleDateString()}  $: {order.amount}</h4>
                                     </div>
+                                    
                                     ))}
+                                    
                                 </>
                                 ) : null}
                      </div>
