@@ -27,7 +27,7 @@ const caseSchema = new Schema(
 		},
 		dob: {
 			type: Date,
-			default: Date.now,
+			//default: Date.now,
 			get: (timestamp) => dateFormat(timestamp),
 		},
 		age: {
@@ -55,7 +55,7 @@ const caseSchema = new Schema(
 		nationality: {
 			type: String,
 			maxLength: 3,
-			default: "USA",
+			//	default: "Unknown",
 		},
 		mobile: {
 			type: String,
@@ -110,7 +110,7 @@ const caseSchema = new Schema(
 				ref: "User",
 			},
 		],
-	    comments: [
+		comments: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: "Comment",

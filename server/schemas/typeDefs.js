@@ -92,6 +92,7 @@ const typeDefs = gql`
 		user: User
 		searchCases(firstname: String, lastname: String, ncic: String): [Case]
 		checkout(amount: Float!): Checkout
+	
 	}
 
 	type Mutation {
