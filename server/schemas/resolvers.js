@@ -143,8 +143,9 @@ const resolvers = {
 			}
 		},
 
-		
-	
+		getCommentById: async (parent, { _id }) => {
+			return Comment.findOne({ _id });
+		},
 	},
 
 	Mutation: {
@@ -211,9 +212,11 @@ const resolvers = {
 		},
 
 		addReply: async (parent, args) => {
+			console.log(args);
 			const updatedComment = await Comment.findOneAndUpdate(
 				{ _id: args.commentId },
-				{ $push: { replies: { ...args } } }
+				{ $push: { replies: { ...args } } },
+				{ new: true, runValidators: true }
 			);
 			return updatedComment;
 		},

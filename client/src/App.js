@@ -19,21 +19,20 @@ import Home from "./pages/Home";
 import NoMatch from "./pages/NoMatch";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import SingleComment from "./pages/SingleComment";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import Edit from "./pages/Edit";
 import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
+
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
-
-
 
 import CaseDetails from "./pages/CaseDetails";
 
 import Success from "./pages/Success";
 import OrderHistory from "./pages/OrderHistory";
-
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -110,14 +109,22 @@ function App() {
 										<Route exact path="/edit" component={Edit} />
 										<Route exact path="/success" component={Success} />
 
-										<Route exact path="/cases/:caseId" component={CaseDetails} />
+										<Route
+											exact
+											path="/cases/:caseId"
+											component={CaseDetails}
+										/>
 
 										<Route
 											exact
 											path="/OrderHistory"
 											component={OrderHistory}
 										/>
-
+										<Route
+											exact
+											path="/comment/:caseId/:id"
+											component={SingleComment}
+										/>
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

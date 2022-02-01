@@ -24,15 +24,15 @@ const Home = () => {
 	const { data, loading } = useQuery(QUERY_ME);
 	const user = data?.me || {};
 
-	//Store user under Global state.
-	useEffect(() => {
-		if (user._id) {
-			dispatch({
-				type: LOGIN_USER,
-				user,
-			});
-		}
-	}, [user, dispatch]);
+	// //Store user under Global state.
+	// useEffect(() => {
+	// 	if (user._id) {
+	// 		dispatch({
+	// 			type: LOGIN_USER,
+	// 			user,
+	// 		});
+	// 	}
+	// }, [user, dispatch]);
 	return (
 		<main>
 			<CaseList />

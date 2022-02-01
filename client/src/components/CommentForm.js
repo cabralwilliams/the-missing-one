@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-
-import { useDispatch, useSelector } from "react-redux";
 import { ADD_COMMENT } from "../utils/mutations";
 import { GET_CASE_ById, QUERY_ME } from "../utils/queries";
 import Auth from "../utils/auth";

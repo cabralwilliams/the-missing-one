@@ -143,6 +143,7 @@ col-md-3 {
 }
 .reply-btn {
 	background-color: var(--maximum-blue-purple);
+	width: 100%;
 }
 /*-----------------------------*/
 /* nav ul li a {

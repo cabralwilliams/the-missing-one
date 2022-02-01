@@ -164,3 +164,20 @@ export const ADD_COMMENT = gql`
 		}
 	}
 `;
+
+export const ADD_REPLY = gql`
+	mutation addReply($commentId: ID!, $reply_body: String!, $name: String!) {
+		addReply(commentId: $commentId, reply_body: $reply_body, name: $name) {
+			_id
+			comment_text
+			case_id
+			created_by
+			created_at
+			replies {
+				_id
+				reply_body
+				name
+			}
+		}
+	}
+`;

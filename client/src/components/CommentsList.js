@@ -1,7 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 import CommentForm from "./CommentForm";
-
+import { Link } from "react-router-dom";
 const CommentsList = (props) => {
 	const { comments, case_id, username } = props;
 	console.log("printing comments ");
@@ -48,22 +48,32 @@ const CommentsList = (props) => {
 									32x32
 								</text>
 							</svg>
-
-							<div className="pb-3 mb-0 small lh-sm width-80">
-								<strong className="d-block text-gray-dark comment-header">
-									{`@${comment.created_by} posted on `}{" "}
-									<Moment
-										format="MM/DD/YY hh:mm a"
-										date={comment.created_at}
-									></Moment>
-								</strong>
-								{comment.comment_text}
-								<div className="text-end mt-3">
-									<button className="btn btn btn-outline-primary btn-sm reply-btn">
-										Reply{" "}
-									</button>
+							<div className="pb-3 mb-0 small lh-sm border-bottom w-100">
+								<div className="d-flex justify-content-between">
+									<strong className="text-gray-dark">{`@${comment.created_by}`}</strong>
+									<span>
+										<strong>
+											{" "}
+											<Moment
+												format="MM/DD/YY hh:mm a"
+												date={comment.created_at}
+											></Moment>{" "}
+										</strong>
+									</span>
 								</div>
-							</div>
+								<div className="d-flex justify-content-between">
+									<span className="d-block">{comment.comment_text}</span>
+									<div className="text-start mt-3 ">
+										<Link
+											to={`/comment/${case_id}/${comment._id}`}
+											className="btn btn btn-outline-primary btn-sm reply-btn px-3"
+											role="button"
+										>
+											Reply{"    "}
+										</Link>
+									</div>
+								</div>
+							</div>{" "}
 						</div>
 					))}
 			</div>

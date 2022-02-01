@@ -162,3 +162,20 @@ export const QUERY_CHECKOUT = gql`
 		}
 	}
 `;
+
+export const QUERY_COMMENT_BYId = gql`
+	query getCommentById($id: ID!) {
+		getCommentById(_id: $id) {
+			_id
+			comment_text
+			created_at
+			created_by
+			replies {
+				_id
+				reply_body
+				createdAt
+				name
+			}
+		}
+	}
+`;
