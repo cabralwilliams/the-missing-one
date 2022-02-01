@@ -135,3 +135,53 @@ export const ADD_DONATION = gql`
       }
   }
 `
+
+export const UPDATE_CASE = gql`
+  mutation updateCase(
+    $firstname: String
+    $lastname: String
+    $age: Int
+    $gender: String
+    $last_known_location: String
+    $address: String
+    $dob: String
+    $creator_id: ID
+    $biograph: String
+    $nationality: String
+    $mobile: String
+    $licenseId: String
+    $issuedState: String
+    $licensePlate: String
+    $disappearance_date: String
+    $ncic: String
+    $other_info: String
+    $images: [String]
+    $id: ID!
+  ) {
+      updateCase(
+        firstname: $firstname
+        lastname: $lastname
+        address: $address
+        dob: $dob
+        age: $age
+        gender: $gender
+        last_known_location: $last_known_location
+        creator_id: $creator_id
+        biograph: $biograph
+        nationality: $nationality
+        mobile: $mobile
+        licenseId: $licenseId
+        issuedState: $issuedState
+        licensePlate: $licensePlate
+        disappearance_date: $disappearance_date
+        ncic: $ncic
+        other_info: $other_info
+        images: $images
+        id: $id
+      ) {
+          _id
+          firstname
+          lastname
+      }
+  }
+`

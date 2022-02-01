@@ -1,8 +1,18 @@
 // import React
-import React from "react";
+import React, { useEffect } from "react";
 
 //Import the CaseList - a list of Card-like displays composed of the SimpleCase component
 import CaseList from "../components/CaseList";
+
+//Import useSelector and useDispatch to use if user is logged in
+import { useSelector, useDispatch } from "react-redux";
+
+//Import useQuery to see if user is logged in
+import { useQuery } from "@apollo/client";
+
+//Import QUERY_ME
+import { QUERY_ME } from "../utils/queries";
+import { LOGIN_USER } from "../utils/actions";
 
 const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
 const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
@@ -13,6 +23,24 @@ const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
 const Home = () => {
 	console.log("Home component");
+	const state = useSelector(state => state );
+	const dispatch = useDispatch();
+	console.log(`User: ${JSON.stringify(state.user)}`);
+
+	//Query for a user
+	const { data, loading } = useQuery(QUERY_ME);
+	const user = data?.me || {};
+
+	useEffect(() => {
+		
+		if(user._id) {
+			dispatch({
+				type: LOGIN_USER,
+				user
+			});
+		}
+	}, [user, dispatch]);
+	
 	return (
 		<main>
 			<CaseList />

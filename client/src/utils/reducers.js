@@ -1,4 +1,4 @@
-import { UPDATE_CASES, UPDATE_CASE_FILTER } from "./actions";
+import { UPDATE_CASES, UPDATE_CASE_FILTER, UPDATE_CURRENT_CASE, LOGIN_USER } from "./actions";
 
 const initialState = {
 	currentCase: {},
@@ -18,6 +18,12 @@ const reducer = (state = initialState, action) => {
 			console.log(action.caseFilter);
 			return { ...state, caseFilter: { ...action.caseFilter } };
 
+		case UPDATE_CURRENT_CASE:
+			return { ...state, currentCase: { ...action.currentCase } };
+		
+		case LOGIN_USER:
+			return { ...state, loggedIn: true, user: { ...action.user } };
+		
 		default:
 			return state;
 	}

@@ -21,9 +21,9 @@ const CaseDetails = () => {
     }
     return(
         <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-                <div class="lh-1">
+                <div className="lh-1">
                     <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
-                    <p class="text-center"> Viewing {caseDetail.firstname}'s profile.</p>
+                    <p className="text-center"> Viewing {caseDetail.firstname}'s profile.</p>
                     </h1>
                 </div>
             </div>
