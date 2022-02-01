@@ -33,71 +33,83 @@ function Signup(props) {
   };
 
   return (
-    <div className="container my-1 contact-form">
-       <legend>Sign Up</legend>
-      <form id="contact-form" onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="firstName">First Name:</label>
-          <input 
-            className="form-control"
-            placeholder="First"
+    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <h2 class="fw-bold mb-0">Sign up for free</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+        <form class="" onSubmit={handleFormSubmit}>
+          <div class="form-floating mb-3">
+            <input 
+            className="form-control rounded-4"
+            placeholder="First Name"
             name="firstName"
             type="firstName"
-            id="firstName"
+            id="floatingInput"
             onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            className="form-control"
-            placeholder="Last"
-            name="lastName"
-            type="lastName"
-            id="lastName"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email:</label>
-          <input
-            className="form-control"
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="phone">Phone Number:</label>
-          <input
-            className="form-control"
-            placeholder="your phone number"
-            name="contact_number"
-            type="contact_number"
-            id="contact_number"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            className="form-control"
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <Link to="/login">← Go to Login</Link>
+            required
+            />
+            <label htmlfor="floatingName">First Name:</label>
+          </div>
+          <div class="form-floating mb-3">
+              <input
+               className="form-control rounded-4"
+               placeholder="Last Name"
+               name="lastName"
+               type="lastName"
+               id="lastName"
+               onChange={handleChange}
+               required
+              />
+               <label htmlfor="floatingLast">Last Name:</label>
+          </div>
+          <div class="form-floating mb-3">
+                <input
+                  className="form-control rounded-4"
+                  placeholder="your phone number"
+                  name="contact_number"
+                  type="contact_number"
+                  id="contact_number"
+                  onChange={handleChange}
+                />
+                <label htmlfor="floatingPhone">Phone:</label>
+          </div>
+          <div class="form-floating mb-3">
+                <input
+                  className="form-control rounded-4"
+                  placeholder="youremail@test.com"
+                  name="email"
+                  type="email"
+                  id="email"
+                  onChange={handleChange}
+                  required
+                />
+                <label htmlfor="floatingEmail">Email:</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              className="form-control rounded-4"
+              placeholder="******"
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+              required
+            />
+            <label htmlfor="floatingPassword">Password</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Submit</button>
+          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+        </form>
+           <Link to="/login">← Go to Login</Link>
+      </div>
     </div>
-    
+  </div>
+</div>
   );
 }
 

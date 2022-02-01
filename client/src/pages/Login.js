@@ -29,42 +29,44 @@ function Login(props) {
     });
   };
   return (
-    <div className="container my-1 contact-form">
-      <legend>Login</legend>
-      <form id="contact-form" onSubmit={handleFormSubmit}>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
-          <input
-            className="form-control"
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
-            onChange={handleChange}
-          />
+  <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content rounded-5 shadow">
+        <div class="modal-header p-5 pb-4 border-bottom-0">
+          <h2 class="fw-bold mb-0">Sign up for free</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
-          <input
-            className="form-control"
-            placeholder="******"
-            name="password"
-            type="password"
-            id="pwd"
-            onChange={handleChange}
-          />
-        </div>
-        {error ? (
-          <div>
-            <p className="error-text">The provided credentials are incorrect</p>
+        <div class="modal-body p-5 pt-0">
+          <form onSubmit={handleFormSubmit}>
+              <div class="form-floating mb-3">
+                <input
+                  className="form-control rounded-4"
+                  placeholder="youremail@test.com"
+                  name="email"
+                  type="email"
+                  id="email"
+                  onChange={handleChange}
+                />
+                <label htmlfor="floatingEmail">Email:</label>
           </div>
-        ) : null}
-        <div className="flex-row flex-end">
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-      <Link to="/signup">← Go to Signup</Link>
+          <div class="form-floating mb-3">
+            <input
+              className="form-control rounded-4"
+              placeholder="******"
+              name="password"
+              type="password"
+              id="pwd"
+              onChange={handleChange}
+            />
+            <label htmlfor="floatingPassword">Password</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Submit</button>
+         </form>
+        <Link to="/signup">← Go to Signup</Link>
+      </div>
     </div>
+  </div>
+</div>
   );
 }
 
