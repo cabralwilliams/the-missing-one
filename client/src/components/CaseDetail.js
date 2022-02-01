@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+const formatDate = dateStr => {
+    return dateStr.split(' ')[0];
+}
 
 const CaseDetails = ({caseDetail}) => {
 
-    
+    console.log(caseDetail);
     return (
 
         <section className="about" >
@@ -22,7 +25,7 @@ const CaseDetails = ({caseDetail}) => {
                     </div>
 
                     <div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3" >
-                        <ul>
+                        <ul className="text-dark">
 
                             <li><i className="bi bi-rounded-right"> <strong>First Name:</strong></i> {caseDetail.firstname}</li>
                             <li><i className="bi bi-rounded-right"> <strong>Last Name:</strong></i> {caseDetail.lastname}</li>
@@ -47,17 +50,17 @@ const CaseDetails = ({caseDetail}) => {
                     </div>
 
                     <div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3">
-                        <ul>
+                        <ul className="text-dark">
 
                             <li><i className="bi bi-rounded-right"><strong>Address:</strong></i>
                                 {caseDetail.address ? caseDetail.address : ' Not Available'}
                             </li>
                             <li>
-                                <i className="bi bi-rounded-right"><strong> Date of Disappearance:</strong></i>  {caseDetail.disappearance_date ? caseDetail.disappearance_date : 'Not Available'}
+                                <i className="bi bi-rounded-right"><strong> Date of Disappearance:</strong></i>  {caseDetail.disappearance_date ? formatDate(caseDetail.disappearance_date) : 'Not Available'}
                             </li>
                             <li>
                                 <i className="bi bi-rounded-right"><strong> Date of Birth:</strong></i>
-                                {caseDetail.dob ? caseDetail.dob : ' Not Available'}
+                                {caseDetail.dob ? formatDate(caseDetail.dob) : ' Not Available'}
                             </li>
 
 

@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { GET_CASE_ById } from "../utils/queries";
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "../utils/s3Client.js";
 import Auth from "../utils/auth";
 import { useQuery, useMutation } from "@apollo/client";
 import { UPDATE_CURRENT_CASE } from "../utils/actions";
 import { UPDATE_CASE } from "../utils/mutations";
+import { v4 as uuidv4 } from 'uuid';
+import { useHistory } from "react-router-dom";
+import CaseDetail from '../components/CaseDetail';
 
 const S3_BUCKET = "missingone";
 const photo = "https://missingone.s3.amazonaws.com/0.jpg";
@@ -40,6 +43,7 @@ const initialState = {
 	disappearance_date: null,
 	ncic: null,
 	other_info: null,
+    images: []
 };
 
 const CaseDetails = () => {
@@ -50,9 +54,12 @@ const CaseDetails = () => {
     const [biographState, setBiographState] = useState('');
     const [otherState, setOtherState] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFileType, setSelectedFileType] = useState(null);
+    const [preview, setPreview] = useState();
     const [updateCase, { error }] = useMutation(UPDATE_CASE);
     const { caseId } = useParams();
     console.log(caseId);
+    const history = useHistory();
     const state = useSelector(state => {
         return { user: state.user, currentCase: state.currentCase };
     });
@@ -156,8 +163,21 @@ const CaseDetails = () => {
     console.log(state.currentCase);
 
     const handleFileInput = (e) => {
-		setSelectedFile(e.target.files[0]);
+		//setSelectedFile(e.target.files[0]);
+        if (e.target.files && e.target.files.length > 0) {
+            //uploading file to memory 
+           setSelectedFile(e.target.files[0]);
+           //substracting extension name 
+           const fname = e.target.files[0].name.split('.').pop();
+           setSelectedFileType(fname);
+        }
   	};
+
+    //if user remove image during previewing time
+    const removeSelectedImage = () => {
+        setPreview('');
+        setSelectedFileType('')
+     };
 
 	const updateLocation = (e) => {
 		const locVal = e.target.value;
@@ -218,6 +238,18 @@ const CaseDetails = () => {
         }
     }
 
+    const deleteFile = async filename => {
+        const params = {
+            Bucket: S3_BUCKET,
+            Key: filename
+        };
+        try {
+            const data = await s3Client.send(new DeleteObjectCommand(params));   
+        } catch(err) {
+            console.error(err);
+        }
+    }
+
     //Submit Form
     const handleCaseUpdate = async e => {
         e.preventDefault();
@@ -237,10 +269,19 @@ const CaseDetails = () => {
                 changeCount++;
             }
         }
-        //check if the user selected a image to upload.
-        // if (!selectedFile) {
-        //     return alert("Choose a file to upload first.");
-        // }
+        
+        let filename = null;
+        let deleteImage = false;
+        let oldImage = null;
+        if(selectedFile) {
+            filename = uuidv4() + '.' + selectedFileType;
+            if(newOb.images.length === 1) {
+                deleteImage = true;
+                oldImage = newOb.images[0];
+            }
+            newOb.images = [filename];
+            changeCount++;
+        }
         console.log(newOb);
         console.log(changeCount);
         //only create the case
@@ -251,12 +292,15 @@ const CaseDetails = () => {
             const updatedCase = await updateCase({ variables: { ...newOb }});
             if(!updatedCase) {
                 console.log('Something went terribly wrong.');
-            } else {
+            } else if(filename) {
                  //upload function - Image to s3Bucket after creating the case
                 //  const filename=newCase.data.createCase._id;
-                //  console.log (newCase.data.createCase)
-                //  console.log(filename)
-                //  uploadFile(selectedFile,filename)
+                 console.log (updatedCase.data.updateCase)
+                 console.log(filename)
+                 uploadFile(selectedFile,filename)
+                 if(deleteImage) {
+                     deleteFile(oldImage);
+                 }
             };
         } catch(err) {
             console.error(err);
@@ -268,7 +312,10 @@ const CaseDetails = () => {
         for(const el of textAreaEls) {
             el.value = '';
         }
-        window.location.reload();
+        //const currentPage = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
+        //window.location.reload('/');
+        history.push('/');
+        history.push(`/cases/${caseId}`);
     }
     
     if (loading) {
@@ -283,24 +330,25 @@ const CaseDetails = () => {
                 <h2 className="text-secondary text-center">Case Status: {caseDetail.case_status ? "Open" : "Closed"}</h2>
                 {
                     !didCreate ? (
-                        <div className="d-flex flex-row justify-content-around flex-wrap">
-                            {caseDetail.firstname && <Detail detailTitle="First Name" detailValue={caseDetail.firstname} />}
-                            {caseDetail.lastname && <Detail detailTitle="Last Name" detailValue={caseDetail.lastname} />}
-                            {caseDetail.dob && <Detail detailTitle="Date of Birth" detailValue={caseDetail.dob} />}
-                            {caseDetail.age && <Detail detailTitle="Age" detailValue={caseDetail.age} />}
-                            {caseDetail.gender && <Detail detailTitle="Gender" detailValue={caseDetail.gender} />}
-                            {caseDetail.race && <Detail detailTitle="Race" detailValue={caseDetail.race} />}
-                            {caseDetail.address && <Detail detailTitle="Address" detailValue={caseDetail.address} />}
-                            {caseDetail.nationality && <Detail detailTitle="Nationality" detailValue={caseDetail.nationality} />}
-                            {caseDetail.last_known_location && <Detail detailTitle="Last Known Location" detailValue={caseDetail.last_known_location} />}
-                            {caseDetail.mobile && <Detail detailTitle="Mobile Number" detailValue={caseDetail.mobile} />}
-                            {caseDetail.licenseId && <Detail detailTitle="License/ID#" detailValue={caseDetail.licenseId} />}
-                            {caseDetail.issuedState && <Detail detailTitle="Issuing State" detailValue={caseDetail.issuedState} />}
-                            {caseDetail.licensePlate && <Detail detailTitle="License Plate" detailValue={caseDetail.licensePlate} />}
-                            {caseDetail.ncic && <Detail detailTitle="NCIC #" detailValue={caseDetail.ncic} />}
-                            {caseDetail.biograph && <Detail detailTitle="Biography" detailValue={caseDetail.biograph} />}
-                            {caseDetail.other_info && <Detail detailTitle="Other Information" detailValue={caseDetail.other_info} />}
-                        </div>
+                        // <div className="d-flex flex-row justify-content-around flex-wrap">
+                        //     {caseDetail.firstname && <Detail detailTitle="First Name" detailValue={caseDetail.firstname} />}
+                        //     {caseDetail.lastname && <Detail detailTitle="Last Name" detailValue={caseDetail.lastname} />}
+                        //     {caseDetail.dob && <Detail detailTitle="Date of Birth" detailValue={caseDetail.dob} />}
+                        //     {caseDetail.age && <Detail detailTitle="Age" detailValue={caseDetail.age} />}
+                        //     {caseDetail.gender && <Detail detailTitle="Gender" detailValue={caseDetail.gender} />}
+                        //     {caseDetail.race && <Detail detailTitle="Race" detailValue={caseDetail.race} />}
+                        //     {caseDetail.address && <Detail detailTitle="Address" detailValue={caseDetail.address} />}
+                        //     {caseDetail.nationality && <Detail detailTitle="Nationality" detailValue={caseDetail.nationality} />}
+                        //     {caseDetail.last_known_location && <Detail detailTitle="Last Known Location" detailValue={caseDetail.last_known_location} />}
+                        //     {caseDetail.mobile && <Detail detailTitle="Mobile Number" detailValue={caseDetail.mobile} />}
+                        //     {caseDetail.licenseId && <Detail detailTitle="License/ID#" detailValue={caseDetail.licenseId} />}
+                        //     {caseDetail.issuedState && <Detail detailTitle="Issuing State" detailValue={caseDetail.issuedState} />}
+                        //     {caseDetail.licensePlate && <Detail detailTitle="License Plate" detailValue={caseDetail.licensePlate} />}
+                        //     {caseDetail.ncic && <Detail detailTitle="NCIC #" detailValue={caseDetail.ncic} />}
+                        //     {caseDetail.biograph && <Detail detailTitle="Biography" detailValue={caseDetail.biograph} />}
+                        //     {caseDetail.other_info && <Detail detailTitle="Other Information" detailValue={caseDetail.other_info} />}
+                        // </div>
+                        <CaseDetail caseDetail={caseDetail} />
                     ) : (
                         <div className="container">
                             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
@@ -322,9 +370,14 @@ const CaseDetails = () => {
                                             </div>
                                         </div>
                                     </div>
-                                        <div className="card p-2">
-                                            <input className="form-control" type="file" onChange={handleFileInput}/>
-                                        </div>
+                                    <div className="card p-2">
+                                        <input className="form-control btn-primary" type="file" onChange={handleFileInput}/>
+                                    </div>
+                                    <div className="card p-2">   
+                                        <button className=" btn btn-danger btn-lg" onClick={removeSelectedImage} style={styles.delete}>
+                                            Remove This Image
+                                        </button>
+                                    </div>
                                 </div> 
                                 <div className="col-md-7 col-lg-8 text-dark">
                                     <form onSubmit={handleCaseUpdate}>
@@ -425,3 +478,14 @@ const CaseDetails = () => {
 };
 
 export default CaseDetails;
+
+// Just some styles
+const styles = {
+    delete: {
+        cursor: "pointer",
+        padding: 15,
+        color: "white",
+        border: "none",
+     }
+    }
+    
