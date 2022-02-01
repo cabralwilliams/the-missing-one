@@ -64,6 +64,8 @@ const DonationCart = () => {
                                 placeholder="1"
                                 name="amount"
                                 type="number"
+                                min='0' 
+                                step ='0.01' 
                                 id="amount"
                                 onChange={handleChange}
                           />

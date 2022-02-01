@@ -73,7 +73,7 @@ const UploadImageToS3WithNativeSdk = () => {
     }
 
     const uploadFile = async (file,filename) => {
-        // if (!file) { Thi was moved to sunmit button}
+        // if (!file) { This was moved to sunmit button}
             // return alert("Choose a file to upload first.");
         // }
         const params = {
