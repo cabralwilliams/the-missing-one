@@ -2,6 +2,7 @@ import React from "react";
 import Moment from "react-moment";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
+import { FaComments } from "react-icons/fa";
 const CommentsList = (props) => {
 	const { comments, case_id, username } = props;
 	console.log("printing comments ");
@@ -10,22 +11,20 @@ const CommentsList = (props) => {
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
-				<img
-					className="me-3"
-					src="/docs/5.0/assets/brand/bootstrap-logo-white.svg"
-					alt=""
-					width="48"
-					height="38"
-				/>
-				<div className="lh-1">
+				{/* <div className="lh-1">
 					<h1 className="h6 mb-0 text-white lh-1">Bootstrap</h1>
 					<small>Since 2011</small>
-				</div>
+				</div> */}{" "}
+				<h3> </h3>
+				<h5 className="text-center section-heading">
+					<FaComments />
+					&nbsp;&nbsp; &nbsp;Recent Updates
+				</h5>
 			</div>
 
 			<div className="my-3 p-3 bg-body rounded shadow-sm">
 				<CommentForm case_id={case_id} username={username} />
-				<h6 className="border-bottom pb-2 mb-0">Recent updates</h6>
+				<h6 className="border-bottom pb-2 mb-0">Recent Comments</h6>
 				{comments &&
 					comments.map((comment) => (
 						<div

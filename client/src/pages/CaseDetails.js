@@ -4,7 +4,7 @@ import { GET_CASE_ById, QUERY_ME } from "../utils/queries";
 import { useParams } from "react-router-dom";
 import CommentsList from "../components/CommentsList";
 import { useSelector, useDispatch } from "react-redux";
-
+import CaseDetail from "../components/CaseDetail";
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
 
@@ -32,22 +32,20 @@ const CaseDetails = () => {
 	console.log(username);
 
 	return (
-		<section className="about" >
-			  <CaseDetail caseDetail={caseDetail}/>
-				<CommentsList
-			comments={caseDetail.comments}
-			case_id={caseDetail._id}
-			username={username}
-		/>
-			  </section>
+		<section className="about">
+			<CaseDetail caseDetail={caseDetail} />
+			<CommentsList
+				comments={caseDetail.comments}
+				case_id={caseDetail._id}
+				username={username}
+			/>
+		</section>
 		// <CommentsList
 		// 	comments={caseDetail.comments}
 		// 	case_id={caseDetail._id}
 		// 	username={username}
 		// />
 	);
-
-
 };
 
 export default CaseDetails;

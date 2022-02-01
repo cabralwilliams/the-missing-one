@@ -115,11 +115,6 @@ function App() {
 
 										<Route
 											exact
-											path="/OrderHistory"
-											component={OrderHistory}
-										/>
-										<Route
-											exact
 											path="/comment/:caseId/:id"
 											component={SingleComment}
 										/>

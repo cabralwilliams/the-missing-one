@@ -117,6 +117,10 @@ const caseSchema = new Schema(
 			},
 		],
 		replies: [replySchema],
+		createdAt: {
+			type: Date,
+			default: Date.now,
+		},
 	},
 	{
 		toJSON: {
@@ -135,9 +139,9 @@ caseSchema.virtual("helpers_count").get(function () {
 	return this.helpers.length;
 });
 
-caseSchema.virtual('commentCount').get(function() {
-    return this.comments.length;
-  });
+caseSchema.virtual("commentCount").get(function () {
+	return this.comments.length;
+});
 
 const Case = model("Case", caseSchema);
 

@@ -107,7 +107,7 @@ const resolvers = {
 				};
 			}
 			console.log(params);
-			return await Case.find(params);
+			return await Case.find(params).sort({ createdAt: -1 });;
 			//	return await Case.find({ ...args });
 		},
 
