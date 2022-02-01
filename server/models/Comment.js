@@ -1,6 +1,7 @@
 const { Schema , model} = require("mongoose");
 const replySchema = require('./Reply');
-const Case = require ('./Case')
+const Case = require ('./Case');
+const { virtual } = require("./Donation");
 const CommentSchema = new Schema({
     comment_text: {
         type: String,
@@ -25,7 +26,8 @@ const CommentSchema = new Schema({
 },
 {
     toJSON: {
-      getters: true
+      getters: true,
+      virtual:true
     }
   }
 
