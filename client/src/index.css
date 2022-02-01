@@ -141,85 +141,32 @@ code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
 }
-.contact-form {
-	width: 50%;
-	background-color: #efefef;
-	border: 1px solid #dcdcdc;
-	border-radius: 10px;
-	margin: 5px;
-}
 .form-control {
-	width: 90%;
-}
-.contact-form legend {
 	width: 100%;
-	margin: auto;
-	background-color: var(--secondary-color);
-	text-decoration: underline;
-	color: var(--primary-color);
-	font-weight: bold;
-	border: 1px solid #dcdcdc;
-	border-radius: 10px;
-	padding: 10px 20px;
-	text-align: center;
-	font-size: 150%;
-}
-.contact-form label {
-	margin: 1% 5% 1% 5%;
-	line-height: 120%;
-	font-size: 150%;
 }
 
-.contact-form input {
-	border-bottom: 1px dotted #dcdcdc;
-	font-size: 150%;
-	border-top: none;
-	border-right: none;
-	border-left: none;
-	width: 90%;
-	margin: 1% 5% 1% 5%;
-}
-
-.contact-form input:focus {
-	border: 1px dotted #dcdcdc;
-	outline: none;
-}
-
-.contact-form button {
-	color: #444444;
-	font-size: 180%;
-	text-shadow: 0px 1px 1px #ffffff;
-	width: 90%; /* Full width */
-	border-bottom: 2px solid #b2b2b2;
-	background-color: #b9e4e3;
-	background: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		from(#beeae9),
-		to(#a8cfce)
-	);
-	background: -moz-linear-gradient(top, #beeae9, #a8cfce);
-	background: -o-linear-gradient(top, #beeae9, #a8cfce);
-	background: -ms-linear-gradient(top, #beeae9, #a8cfce);
-	margin: 1% 5% 5% 5%;
-}
-.contact-form button:hover {
-	color: #333333;
-	border: 1px solid #a4a4a4;
-	border-top: 2px solid #b2b2b2;
-	background-color: #a0dbc4;
-	background: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		from(#a8cfce),
-		to(#beeae9)
-	);
-	background: -moz-linear-gradient(top, #a8cfce, #beeae9);
-	background: -o-linear-gradient(top, #a8cfce, #beeae9);
-	background: -ms-linear-gradient(top, #a8cfce, #beeae9);
-}
 .container {
 	max-width: 960px;
 }
+
+.about .content h3 {
+	font-weight: 700;
+	font-size: 26px;
+	color: #555555;
+  }
+  .about .content ul {
+	list-style: none;
+	padding: 0;
+  }
+  .about .content ul li {
+	padding-bottom: 8px;
+  }
+  .about .content ul i {
+	font-size: 16px;
+	padding-right: 2px;
+	color: #475cd4;
+  }
+  .about .content p:last-child {
+	margin-bottom: 0;
+  }
+

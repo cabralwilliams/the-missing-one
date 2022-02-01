@@ -135,6 +135,10 @@ caseSchema.virtual("helpers_count").get(function () {
 	return this.helpers.length;
 });
 
+caseSchema.virtual('commentCount').get(function() {
+    return this.comments.length;
+  });
+
 const Case = model("Case", caseSchema);
 
 module.exports = Case;

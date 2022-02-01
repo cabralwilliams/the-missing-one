@@ -51,20 +51,24 @@ const resolvers = {
 
 		getCases: async () => {
 			return Case.find()
+			//.sort({ createdAt: -1 })
 				.populate({
 					path: "comments",
 					select: "-__v",
 				})
+				
 				.populate({ path: "helpers", select: "-__v" })
 				.populate("replies");
 		},
 
 		getCaseById: async (parent, { _id }) => {
 			return Case.findOne({ _id })
+			// .sort({ createdAt: -1 })
 			.populate({
 				path: "comments",
 				select: "-__v",
 			})
+			
 			.populate("replies");
 		},
 
