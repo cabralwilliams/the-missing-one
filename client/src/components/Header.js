@@ -77,16 +77,7 @@ const Header2 = () => {
 									Donations
 								</Link>
 							</li>
-							<li className="nav-item">
-								<Link to="/OrderHistory" className="nav-link text-white">
-									<svg
-										className="bi d-block mx-auto mb-1"
-										width="24"
-										height="24"
-									></svg>
-									Donations History
-								</Link>
-							</li>
+					
 							<li className="nav-item">
 								<Link
 									className="nav-link text-light"

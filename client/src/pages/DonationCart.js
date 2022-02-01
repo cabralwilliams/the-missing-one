@@ -64,13 +64,15 @@ const DonationCart = () => {
                                 placeholder="1"
                                 name="amount"
                                 type="number"
+                                min='0' 
+                                step ='0.01' 
                                 id="amount"
                                 onChange={handleChange}
                           />
                  </div>
                  
                 <hr className="my-4"></hr>
-                <div class="col-md-12 text-center">
+                <div className="col-md-12 text-center">
                    {Auth.loggedIn() ? (
                       <button className= "btn btn-primary text-center" onClick={handleFormSubmit}>Checkout</button>
                    ) : (

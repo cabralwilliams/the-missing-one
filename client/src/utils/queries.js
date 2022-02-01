@@ -96,6 +96,10 @@ export const QUERY_ME = gql`
 			email
 			contact_number
 			registered_helper
+			donations {
+				amount
+				createdAt
+			}
 			created_cases {
 				_id
 				firstname

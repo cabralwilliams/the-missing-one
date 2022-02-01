@@ -49,7 +49,15 @@ const userSchema = new Schema({
 		type: Boolean,
     },
     donations:[donationSchema]
-});
+},
+{
+	toJSON: {
+		virtuals: true,
+	},
+}
+
+
+);
 
 //set up pre-save middleware to create password
 userSchema.pre("save", async function (next) {

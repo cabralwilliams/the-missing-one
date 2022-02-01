@@ -22,7 +22,6 @@ import Login from "./pages/Login";
 import SingleComment from "./pages/SingleComment";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-import Edit from "./pages/Edit";
 import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
 
@@ -32,7 +31,6 @@ import { BiArrowToLeft } from "react-icons/bi";
 import CaseDetails from "./pages/CaseDetails";
 
 import Success from "./pages/Success";
-import OrderHistory from "./pages/OrderHistory";
 
 const httpLink = createHttpLink({
 	uri: "/graphql",
@@ -106,7 +104,7 @@ function App() {
 											path="/DonationCart"
 											component={DonationCart}
 										/>
-										<Route exact path="/edit" component={Edit} />
+
 										<Route exact path="/success" component={Success} />
 
 										<Route
@@ -125,6 +123,7 @@ function App() {
 											path="/comment/:caseId/:id"
 											component={SingleComment}
 										/>
+
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

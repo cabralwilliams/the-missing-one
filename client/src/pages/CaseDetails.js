@@ -32,13 +32,22 @@ const CaseDetails = () => {
 	console.log(username);
 
 	return (
-		//Rest of case details
-		<CommentsList
+		<section className="about" >
+			  <CaseDetail caseDetail={caseDetail}/>
+				<CommentsList
 			comments={caseDetail.comments}
 			case_id={caseDetail._id}
 			username={username}
 		/>
+			  </section>
+		// <CommentsList
+		// 	comments={caseDetail.comments}
+		// 	case_id={caseDetail._id}
+		// 	username={username}
+		// />
 	);
+
+
 };
 
 export default CaseDetails;

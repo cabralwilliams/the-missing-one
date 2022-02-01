@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 const replySchema = require("./Reply");
 const Case = require("./Case");
+const { virtual } = require("./Donation");
 const dateFormat = require("../utils/dateFormat");
 
 const CommentSchema = new Schema(
