@@ -1,8 +1,13 @@
 import { StatsEvent } from "@aws-sdk/client-s3";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { GoSearch } from "react-icons/go";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useQuery } from "@apollo/client";
+import { QUERY_ME } from "../utils/queries";
+import { LOGIN_USER } from "../utils/actions";
+
+
 const SideBar = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
@@ -40,6 +45,18 @@ const SideBar = () => {
 		console.log(state.caseFilter);
 		history.push("/");
 	}
+
+	//Store user under Global state.
+	const { data, loading } = useQuery(QUERY_ME);
+	const user = data?.me || {};
+	useEffect(() => {
+		if (user._id) {
+			dispatch({
+				type: LOGIN_USER,
+				user,
+			});
+		}
+	}, [user, dispatch]);
 
 	console.log("Sidebar component");
 	return (

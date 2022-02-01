@@ -11,6 +11,7 @@ import { UPDATE_CASE } from "../utils/mutations";
 import { v4 as uuidv4 } from 'uuid';
 import { useHistory } from "react-router-dom";
 import CaseDetail from '../components/CaseDetail';
+import CommentsList from "../components/CommentsList";
 
 const S3_BUCKET = "missingone";
 const photo = "https://missingone.s3.amazonaws.com/0.jpg";
@@ -43,7 +44,8 @@ const initialState = {
 	disappearance_date: null,
 	ncic: null,
 	other_info: null,
-    images: []
+    images: [],
+    case_status: true
 };
 
 const CaseDetails = () => {
@@ -162,6 +164,20 @@ const CaseDetails = () => {
     console.log(didCreate);
     console.log(state.currentCase);
 
+    // create a preview as a side effect, whenever user preview image (selected file is changed)
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile]);
+
     const handleFileInput = (e) => {
 		//setSelectedFile(e.target.files[0]);
         if (e.target.files && e.target.files.length > 0) {
@@ -250,6 +266,11 @@ const CaseDetails = () => {
         }
     }
 
+    const toggleCaseStatus = event => {
+        event.preventDefault();
+        setFormState({ ...formState, case_status: !formState.case_status });
+    }
+
     //Submit Form
     const handleCaseUpdate = async e => {
         e.preventDefault();
@@ -314,9 +335,19 @@ const CaseDetails = () => {
         }
         //const currentPage = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
         //window.location.reload('/');
+        dispatch({
+            type: UPDATE_CURRENT_CASE,
+            currentCase: {}
+        });
         history.push('/');
         history.push(`/cases/${caseId}`);
     }
+
+    //Get User details from Global store
+	let username = "Anonymous";
+	if (Object.keys(state.user).length > 0)
+		username = `${state.user.first_name} ${state.user.last_name}`;
+	console.log(username);
     
     if (loading) {
         return <div>Loading...</div>;
@@ -325,9 +356,9 @@ const CaseDetails = () => {
         <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
             <div className="lh-1">
                 <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
-                <p className="text-center"> Viewing {caseDetail.firstname} {caseDetail.lastname}'s case.</p>
+                {/* <p className="text-center"> Viewing {caseDetail.firstname} {caseDetail.lastname}'s case.</p> */}
                 </h1>
-                <h2 className="text-secondary text-center">Case Status: {caseDetail.case_status ? "Open" : "Closed"}</h2>
+                <h2 className="text-secondary text-center">Case Status: {formState.case_status ? "Open" : "Closed"}</h2>
                 {
                     !didCreate ? (
                         // <div className="d-flex flex-row justify-content-around flex-wrap">
@@ -355,6 +386,7 @@ const CaseDetails = () => {
                                 <div className="lh-1">
                                     <h1 className=" h3 mb-0 text-center lh-1 event-mgr-header text-primary">
                                         <p className="text-center">Update Case</p>
+                                        <button className={`btn ` && formState.case_status ? `btn-danger` : `btn-primary`} onClick={toggleCaseStatus}>{formState.case_status ? 'Close Case' : 'Reopen Case'}</button>
                                     </h1>
                                 </div>
                             </div> 
@@ -366,7 +398,7 @@ const CaseDetails = () => {
                                     <div className="card">
                                         <div className="card-body">
                                             <div className="avtar">
-                                                <img src={photo} className="card-img-top" alt="firstimage"></img>{" "}
+                                                <img src={preview} className="card-img-top" alt="firstimage"></img>{" "}
                                             </div>
                                         </div>
                                     </div>
@@ -471,7 +503,11 @@ const CaseDetails = () => {
                 <div className="text-dark">
                     {/* Case Details: {`${JSON.stringify(caseDetail)}`} */}
                 </div>
-                
+                <CommentsList
+				comments={caseDetail.comments}
+				case_id={caseDetail._id}
+				username={username}
+			/>
             </div>
         </div>
     );

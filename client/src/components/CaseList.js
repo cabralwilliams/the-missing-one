@@ -7,7 +7,6 @@ import { useQuery } from "@apollo/client";
 const CaseList = () => {
 	const state = useSelector((state) => state);
 	const caseFilter = state.caseFilter;
-	//	const { data, loading } = useQuery(GET_CASES);
 	console.log("state now ");
 	console.log(state);
 	let firstname1 = "",
@@ -31,14 +30,8 @@ const CaseList = () => {
 
 	console.log("in caselist");
 
+	//Store cases under Global store
 	useEffect(() => {
-		// //	if (Object.keys(caseFilter).length > 0) {
-		// 		console.log("casefilter exists");
-		// 		dispatch({
-		// 			type: "UPDATE_CASES",
-		// 			cases: data.searchCases,
-		// 		});
-		// //	} else
 		if (data) {
 			console.log("executing dispatch to update state");
 			dispatch({
@@ -51,12 +44,6 @@ const CaseList = () => {
 	const filterCases = useSelector((state) => state.cases);
 	console.log("filtering cases");
 	console.log(filterCases);
-	// const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
-	// const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
-	// const photoUrl2 = "https://missingone.s3.amazonaws.com/2.jpg";
-	// const photoUrl3 = "https://missingone.s3.amazonaws.com/3.jpg";
-	// const photoUrl4 = "https://missingone.s3.amazonaws.com/4.jpg";
-	// const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
 	if (loading) {
 		return <h2>Cases are loading...</h2>;
@@ -81,32 +68,6 @@ const CaseList = () => {
 									last_known_location={missing.last_known_location}
 									img_src=""
 								></SimpleCase>
-								{/* <div className="card">
-									<div className="card-body">
-										<div className="avtar">
-											<img
-												src={photoUrl}
-												className="card-img-top"
-												alt="firstimage"
-											></img>{" "}
-										</div>
-										<h6 className="card-title ">
-											<strong>{`${missing.firstname} ${missing.lastname}`}</strong>
-										</h6>
-										<p className="card-text">
-											{missing.last_known_location} <br />
-											<span className="phone">
-												Missing Since:
-												<strong>
-													<Moment
-														format="MMM YY"
-														date={missing.disappearance_date}
-													></Moment>
-												</strong>
-											</span>
-										</p>
-									</div>
-								</div> */}
 							</div>
 						))}
 				</div>
