@@ -103,6 +103,7 @@ const Profile = () => {
                               </h2>
                             </div>
                             <hr className="my-4"></hr>
+                            {/* Here, it is when we invoke the modal for edit profile */}
                             <div className="col-md-12 text-center">
                                 <button type="button" className="btn btn-primary btn-lg  text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Edit Profile
@@ -112,6 +113,7 @@ const Profile = () => {
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="text-primary text-center">Donation History</span>
                             </h4>
+                               {/* display the donations */}
                                {user ? (
                                 <>
                                     <h4> On Date:</h4>
@@ -154,6 +156,8 @@ const Profile = () => {
                 </div>
             
     </div>
+
+    {/* This is the modal to edit profile  */}
     <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div className="modal-dialog modal-dialog-centered">
       <div className="modal-content rounded-5 shadow">
@@ -165,7 +169,7 @@ const Profile = () => {
                 <div className="form-floating mb-3">
                   <input 
                   className="form-control rounded-4"
-                  placeholder={formState.first_name}
+                  value={formState.first_name}
                   name="first_name"
                   type="first_name"
                   id="first_name"
@@ -177,7 +181,7 @@ const Profile = () => {
                 <div className="form-floating mb-3">
                     <input
                     className="form-control rounded-4"
-                    placeholder={formState.last_name}
+                    value={formState.last_name}
                     name="last_name"
                     type="last_name"
                     id="last_Name"
@@ -189,7 +193,7 @@ const Profile = () => {
                 <div className="form-floating mb-3">
                       <input
                         className="form-control rounded-4"
-                        placeholder={formState.contact_number}
+                        value={formState.contact_number}
                         name="contact_number"
                         type="contact_number"
                         id="contact_number"
@@ -200,7 +204,7 @@ const Profile = () => {
                 <div className="form-floating mb-3">
                       <input
                         className="form-control rounded-4"
-                        placeholder={formState.email}
+                        value={formState.email}
                         name="email"
                         type="email"
                         id="email"
