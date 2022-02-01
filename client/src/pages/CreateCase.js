@@ -7,7 +7,7 @@ import { CREATE_CASE } from "../utils/mutations.js";
 import { useQuery, useMutation } from "@apollo/client";
 
 const S3_BUCKET = "missingone";
-const photo = "https://missingone.s3.amazonaws.com/0";
+const photo = "https://missingone.s3.amazonaws.com/0.jpg";
 
 const initialState = {
 	firstname: null,
