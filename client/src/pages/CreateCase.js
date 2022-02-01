@@ -64,6 +64,9 @@ const UploadImageToS3WithNativeSdk = () => {
       }
   	};
 
+    const removeSelectedImage = () => {
+        setPreview('');
+     };
 	const updateLocation = (e) => {
 		const locVal = e.target.value;
 		//console.log(locVal);
@@ -199,6 +202,11 @@ const UploadImageToS3WithNativeSdk = () => {
                              <div className="card p-2">
                                 <input className="form-control btn-primary" type="file" onChange={handleFileInput}/>
                              </div>
+                             <div className="card p-2">   
+                                <button className=" btn btn-danger btn-lg" onClick={removeSelectedImage} style={styles.delete}>
+                                     Remove This Image
+                                </button>
+                             </div>
                     </div> 
                     <div className="col-md-7 col-lg-8">
                         <form onSubmit={handleFormSubmit}>
@@ -291,3 +299,13 @@ const UploadImageToS3WithNativeSdk = () => {
 }
 
 export default UploadImageToS3WithNativeSdk;
+
+// Just some styles
+const styles = {
+delete: {
+    cursor: "pointer",
+    padding: 15,
+    color: "white",
+    border: "none",
+ }
+}
