@@ -145,6 +145,12 @@ col-md-3 {
 	background-color: var(--maximum-blue-purple);
 	width: 100%;
 }
+
+.section-heading {
+	color: var(--cerulean-blue);
+	font-weight: 700;
+}
+
 /*-----------------------------*/
 /* nav ul li a {
   padding: 10px 15px;

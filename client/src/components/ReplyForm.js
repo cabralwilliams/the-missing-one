@@ -6,7 +6,6 @@ import Auth from "../utils/auth";
 
 const ReplyForm = (props) => {
 	const [replyBody, setReplyBody] = useState("");
-
 	const [errorMessage, setErrorMessage] = useState("");
 	const [characterCount, setCharacterCount] = useState(0);
 	const { commentId } = props;
@@ -76,6 +75,23 @@ const ReplyForm = (props) => {
 
 	return (
 		<form onSubmit={handleFormSubmit}>
+			<div className="d-flex align-items-center p-3 text-white bg-purple rounded shadow-sm">
+				<div>
+					<label className="form-label text-dark" htmlFor="inputname">
+						Your Name
+					</label>{" "}
+					<input
+						type="text"
+						className="form-control width-80"
+						id="inputname"
+						name="inputname"
+						placeholder=" Name"
+						defaultValue={username}
+						onChange={handleChange}
+					/>
+				</div>
+			</div>
+
 			{characterCount === 280 || error || errorMessage ? (
 				<div className="d-flex align-items-center  text-white bg-purple rounded shadow-sm ">
 					<h6
@@ -114,22 +130,6 @@ const ReplyForm = (props) => {
 					</h6>
 				</div>
 			)}
-			<div className="d-flex align-items-center p-3 text-white bg-purple rounded shadow-sm">
-				<div>
-					<label className="form-label text-dark" htmlFor="inputname">
-						Your Name
-					</label>{" "}
-					<input
-						type="text"
-						className="form-control width-80"
-						id="inputname"
-						name="inputname"
-						placeholder=" Name"
-						defaultValue={username}
-						onChange={handleChange}
-					/>
-				</div>
-			</div>
 
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
 				<div className="col-sm-1"></div>

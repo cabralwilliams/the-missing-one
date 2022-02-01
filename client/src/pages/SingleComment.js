@@ -3,9 +3,6 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import ReplyForm from "../components/ReplyForm";
 import Moment from "react-moment";
-// import ReactionForm from "../components/ReactionForm";
-
-import Auth from "../utils/auth";
 import { useQuery } from "@apollo/client";
 import { QUERY_COMMENT_BYId } from "../utils/queries";
 
@@ -26,6 +23,12 @@ const SingleComment = () => {
 	console.log(comment);
 	return (
 		<main className="container">
+			<div className="d-flex align-items-center p-3 m-auto bg-purple rounded shadow-sm section-heading">
+				<p class="lead">
+        <span className ="text-muted">  Case#: </span><strong>{caseId}</strong>
+				</p>
+			</div>
+
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
 				<svg
 					className="bd-placeholder-img flex-shrink-0 me-2 rounded"
