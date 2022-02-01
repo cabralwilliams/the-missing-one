@@ -41,6 +41,8 @@ export const GET_CASES = gql`
 			case_status
 			comments {
 				comment_text
+				created_by
+				_id
 			}
 			images
 			helpers {
@@ -51,14 +53,9 @@ export const GET_CASES = gql`
 	}
 `;
 
-
 export const GET_CASE_ById = gql`
-
-
-	query
-	getCaseById($id:ID!)
-	{
-		getCaseById(_id:$id){
+	query getCaseById($id: ID!) {
+		getCaseById(_id: $id) {
 			_id
 			firstname
 			lastname
@@ -81,23 +78,14 @@ export const GET_CASE_ById = gql`
 			case_status
 			images
 			comments {
-         		 _id
-          		created_at
-          		comment_text
-          		created_by
-          		replies{
-           			 _id
-            		reply_body
-            		name
-          		}		
-       	 	}
-			
-		} 
+				_id
+				created_at
+				comment_text
+				created_by
+			}
+		}
 	}
-
-
 `;
-
 
 export const QUERY_ME = gql`
 	{
@@ -175,6 +163,23 @@ export const QUERY_CHECKOUT = gql`
 	query getCheckout($amount: Float!) {
 		checkout(amount: $amount) {
 			session
+		}
+	}
+`;
+
+export const QUERY_COMMENT_BYId = gql`
+	query getCommentById($id: ID!) {
+		getCommentById(_id: $id) {
+			_id
+			comment_text
+			created_at
+			created_by
+			replies {
+				_id
+				reply_body
+				createdAt
+				name
+			}
 		}
 	}
 `;

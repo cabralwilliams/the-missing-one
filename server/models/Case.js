@@ -27,7 +27,7 @@ const caseSchema = new Schema(
 		},
 		dob: {
 			type: Date,
-			default: Date.now,
+			//default: Date.now,
 			get: (timestamp) => dateFormat(timestamp),
 		},
 		age: {
@@ -55,7 +55,7 @@ const caseSchema = new Schema(
 		nationality: {
 			type: String,
 			maxLength: 3,
-			default: "USA",
+			//	default: "Unknown",
 		},
 		mobile: {
 			type: String,
@@ -110,13 +110,17 @@ const caseSchema = new Schema(
 				ref: "User",
 			},
 		],
-	    comments: [
+		comments: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: "Comment",
 			},
 		],
 		replies: [replySchema],
+		createdAt: {
+			type: Date,
+			default: Date.now,
+		},
 	},
 	{
 		toJSON: {
@@ -135,9 +139,9 @@ caseSchema.virtual("helpers_count").get(function () {
 	return this.helpers.length;
 });
 
-caseSchema.virtual('commentCount').get(function() {
-    return this.comments.length;
-  });
+caseSchema.virtual("commentCount").get(function () {
+	return this.comments.length;
+});
 
 const Case = model("Case", caseSchema);
 

@@ -1,4 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
+const { __TypeKind } = require("graphql");
 const { User, Case, Comment } = require("../models");
 const { signToken } = require("../utils/auth");
 
@@ -50,30 +51,44 @@ const resolvers = {
 		// },
 
 		getCases: async () => {
-			return Case.find()
-			//.sort({ createdAt: -1 })
-				.populate({
-					path: "comments",
-					select: "-__v",
-				})
-				
-				.populate({ path: "helpers", select: "-__v" })
-				.populate("replies");
+			return (
+				Case.find()
+					//.sort({ createdAt: -1 })
+					.populate({
+						path: "comments",
+						select: "-__v",
+					})
+
+					.populate({ path: "helpers", select: "-__v" })
+					.populate("replies")
+			);
 		},
 
 		getCaseById: async (parent, { _id }) => {
-			return Case.findOne({ _id })
-			// .sort({ createdAt: -1 })
-			.populate({
-				path: "comments",
-				select: "-__v",
-			})
-			
-			.populate("replies");
+			console.log("resolver - getCaseById " + _id);
+			const casetemp = await Case.findOne({ _id }).populate("comments");
+			console.log(casetemp.comments);
+			return casetemp;
 		},
 
+		// getCases: async () => {
+		// 	return Case.find()
+		// 		.populate({
+		// 			path: "comments",
+		// 			select: "-__v",
+		// 		})
+		// 		.populate({ path: "helpers", select: "-__v" });
+		// },
+
+		// getCaseById: async (parent, { _id }) => {
+		// 	console.log("resolver - getCaseById ");
+		// 	const casetemp = await Case.findOne({ _id })
+		// 		.select("-__v ")
+		// 		.populate("comments");
+		// 	console.log(casetemp);
+		// 	return casetemp;
+		// },
 		searchCases: async (parent, { firstname, lastname, ncic }) => {
-		
 			const params = {};
 			if (firstname) {
 				params.firstname = {
@@ -92,7 +107,7 @@ const resolvers = {
 				};
 			}
 			console.log(params);
-			return await Case.find(params);
+			return await Case.find(params).sort({ createdAt: -1 });;
 			//	return await Case.find({ ...args });
 		},
 
@@ -130,6 +145,10 @@ const resolvers = {
 				console.log(session.id);
 				return { session: session.id };
 			}
+		},
+
+		getCommentById: async (parent, { _id }) => {
+			return Comment.findOne({ _id });
 		},
 	},
 
@@ -179,6 +198,8 @@ const resolvers = {
 		},
 
 		addComment: async (parent, args) => {
+			console.log("resolver - addComment");
+			console.log({ ...args });
 			const comment = await Comment.create({ ...args });
 			await Case.findByIdAndUpdate(
 				{ _id: args.case_id },
@@ -195,9 +216,11 @@ const resolvers = {
 		},
 
 		addReply: async (parent, args) => {
+			console.log(args);
 			const updatedComment = await Comment.findOneAndUpdate(
 				{ _id: args.commentId },
-				{ $push: { replies: { ...args } } }
+				{ $push: { replies: { ...args } } },
+				{ new: true, runValidators: true }
 			);
 			return updatedComment;
 		},
