@@ -12,35 +12,6 @@ const CommentForm = (props) => {
 	const [characterCount, setCharacterCount] = useState(0);
 	const { case_id, username } = props;
 	const [addComment, { error }] = useMutation(ADD_COMMENT);
-	
-
-	// const [addComment, { error }] = useMutation(ADD_COMMENT, {
-	// 	update(cache, { data: { addComment } }) {
-	// 		try {
-	// 			// update thought array's cache
-	// 			// could potentially not exist yet, so wrap in a try/catch
-	// 			const { comments } = cache.readQuery({
-	// 				query: GET_CASE_ById,
-	// 				variables: { id: case_id },
-	// 			});
-	// 			cache.writeQuery({
-	// 				query: GET_CASE_ById,
-	// 				data: { comments: [addComment, ...comments] },
-	// 			});
-	// 		} catch (e) {
-	// 			console.error(e);
-	// 		}
-
-	// 		// // update me object's cache
-	// 		// const { me } = cache.readQuery({ query: QUERY_ME });
-	// 		// cache.writeQuery({
-	// 		// 	query: QUERY_ME,
-	// 		// 	data: { me: { ...me, thoughts: [...me.thoughts, addThought] } },
-	// 		// });
-	// 	},
-	// });
-
-	//	const userData = data?.me || {};
 
 	// update state based on form input changes
 	const handleChange = (event) => {

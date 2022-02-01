@@ -89,10 +89,11 @@ const typeDefs = gql`
 		getuser(_id: ID!): User
 		getCases: [Case]
 		getCaseById(_id: ID!): Case
+
 		user: User
 		searchCases(firstname: String, lastname: String, ncic: String): [Case]
 		checkout(amount: Float!): Checkout
-	
+		getCommentById(_id: ID!): Comment
 	}
 
 	type Mutation {

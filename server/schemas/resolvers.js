@@ -142,6 +142,9 @@ const resolvers = {
 				return { session: session.id };
 			}
 		},
+
+		
+	
 	},
 
 	Mutation: {
