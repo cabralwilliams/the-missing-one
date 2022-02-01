@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "../utils/s3Client.js";
 import Auth from "../utils/auth";
@@ -32,6 +32,7 @@ const initialState = {
 // Add a photo to s3 bucket
 const UploadImageToS3WithNativeSdk = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [preview, setPreview] = useState()
     const [formState, setFormState] = useState(initialState);
     const [locationState, setLocationState] = useState('');
     const [addressState, setAddressState] = useState('');
@@ -41,9 +42,26 @@ const UploadImageToS3WithNativeSdk = () => {
     const [createCase, { error }] = useMutation(CREATE_CASE);
     
     const userData = data?.me || {};
+    // create a preview as a side effect, whenever selected file is changed
+    useEffect(() => {
+        if (!selectedFile) {
+            setPreview(undefined)
+            return
+        }
 
+        const objectUrl = URL.createObjectURL(selectedFile)
+        setPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [selectedFile])
+
+
+    //Handle when user select a image file to upload
 	const handleFileInput = (e) => {
+      if (e.target.files && e.target.files.length > 0) {
 		setSelectedFile(e.target.files[0]);
+      }
   	};
 
 	const updateLocation = (e) => {
@@ -174,12 +192,12 @@ const UploadImageToS3WithNativeSdk = () => {
                             <div className="card">
                                   <div className="card-body">
 				                        <div className="avtar">
-                                           <img src={photo} className="card-img-top" alt="firstimage"></img>{" "}
+                                           <img src={preview} className="card-img-top" alt="firstimage"></img>{" "}
                                         </div>
 	                    			</div>
                             </div>
                              <div className="card p-2">
-                                <input className="form-control" type="file" onChange={handleFileInput}/>
+                                <input className="form-control btn-primary" type="file" onChange={handleFileInput}/>
                              </div>
                     </div> 
                     <div className="col-md-7 col-lg-8">
