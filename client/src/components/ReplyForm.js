@@ -3,10 +3,10 @@ import { useMutation, useQuery } from "@apollo/client";
 import { ADD_REPLY } from "../utils/mutations";
 import { useDispatch, useSelector } from "react-redux";
 import Auth from "../utils/auth";
-//import { QUERY_THOUGHTS, QUERY_ME } from "../../utils/queries";
 
 const ReplyForm = (props) => {
 	const [replyBody, setReplyBody] = useState("");
+
 	const [errorMessage, setErrorMessage] = useState("");
 	const [characterCount, setCharacterCount] = useState(0);
 	const { commentId } = props;
@@ -15,15 +15,6 @@ const ReplyForm = (props) => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
 
-	// update state based on form input changes
-	const handleChange = (event) => {
-		setErrorMessage("");
-		if (event.target.value.length <= 280) {
-			setReplyBody(event.target.value);
-			setCharacterCount(event.target.value.length);
-		}
-	};
-
 	//Get User details from Global store
 	console.log(state);
 	let username = "Anonymous";
@@ -31,8 +22,11 @@ const ReplyForm = (props) => {
 		username = `${state.user.first_name} ${state.user.last_name}`;
 	console.log(username);
 
+	const [inputName, setInputName] = useState(username);
 	//validate form
 	const validateForm = () => {
+		if (inputName) username = inputName;
+		else username = "Anonymous User";
 		if (!replyBody) {
 			setErrorMessage("Please enter your reply");
 			console.log(errorMessage);
@@ -66,26 +60,22 @@ const ReplyForm = (props) => {
 			console.error(e);
 		}
 	};
-	
+
+	// update state based on form input changes
+	const handleChange = (event) => {
+		setErrorMessage("");
+		if (event.target.name === "inputname") {
+			setInputName(event.target.value);
+		} else {
+			if (event.target.value.length <= 280) {
+				setReplyBody(event.target.value);
+				setCharacterCount(event.target.value.length);
+			}
+		}
+	};
+
 	return (
 		<form onSubmit={handleFormSubmit}>
-			{/* <div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm"> */}
-			{/* <h5 className="d-flex align-items-center p-3  text-white bg-purple rounded shadow-sm">
-				<span
-					className={`mx-5 my-0 px-3 ${
-						characterCount === 280 || error || errorMessage
-							? "alert alert-primary"
-							: ""
-					}`}
-				>
-					Character Count: {characterCount}/280
-					{error && <span className="ml-2">Something went wrong...</span>}
-					{errorMessage && (
-						<span className="ml-2">Something went wrong...</span>
-					)}
-				</span>
-			</h5> */}
-			{/* </div> */}
 			{characterCount === 280 || error || errorMessage ? (
 				<div className="d-flex align-items-center  text-white bg-purple rounded shadow-sm ">
 					<h6
@@ -160,7 +150,6 @@ const ReplyForm = (props) => {
 					</button>
 				</div>
 			</div>
-			{/* </div>{" "} */}
 		</form>
 	);
 };
