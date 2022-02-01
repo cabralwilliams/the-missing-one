@@ -33,17 +33,16 @@ function Signup(props) {
   };
 
   return (
-    <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-5 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <h2 class="fw-bold mb-0">Sign up for free</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div className="modal modal-signin position-static d-block bg-secondary py-5" tabIndex="-1" role="dialog" id="modalSignin">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content rounded-5 shadow">
+      <div className="modal-header p-5 pb-4 border-bottom-0">
+        <h2 className="fw-bold mb-0">Sign up for free</h2>
       </div>
 
-      <div class="modal-body p-5 pt-0">
-        <form class="" onSubmit={handleFormSubmit}>
-          <div class="form-floating mb-3">
+      <div className="modal-body p-5 pt-0">
+        <form className="" onSubmit={handleFormSubmit}>
+          <div className="form-floating mb-3">
             <input 
             className="form-control rounded-4"
             placeholder="First Name"
@@ -53,9 +52,9 @@ function Signup(props) {
             onChange={handleChange}
             required
             />
-            <label htmlfor="floatingName">First Name:</label>
+            <label htmlFor="floatingName">First Name:</label>
           </div>
-          <div class="form-floating mb-3">
+          <div className="form-floating mb-3">
               <input
                className="form-control rounded-4"
                placeholder="Last Name"
@@ -65,9 +64,9 @@ function Signup(props) {
                onChange={handleChange}
                required
               />
-               <label htmlfor="floatingLast">Last Name:</label>
+               <label htmlFor="floatingLast">Last Name:</label>
           </div>
-          <div class="form-floating mb-3">
+          <div className="form-floating mb-3">
                 <input
                   className="form-control rounded-4"
                   placeholder="your phone number"
@@ -76,9 +75,9 @@ function Signup(props) {
                   id="contact_number"
                   onChange={handleChange}
                 />
-                <label htmlfor="floatingPhone">Phone:</label>
+                <label htmlFor="floatingPhone">Phone:</label>
           </div>
-          <div class="form-floating mb-3">
+          <div className="form-floating mb-3">
                 <input
                   className="form-control rounded-4"
                   placeholder="youremail@test.com"
@@ -88,9 +87,9 @@ function Signup(props) {
                   onChange={handleChange}
                   required
                 />
-                <label htmlfor="floatingEmail">Email:</label>
+                <label htmlFor="floatingEmail">Email:</label>
           </div>
-          <div class="form-floating mb-3">
+          <div className="form-floating mb-3">
             <input
               className="form-control rounded-4"
               placeholder="******"
@@ -100,10 +99,10 @@ function Signup(props) {
               onChange={handleChange}
               required
             />
-            <label htmlfor="floatingPassword">Password</label>
+            <label htmlFor="floatingPassword">Password</label>
           </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Submit</button>
-          <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+          <button className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Submit</button>
+          <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
         </form>
            <Link to="/login">← Go to Login</Link>
       </div>
