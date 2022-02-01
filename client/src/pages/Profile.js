@@ -1,10 +1,12 @@
-import React from "react";
-import { useQuery } from '@apollo/client';
+import React, {useState } from "react";
+import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import { useParams, Redirect } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries';
-import { Link } from 'react-router-dom';
 import SimpleCase from '../components/SimpleCase'
+import { UPDATEUSER } from '../utils/mutations';
+
+
 
 const Profile = () => {
     const { _id: userParam } = useParams();
@@ -12,7 +14,10 @@ const Profile = () => {
         variables: { _id: userParam },
     });
     const user = data?.me || {};
-   
+    //initialized vars to be use when editing the profile
+    const [formState, setFormState] = useState({ first_name: user.first_name, last_name: user.last_name, email: user.email, contact_number: user.contact_number });
+    const [updateUser, { error }] = useMutation(UPDATEUSER);
+
     if (Auth.loggedIn() && Auth.getProfile().data._id === userParam) {
 
         return <Redirect to="/login" />;
@@ -30,7 +35,39 @@ const Profile = () => {
     }
 
 
+    //use for modal when editing profile
+    const handleFormSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          console.log(formState)
+          const mutationResponse = await updateUser({
+            variables: {
+              first_name: formState.first_name, last_name: formState.last_name,
+              email: formState.email, contact_number: formState.contact_number
+    
+            },
+          })
+        //   if (mutationResponse) {
+        //      window.location.replace('/Profile')
+        //   }
+        } catch (e) {
+          console.log(e);
+        };
+    };
+
+    //use for modal when editing profile
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+    
+        setFormState({
+          ...formState,
+          [name]: value,
+        });
+      };
+    
+
     return (
+   <div>
     <div className="container" >
             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
                 <div className="lh-1">
@@ -66,16 +103,21 @@ const Profile = () => {
                               </h2>
                             </div>
                             <hr className="my-4"></hr>
-                                <Link to="/edit"> <br/><p className="text-center"><button className="btn btn-primary" >Edit Profile </button></p></Link>
+                            <div className="col-md-12 text-center">
+                                <button type="button" className="btn btn-primary btn-lg  text-center" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Edit Profile
+                                </button>
+                            </div>
                             <hr className="my-4"></hr>
                             <h4 className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="text-primary text-center">Donation History</span>
                             </h4>
                                {user ? (
                                 <>
-                                    <h3> On Date:</h3>
+                                    <h4> On Date:</h4>
+                                    <hr className="my-4"></hr>
                                     {user.donations.map((order) => (
-                                    <div key={order._id} className="my-2">
+                                    <div className="my-2" key={order._id}>
                                         <h4>{new Date(parseInt(order.createdAt)).toLocaleDateString()}  $: {order.amount}</h4>
                                     </div>
                                     
@@ -112,7 +154,72 @@ const Profile = () => {
                 </div>
             
     </div>
-    );
+    <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-content rounded-5 shadow">
+        <div className="modal-header p-5 pb-4 border-bottom-0">
+          <h2 className="fw-bold mb-0" id="staticBackdropLabel">Edit Profile</h2>
+        </div>
+        <form className="" onSubmit={handleFormSubmit}>
+          <div className="modal-body p-5 pt-0">
+                <div className="form-floating mb-3">
+                  <input 
+                  className="form-control rounded-4"
+                  placeholder={formState.first_name}
+                  name="first_name"
+                  type="first_name"
+                  id="first_name"
+                  onChange={handleChange}
+                  required
+                  />
+                  <label htmlFor="first name">First Name:</label>
+                </div>
+                <div className="form-floating mb-3">
+                    <input
+                    className="form-control rounded-4"
+                    placeholder={formState.last_name}
+                    name="last_name"
+                    type="last_name"
+                    id="last_Name"
+                    onChange={handleChange}
+                    required
+                    />
+                    <label htmlFor="Last Name">Last Name:</label>
+                </div>
+                <div className="form-floating mb-3">
+                      <input
+                        className="form-control rounded-4"
+                        placeholder={formState.contact_number}
+                        name="contact_number"
+                        type="contact_number"
+                        id="contact_number"
+                        onChange={handleChange}
+                      />
+                      <label htmlFor="contacNumber">Phone:</label>
+                </div>
+                <div className="form-floating mb-3">
+                      <input
+                        className="form-control rounded-4"
+                        placeholder={formState.email}
+                        name="email"
+                        type="email"
+                        id="email"
+                        onChange={handleChange}
+                        required
+                      />
+                      <label htmlFor="Email">Email:</label>
+               </div>
+            </div>
+            <div className="modal-footer">
+                  <button className="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" data-bs-dismiss="modal">Save Changes</button>
+                  <button className="w-100 mb-2 btn btn-lg rounded-4 btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+            </div>
+          </form>
+      </div>
+    </div>
+    </div>
+  </div>
+   );
 };
 
 export default Profile;

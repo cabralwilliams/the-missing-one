@@ -21,7 +21,6 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
-import Edit from "./pages/Edit";
 import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
@@ -107,7 +106,7 @@ function App() {
 											path="/DonationCart"
 											component={DonationCart}
 										/>
-										<Route exact path="/edit" component={Edit} />
+									
 										<Route exact path="/success" component={Success} />
 
 										<Route exact path="/cases/:caseId" component={CaseDetails} />
