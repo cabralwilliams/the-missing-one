@@ -104,6 +104,7 @@ export const QUERY_ME = gql`
 				_id
 				firstname
 				lastname
+				images
 				address
 				disappearance_date
 				last_known_location

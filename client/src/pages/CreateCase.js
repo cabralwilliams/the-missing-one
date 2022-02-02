@@ -11,7 +11,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from 'uuid';
 
 const S3_BUCKET = "missingone";
-const photo = "https://missingone.s3.amazonaws.com/0.jpg";
+
 
 const initialState = {
 	firstname: null,
