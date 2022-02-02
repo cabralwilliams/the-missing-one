@@ -147,7 +147,7 @@ const typeDefs = gql`
 		): Case
 
 		updateCase(
-			_id: ID!
+			id: ID!
 			firstname: String
 			lastname: String
 			address: String

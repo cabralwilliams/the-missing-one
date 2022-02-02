@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+const formatDate = dateStr => {
+    return dateStr.split(' ')[0];
+}
 
 const CaseDetails = ({ caseDetail }) => {
 	return (
@@ -23,7 +26,7 @@ const CaseDetails = ({ caseDetail }) => {
 				</div>
 
 				<div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3">
-					<ul>
+					<ul className="text-dark">
 						<li>
 							<i className="bi bi-rounded-right">
 								{" "}
@@ -87,7 +90,7 @@ const CaseDetails = ({ caseDetail }) => {
 				</div>
 
 				<div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3">
-					<ul>
+					<ul className="text-dark">
 						<li>
 							<i className="bi bi-rounded-right">
 								<strong>Address:</strong>
@@ -99,14 +102,14 @@ const CaseDetails = ({ caseDetail }) => {
 								<strong> Date of Disappearance:</strong>
 							</i>{" "}
 							{caseDetail.disappearance_date
-								? caseDetail.disappearance_date
+								? formatDate(caseDetail.disappearance_date)
 								: "Not Available"}
 						</li>
 						<li>
 							<i className="bi bi-rounded-right">
 								<strong> Date of Birth:</strong>
 							</i>
-							{caseDetail.dob ? caseDetail.dob : " Not Available"}
+							{caseDetail.dob ? formatDate(caseDetail.dob) : " Not Available"}
 						</li>
 
 						<li>

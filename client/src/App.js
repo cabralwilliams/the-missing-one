@@ -28,7 +28,9 @@ import SideBar from "./components/SideBar";
 import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
 
-import CaseDetails from "./pages/CaseDetails";
+
+
+import CaseDetails from "./pages/EditCase";
 
 import Success from "./pages/Success";
 
