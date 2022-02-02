@@ -2,6 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 //This component would theoretically be what the user saw when browsing the homepage or looking at cases on his/her profile page
+
+
+const S3_BUCKET = "missingone";
+
 const SimpleCase = (props) => {
 	//Destructure properties from props object
 	const {
@@ -14,7 +18,9 @@ const SimpleCase = (props) => {
 		img_src,
 	} = props;
 
-	const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
+	const photoUrl = "https://"+S3_BUCKET+"."+"s3"+"."+"amazonaws.com/"+img_src;
+	console.log(photoUrl)
+
 	return (
 		<div className="card">
 			<div className="card-body">

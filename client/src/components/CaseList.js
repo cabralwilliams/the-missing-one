@@ -48,7 +48,7 @@ const CaseList = () => {
 	if (loading) {
 		return <h2>Cases are loading...</h2>;
 	}
-	console.log("caselist component");
+	console.log(filterCases);
 	return (
 		<div>
 			<div className="clearfix">
@@ -66,7 +66,7 @@ const CaseList = () => {
 									age={missing.age}
 									disappearance_date={missing.disappearance_date}
 									last_known_location={missing.last_known_location}
-									img_src=""
+									img_src={missing.images[0]}
 								></SimpleCase>
 							</div>
 						))}
