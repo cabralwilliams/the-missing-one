@@ -3,7 +3,7 @@ import Moment from "react-moment";
 // const formatDate = dateStr => {
 //     return dateStr.split(' ')[0];
 // }
- 
+
 
 const CaseDetails = ({ caseDetail }) => {
 	return (

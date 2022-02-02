@@ -66,7 +66,11 @@ const resolvers = {
 
 		getCaseById: async (parent, { _id }) => {
 			console.log("resolver - getCaseById " + _id);
-			const casetemp = await Case.findOne({ _id }).populate("comments");
+			const casetemp = await Case.findOne({ _id })
+			.populate({
+				path: 'comments',
+			 sort: { 'created_at': 1 } 
+			});
 			console.log(casetemp.comments);
 			return casetemp;
 		},

@@ -3,11 +3,13 @@ import Moment from "react-moment";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
+
 const CommentsList = (props) => {
+	
 	const { comments, case_id, username } = props;
 	console.log("printing comments ");
-	console.log(comments);
-
+	// const res = comments.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
+	// console.log(res);
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">

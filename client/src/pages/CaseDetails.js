@@ -8,19 +8,19 @@ import CaseDetail from "../components/CaseDetail";
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
 
-	console.log("Printing store user");
-	console.log(`User: ${JSON.stringify(state.user)}`);
+	// console.log("Printing store user");
+	// console.log(`User: ${JSON.stringify(state.user)}`);
 
 	//Get Caseid from url parameter
 	const { caseId } = useParams();
-	console.log(caseId);
+	//console.log(caseId);
 	const { data, loading } = useQuery(GET_CASE_ById, {
 		variables: { id: caseId },
 	});
 
 	const caseDetail = data?.getCaseById || {};
-	console.log(caseDetail);
-
+	//console.log(caseDetail);
+    
 	if (loading) {
 		return <div>Loading...</div>;
 	}
@@ -29,7 +29,7 @@ const CaseDetails = () => {
 	let username = "Anonymous";
 	if (Object.keys(state.user).length > 0)
 		username = `${state.user.first_name} ${state.user.last_name}`;
-	console.log(username);
+	//console.log(username);
 
 	return (
 		<section className="about">
