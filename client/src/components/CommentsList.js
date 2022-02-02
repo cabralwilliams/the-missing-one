@@ -8,8 +8,14 @@ const CommentsList = (props) => {
 	
 	const { comments, case_id, username } = props;
 	console.log("printing comments ");
-	// const res = comments.sort((a, b) => a.created_at > b.created_at ? 1 : -1)
-	// console.log(res);
+	//  function res (comments) {
+	// 	comments.sort((a,b)=>
+	// 	{
+	// 		return new Date(a.created_at) > new Date(b.created_at) ? 1 :-1
+	// 	})
+		
+	// }
+	// console.log(res(comments))
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
@@ -76,7 +82,8 @@ const CommentsList = (props) => {
 								</div>
 							</div>{" "}
 						</div>
-					))}
+          ))}
+        
 			</div>
 
 			{/* <div className="my-3 p-3 bg-body rounded shadow-sm">

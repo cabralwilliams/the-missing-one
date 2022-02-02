@@ -3,3 +3,4 @@ export const UPDATE_CASE_FILTER = "UPDATE_CASE_FILTER";
 export const UPDATE_CURRENT_CASE = "UPDATE_CURRENT_CASE";
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const LOAD_NEXT_PAGE = "LOAD_NEXT_PAGE";

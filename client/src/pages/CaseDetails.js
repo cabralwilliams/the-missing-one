@@ -18,9 +18,21 @@ const CaseDetails = () => {
 		variables: { id: caseId },
 	});
 
+	// function geeks_outer(array) {
+	// 	array.sort(function (a, b) {
+	// 		return new Date(a.created_at) - new Date(b.created_at);
+	// 	});
+
+	// 	return JSON.stringify(array);
+	// }
+
 	const caseDetail = data?.getCaseById || {};
-	//console.log(caseDetail);
-    
+
+	console.log(caseDetail);
+	console.log("Sorting case details");
+	//console.log(geeks_outer(caseDetail.comments));
+
+
 	if (loading) {
 		return <div>Loading...</div>;
 	}
