@@ -3,6 +3,7 @@ import Moment from "react-moment";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
+
 const CommentsList = (props) => {
 	const { comments, case_id, username } = props;
 	console.log("printing comments ");
@@ -74,7 +75,8 @@ const CommentsList = (props) => {
 								</div>
 							</div>{" "}
 						</div>
-					))}
+          ))}
+        
 			</div>
 
 			{/* <div className="my-3 p-3 bg-body rounded shadow-sm">

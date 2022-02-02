@@ -12,6 +12,7 @@
 	--oxford-blue: #002147;
 	--cerulean-blue: #2a52be;
 	--maximum-blue-purple: #95a8e0;
+	--loadMore: #7d7e7e;
 	/* color pallette */
 	/*
 $maroon-web: #7e0000ff;
@@ -169,26 +170,29 @@ code {
 	max-width: 960px;
 }
 
-
 .about .content h3 {
 	font-weight: 700;
 	font-size: 26px;
 	color: #555555;
-  }
-  .about .content ul {
+}
+.about .content ul {
 	list-style: none;
 	padding: 0;
-  }
-  .about .content ul li {
+}
+.about .content ul li {
 	padding-bottom: 8px;
-  }
-  .about .content ul i {
+}
+.about .content ul i {
 	font-size: 16px;
 	padding-right: 2px;
 	color: #475cd4;
-  }
-  .about .content p:last-child {
+}
+.about .content p:last-child {
 	margin-bottom: 0;
-  }
+}
 
-
+.load-more-btn{
+	background-color: var(--loadMore);
+	border-radius: 25px;
+	color:white;
+}

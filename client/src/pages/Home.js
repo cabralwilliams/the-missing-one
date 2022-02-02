@@ -12,7 +12,7 @@ import { useQuery } from "@apollo/client";
 
 //Import QUERY_ME
 import { QUERY_ME } from "../utils/queries";
-import { LOGIN_USER } from "../utils/actions";
+import { LOAD_NEXT_PAGE } from "../utils/actions";
 
 const photoUrl = "https://missingone.s3.amazonaws.com/0.jpg";
 const photoUrl1 = "https://missingone.s3.amazonaws.com/1.jpg";
@@ -23,27 +23,44 @@ const photoUrl5 = "https://missingone.s3.amazonaws.com/5.jpg";
 
 const Home = () => {
 	console.log("Home component");
-	const state = useSelector(state => state );
+	const state = useSelector((state) => state);
 	const dispatch = useDispatch();
 	console.log(`User: ${JSON.stringify(state.user)}`);
 
 	//Query for a user
 	const { data, loading } = useQuery(QUERY_ME);
 	const user = data?.me || {};
+	const prevPage = state.page;
+	const totalPages = state.totalPages;
+	// useEffect(() => {
 
-	useEffect(() => {
-		
-		if(user._id) {
-			dispatch({
-				type: LOGIN_USER,
-				user
-			});
-		}
-	}, [user, dispatch]);
-	
+	// 	if(user._id) {
+	// 		dispatch({
+	// 			type: LOGIN_USER,
+	// 			user
+	// 		});
+	// 	}
+	// }, [user, dispatch]);
+	// function loadMore() {
+	// 	let nextPage = prevPage + 1;
+	// 	if (prevPage >= totalPages) nextPage = 0;
+	// 	dispatch({
+	// 		type: LOAD_NEXT_PAGE,
+	// 		nextPage: nextPage,
+	// 	});
+	// }
+
 	return (
 		<main>
 			<CaseList />
+			{/* {state.totalPages && (
+				<button
+					className="btn btn-light btn-block w-50 mx-auto"
+					onClick={(e) => {
+						loadMore();
+					}}
+				></button>
+			)} */}
 		</main>
 	);
 };
