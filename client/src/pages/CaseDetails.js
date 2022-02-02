@@ -5,8 +5,10 @@ import { useParams } from "react-router-dom";
 import CommentsList from "../components/CommentsList";
 import { useSelector, useDispatch } from "react-redux";
 import CaseDetail from "../components/CaseDetail";
+import { Link } from "react-router-dom";
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
+    const [didCreate,setDidCreate] = useState(false);
 
 	console.log("Printing store user");
 	console.log(`User: ${JSON.stringify(state.user)}`);
@@ -21,6 +23,10 @@ const CaseDetails = () => {
 	const caseDetail = data?.getCaseById || {};
 	console.log(caseDetail);
 
+    useEffect(() => {
+        setDidCreate(caseDetail.creator_id === state.user._id);
+    }, [caseDetail.creator_id,state]);
+
 	if (loading) {
 		return <div>Loading...</div>;
 	}
@@ -33,6 +39,7 @@ const CaseDetails = () => {
 
 	return (
 		<section className="about">
+            {didCreate && <button><Link to={`/edit/${caseId}`}>Edit Case</Link></button>}
 			<CaseDetail caseDetail={caseDetail} />
 			<CommentsList
 				comments={caseDetail.comments}

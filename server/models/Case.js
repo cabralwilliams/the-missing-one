@@ -132,6 +132,7 @@ const caseSchema = new Schema(
 // set up pre-save middleware to create password
 
 function capitalizeFirstLetter(str) {
+	return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 	return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 

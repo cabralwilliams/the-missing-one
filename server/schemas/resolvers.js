@@ -93,17 +93,20 @@ const resolvers = {
 			if (firstname) {
 				params.firstname = {
 					$regex: firstname,
+					$options: 'i'
 				};
 			}
 			if (lastname) {
 				params.lastname = {
 					$regex: lastname,
+					$options: 'i'
 				};
 			}
 
 			if (ncic) {
 				params.ncic = {
 					$regex: ncic,
+					$options: 'i'
 				};
 			}
 			console.log(params);
