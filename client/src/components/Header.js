@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { LOGOUT_USER } from "../utils/actions";
+import { FaHome } from "react-icons/fa";
 const Header2 = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
@@ -37,13 +38,15 @@ const Header2 = () => {
 					{Auth.loggedIn() ? (
 						<ul className="navbar-nav ms-auto mt-2 mt-lg-0">
 							<li className="nav-item active">
+								
 								<Link to="/" className="nav-link text-light">
 									<svg
 										className="bi d-block mx-auto mb-1"
 										width="24"
 										height="24"
 									></svg>
-									Home
+									<FaHome />
+									&nbsp;Home
 								</Link>
 							</li>
 							<li className="nav-item">
@@ -77,7 +80,7 @@ const Header2 = () => {
 									Donations
 								</Link>
 							</li>
-					
+
 							<li className="nav-item">
 								<Link
 									className="nav-link text-light"
