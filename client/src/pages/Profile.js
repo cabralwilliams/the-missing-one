@@ -6,6 +6,8 @@ import { QUERY_ME } from '../utils/queries';
 import SimpleCase from '../components/SimpleCase'
 import { UPDATEUSER } from '../utils/mutations';
 
+const S3_BUCKET = "missingone";
+
 
 
 const Profile = () => {
@@ -14,6 +16,7 @@ const Profile = () => {
         variables: { _id: userParam },
     });
     const user = data?.me || {};
+    console.log(user)
     //initialized vars to be use when editing the profile
     const [formState, setFormState] = useState({ first_name: user.first_name, last_name: user.last_name, email: user.email, contact_number: user.contact_number });
     const [updateUser, { error }] = useMutation(UPDATEUSER);
@@ -83,6 +86,7 @@ const Profile = () => {
                             </h4>
                             <hr className="my-4"></hr>
                             <div className="col-12">
+                    
                               <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
                                  First Name: {user.first_name}
                               </h2>
@@ -119,10 +123,9 @@ const Profile = () => {
                                     <h4> On Date:</h4>
                                     <hr className="my-4"></hr>
                                     {user.donations.map((order) => (
-                                    <div className="my-2" key={order._id}>
-                                        <h4>{new Date(parseInt(order.createdAt)).toLocaleDateString()}  $: {order.amount}</h4>
-                                    </div>
-                                    
+                                        <div className="my-2"  key={order._id}>
+                                            <h4>{new Date(parseInt(order.createdAt)).toLocaleDateString()}  $: {order.amount}</h4>
+                                        </div>
                                     ))}
                                     
                                 </>
@@ -138,8 +141,9 @@ const Profile = () => {
                             <hr className="my-4"></hr>
                             <div className="row width-100">
                                {user.created_cases.map(cases => (
-                                  <div className="col-md-6 my-3 animated fadeIn text-center rounded " key={cases._id}>
+                                  <div className="col-md-6 my-3 animated fadeIn text-center rounded" key={cases._id}>
                                         <SimpleCase
+                                        key={cases._id}
                                         _id={cases._id}
                                         firstname={cases.firstname}
                                         lastname={cases.lastname}
@@ -188,7 +192,7 @@ const Profile = () => {
                     onChange={handleChange}
                     required
                     />
-                    <label htmlFor="Last Name">Last Name:</label>
+                    <label htmlFor="last_name">Last Name:</label>
                 </div>
                 <div className="form-floating mb-3">
                       <input
@@ -199,7 +203,7 @@ const Profile = () => {
                         id="contact_number"
                         onChange={handleChange}
                       />
-                      <label htmlFor="contacNumber">Phone:</label>
+                      <label htmlFor="contact_number">Phone:</label>
                 </div>
                 <div className="form-floating mb-3">
                       <input
@@ -211,7 +215,7 @@ const Profile = () => {
                         onChange={handleChange}
                         required
                       />
-                      <label htmlFor="Email">Email:</label>
+                      <label htmlFor="email">Email:</label>
                </div>
             </div>
             <div className="modal-footer">
