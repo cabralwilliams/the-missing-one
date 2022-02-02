@@ -9,6 +9,12 @@ const CommentsList = (props) => {
 	console.log("printing comments ");
 	console.log(comments);
 
+	function sortComments(comments) {
+		console.log(comments);
+	}
+
+	sortComments(comments);
+
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
