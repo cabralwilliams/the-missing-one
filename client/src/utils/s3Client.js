@@ -8,8 +8,8 @@ const region = "us-east-1"; //e.g. "us-east-1"
 const s3Client = new S3Client({
     region,
     credentials: {
-        secretAccessKey: process.env.SAK,
-        accessKeyId: process.env.AKI
+        secretAccessKey: process.env.SAK || "ZGkVO0+zwub4B8eSPKwCqMDgaQsWiO8wu6t9Xejn",
+        accessKeyId: process.env.AKI || "AKIAU5YJF4CAE3ESRKHV"
     }
     })
 export { s3Client };
