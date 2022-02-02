@@ -8,8 +8,6 @@ import { UPDATEUSER } from '../utils/mutations';
 
 const S3_BUCKET = "missingone";
 
-
-
 const Profile = () => {
     const { _id: userParam } = useParams();
     const { loading, data } = useQuery(QUERY_ME, {
@@ -150,7 +148,7 @@ const Profile = () => {
                                         age={cases.age}
                                         disappearance_date={cases.disappearance_date}
                                         last_known_location={cases.last_known_location}
-                                        img_src=""
+                                        img_src={cases.images[0]}
                                     ></SimpleCase>
                                   </div>         
                                ))}
@@ -158,7 +156,7 @@ const Profile = () => {
                             <hr className="my-4"></hr>
                     </div>
                 </div>
-            
+        
     </div>
 
     {/* This is the modal to edit profile  */}
