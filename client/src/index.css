@@ -182,6 +182,7 @@ code {
 .about .content ul li {
 	padding-bottom: 8px;
 }
+
 .about .content ul i {
 	font-size: 16px;
 	padding-right: 2px;
@@ -191,8 +192,8 @@ code {
 	margin-bottom: 0;
 }
 
-.load-more-btn{
+.load-more-btn {
 	background-color: var(--loadMore);
 	border-radius: 25px;
-	color:white;
+	color: white;
 }
