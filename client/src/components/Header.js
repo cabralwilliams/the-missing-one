@@ -9,9 +9,14 @@ import {
 	BsFilePerson,
 } from "react-icons/bs";
 
-import { BiDonateHeart, BiShapePolygon } from "react-icons/bi";
-import { FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
+import {
+	BiDonateHeart,
+	BiShapePolygon,
+	BiLogIn,
+	BiLogOut,
+} from "react-icons/bi";
 
+import { FiUserPlus } from "react-icons/fi";
 const Header2 = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
@@ -107,7 +112,7 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									<FaSignOutAlt />
+									<BiLogOut />
 									&nbsp;Logout{" "}
 								</Link>
 							</li>
@@ -136,7 +141,7 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>{" "}
-									<FaSignInAlt />
+									<BiLogIn />
 									&nbsp;Login
 								</Link>
 							</li>
@@ -147,7 +152,10 @@ const Header2 = () => {
 										width="10"
 										height="17"
 									></svg>{" "}
-									<span className="btn btn-primary">Signup</span>
+									<span className="btn btn-primary">
+										<FiUserPlus />
+										&nbsp;Signup
+									</span>
 								</Link>
 							</li>
 						</ul>
