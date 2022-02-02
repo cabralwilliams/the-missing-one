@@ -29,8 +29,8 @@ import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
 
 
-
-import CaseDetails from "./pages/EditCase";
+import CaseDetails from "./pages/CaseDetails";
+import EditCase from "./pages/EditCase";
 
 import Success from "./pages/Success";
 
@@ -120,6 +120,8 @@ function App() {
 											path="/comment/:caseId/:id"
 											component={SingleComment}
 										/>
+
+										<Route exact path="/edit/:caseId" component={EditCase} />
 
 										<Route component={NoMatch} />
 									</Switch>
