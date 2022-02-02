@@ -88,6 +88,7 @@ const CaseList = () => {
 									disappearance_date={missing.disappearance_date}
 									last_known_location={missing.last_known_location}
 									img_src={missing.images[0]}
+									comment_count={missing.comments.length}
 								></SimpleCase>
 							</div>
 						))}
@@ -95,7 +96,7 @@ const CaseList = () => {
 				<div className="row width-80">
 					<div className="col-md-3 my-3 animated fadeIn text-center rounded "></div>
 					<div className="col-md-6 my-3 animated fadeIn text-center rounded ">
-						{state.totalPages && (
+						{(state.totalPages)? (
 							<button
 								className="btn  btn-block w-50 mx-auto load-more-btn "
 								onClick={(e) => {
@@ -104,7 +105,7 @@ const CaseList = () => {
 							>
 								Load More{" "}
 							</button>
-						)}
+						):(<span></span>)}
 					</div>
 					<div className="col-md-3 my-3 animated fadeIn text-center rounded "></div>
 				</div>
