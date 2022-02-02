@@ -16,6 +16,7 @@ const SimpleCase = (props) => {
 		disappearance_date,
 		last_known_location,
 		img_src,
+		comment_count
 	} = props;
 
 	const photoUrl = "https://"+S3_BUCKET+"."+"s3"+"."+"amazonaws.com/"+img_src;
@@ -50,7 +51,7 @@ const SimpleCase = (props) => {
 						</button>
 					</div>
 				</Link>
-				<small className="text-muted">9 comments</small>
+				<small className="text-muted">{comment_count} comments</small>
 			</div>
 		</div>
 	);
