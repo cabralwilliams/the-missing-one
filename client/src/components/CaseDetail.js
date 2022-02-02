@@ -109,7 +109,7 @@ const CaseDetails = (props) => {
 								</i>{" "}
 								{caseDetail.disappearance_date ? (
 									<Moment
-										format="MM/DD/YYYY"
+										format="MM/DD/YYYY hh:mm a"
 										date={caseDetail.disappearance_date}
 									></Moment>
 								) : (
