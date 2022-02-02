@@ -132,19 +132,68 @@ export const CREATE_CASE = gql`
 `;
 
 export const ADD_DONATION = gql`
-	mutation addDonation($amount: Float!) {
-		addDonation(amount: $amount) {
-			_id
-			first_name
-			last_name
-			email
-			donations {
-				amount
-			}
-		}
-	}
-`;
+  mutation addDonation($amount: Float!) {
+      addDonation(amount: $amount) {
+          _id
+          first_name
+          last_name
+          email
+          donations {
+              amount
+          }
+      }
+  }
+`
 
+export const UPDATE_CASE = gql`
+  mutation updateCase(
+    $firstname: String
+    $lastname: String
+    $age: Int
+    $gender: String
+    $last_known_location: String
+    $address: String
+    $dob: String
+    $creator_id: ID
+    $biograph: String
+    $nationality: String
+    $mobile: String
+    $licenseId: String
+    $issuedState: String
+    $licensePlate: String
+    $disappearance_date: String
+    $ncic: String
+    $other_info: String
+    $images: [String]
+    $id: ID!
+  ) {
+      updateCase(
+        firstname: $firstname
+        lastname: $lastname
+        address: $address
+        dob: $dob
+        age: $age
+        gender: $gender
+        last_known_location: $last_known_location
+        creator_id: $creator_id
+        biograph: $biograph
+        nationality: $nationality
+        mobile: $mobile
+        licenseId: $licenseId
+        issuedState: $issuedState
+        licensePlate: $licensePlate
+        disappearance_date: $disappearance_date
+        ncic: $ncic
+        other_info: $other_info
+        images: $images
+        id: $id
+      ) {
+          _id
+          firstname
+          lastname
+      }
+  }
+`
 export const ADD_COMMENT = gql`
 	mutation addComment(
 		$comment_text: String!

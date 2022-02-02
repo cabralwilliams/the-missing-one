@@ -261,12 +261,17 @@ const resolvers = {
 			return new AuthenticationError("Please sign in to donate");
 		},
 		updateCase: async (parent, args, context) => {
-			const updatedCase = await Case.findByIdAndUpdate(
-				{ _id: args._id },
-				{ ...args },
-				{ new: true }
-			);
-			return updatedCase;
+			console.log(`Before checking context: ${JSON.stringify(args)}`);
+			//if(context.user) {
+				console.log(`After checking context: ${args}`);
+				const updatedCase = await Case.findByIdAndUpdate(
+					{ _id: args.id },
+					{ ...args },
+					{ new: true }
+				);
+				return updatedCase;
+			//}
+			return new AuthenticationError("You must be logged in to update a case");
 		},
 	},
 };
