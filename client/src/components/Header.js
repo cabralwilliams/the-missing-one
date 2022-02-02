@@ -3,7 +3,15 @@ import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { LOGOUT_USER } from "../utils/actions";
-import { FaHome } from "react-icons/fa";
+import {
+	BsFillHouseDoorFill,
+	BsFillFileEarmarkPostFill,
+	BsFilePerson,
+} from "react-icons/bs";
+
+import { BiDonateHeart, BiShapePolygon } from "react-icons/bi";
+import { FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
+
 const Header2 = () => {
 	const dispatch = useDispatch();
 	const state = useSelector((state) => state);
@@ -20,7 +28,10 @@ const Header2 = () => {
 					Toggle Menu
 				</button> */}
 				<Link to="/">
-					<h2>The Missing One</h2>
+					<h2>
+						<BiShapePolygon />
+						&nbsp;The Missing One
+					</h2>
 				</Link>
 				<button
 					className="navbar-toggler"
@@ -38,14 +49,13 @@ const Header2 = () => {
 					{Auth.loggedIn() ? (
 						<ul className="navbar-nav ms-auto mt-2 mt-lg-0">
 							<li className="nav-item active">
-								
 								<Link to="/" className="nav-link text-light">
 									<svg
 										className="bi d-block mx-auto mb-1"
 										width="24"
 										height="24"
 									></svg>
-									<FaHome />
+									<BsFillHouseDoorFill />
 									&nbsp;Home
 								</Link>
 							</li>
@@ -56,7 +66,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									New Case
+									<BsFillFileEarmarkPostFill />
+									&nbsp;New Case
 								</Link>
 							</li>
 
@@ -67,7 +78,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									Profile
+									<BsFilePerson />
+									&nbsp; Profile
 								</Link>
 							</li>
 							<li className="nav-item">
@@ -77,7 +89,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									Donations
+									<BiDonateHeart />
+									&nbsp; Donations
 								</Link>
 							</li>
 
@@ -94,7 +107,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									Logout{" "}
+									<FaSignOutAlt />
+									&nbsp;Logout{" "}
 								</Link>
 							</li>
 						</ul>
@@ -107,7 +121,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>
-									Home
+									<BsFillHouseDoorFill />
+									&nbsp;Home
 								</Link>
 							</li>
 							<li className="nav-item">
@@ -121,7 +136,8 @@ const Header2 = () => {
 										width="24"
 										height="24"
 									></svg>{" "}
-									Login
+									<FaSignInAlt />
+									&nbsp;Login
 								</Link>
 							</li>
 							<li className="nav-item">
