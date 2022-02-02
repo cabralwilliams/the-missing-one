@@ -180,7 +180,8 @@ code {
 	padding: 0;
 }
 .about .content ul li {
-	padding-bottom: 8px;
+	/* padding-bottom: 8px; */
+	padding:1rem;
 }
 
 .about .content ul i {
