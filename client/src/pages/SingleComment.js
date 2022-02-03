@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 const SingleComment = () => {
 	const { id: commentId, caseId: caseId } = useParams();
 	const state = useSelector(state => state);
-	console.log(state);
 
 	const { loading, data } = useQuery(QUERY_COMMENT_BYId, {
 		variables: { caseId: caseId, id: commentId },

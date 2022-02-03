@@ -42,8 +42,7 @@ const CaseDetails = () => {
 			type: UPDATE_CURRENT_CASE,
 			currentCase: caseDetail
 		})
-		console.log(state);
-	},[caseDetail,dispatch]);
+	}, [caseDetail,dispatch]);
 
 	if (loading) {
 		return <div>Loading...</div>;
