@@ -10,6 +10,8 @@
   ## Link
   [The Missing One](https://lit-scrubland-68499.herokuapp.com/)
   
+  Live demo: https://lit-scrubland-68499.herokuapp.com/
+  
   ## Table of Contents
   
   * [Installation](#installation)
