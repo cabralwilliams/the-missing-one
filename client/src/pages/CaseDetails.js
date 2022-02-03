@@ -56,7 +56,7 @@ const CaseDetails = () => {
 
 	return (
 		<section className="about">
-            {didCreate && <a class="btn btn-primary" href={`/edit/${caseId}`} role="button">Edit Case</a>}
+            {didCreate && <a className="btn btn-primary" href={`/edit/${caseId}`} role="button">Edit Case</a>}
 			<CaseDetail caseDetail={caseDetail} />
 			<CommentsList
 				comments={caseDetail.comments}

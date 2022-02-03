@@ -40,7 +40,7 @@ const SimpleCase = (props) => {
 						<strong>{age} yrs</strong> <br />
 						Missing Since:
 						<strong>
-							<Moment format="MMM YY" date={disappearance_date}></Moment>
+							<Moment format="MMM DD, YYYY" date={disappearance_date}></Moment>
 						</strong>
 					</span>
 				</p>

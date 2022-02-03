@@ -17,6 +17,7 @@ const SingleComment = () => {
 
 	//console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
 	const comment = data?.getCommentById || {};
+	console.log(comment);
 
 	if (loading) {
 		return <div>Loading...</div>;
