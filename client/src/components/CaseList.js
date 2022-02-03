@@ -73,6 +73,9 @@ const CaseList = () => {
 	return (
 		<div>
 			<div className="clearfix">
+				<div className="row width-80 section-heading m-auto">
+					Can You Find Them?
+				</div>
 				<div className="row width-80">
 					{filterCases.length &&
 						filterCases.map((missing) => (
