@@ -13,6 +13,7 @@
 	--cerulean-blue: #2a52be;
 	--maximum-blue-purple: #95a8e0;
 	--loadMore: #7d7e7e;
+	--seagreen: #087e8b;
 	/* color pallette */
 	/*
 $maroon-web: #7e0000ff;
@@ -125,7 +126,8 @@ col-md-3 {
 	border-radius: 50%;
 }
 .card:hover .avtar img {
-	border-color: rgb(99, 204, 131);
+	/* //	border-color: rgb(99, 204, 131); */
+	border-color: var(--seagreen);
 }
 
 @media (min-width: 1200px) {
@@ -181,7 +183,7 @@ code {
 }
 .about .content ul li {
 	/* padding-bottom: 8px; */
-	padding:1rem;
+	padding: 1rem;
 }
 
 .about .content ul i {

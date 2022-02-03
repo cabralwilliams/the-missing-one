@@ -13,19 +13,23 @@ const SingleComment = () => {
 		variables: { caseId: caseId, id: commentId },
 	});
 
-	console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
+	//console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
 	const comment = data?.getCommentById || {};
 
 	if (loading) {
 		return <div>Loading...</div>;
 	}
-	console.log("Comments ");
-	console.log(comment);
+	//console.log("Comments ");
+//	console.log(comment);
+	const repliesReverseArray = comment.replies.slice(0).reverse();
+//	console.log("sorted replies");
+//	console.log(repliesReverseArray);
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 m-auto bg-purple rounded shadow-sm section-heading">
-				<p class="lead">
-        <span className ="text-muted">  Case#: </span><strong>{caseId}</strong>
+				<p className="lead">
+					<span className="text-muted"> Case#: </span>
+					<strong>{caseId}</strong>
 				</p>
 			</div>
 
@@ -56,8 +60,8 @@ const SingleComment = () => {
 
 			<div className="my-3 p-3 bg-body rounded shadow-sm">
 				<h6 className="border-bottom pb-2 mb-0">Replies</h6>
-				{comment.replies &&
-					comment.replies.map((reply) => (
+				{repliesReverseArray &&
+					repliesReverseArray.map((reply) => (
 						<div className="d-flex text-muted pt-3" key={reply._id}>
 							<svg
 								className="bd-placeholder-img flex-shrink-0 me-2 rounded"
@@ -84,7 +88,7 @@ const SingleComment = () => {
 											{" "}
 											<Moment
 												format="MM/DD/YY hh:mm a"
-												date={reply.created_at}
+												date={reply.createdAt}
 											></Moment>{" "}
 										</strong>
 									</span>

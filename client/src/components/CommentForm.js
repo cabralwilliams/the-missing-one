@@ -17,10 +17,10 @@ const CommentForm = (props) => {
 	// submit form
 	const handleFormSubmit = async (event) => {
 	//	event.preventDefault();
-		console.log("submitting reply form ");
+	//	console.log("submitting reply form ");
 		if (!validateForm()) return false;
 		//	event.preventDefault();
-		console.log(commentText, "Case id  = " + case_id, "created by " + username);
+	//	console.log(commentText, "Case id  = " + case_id, "created by " + username);
 		try {
 			await addComment({
 				variables: {

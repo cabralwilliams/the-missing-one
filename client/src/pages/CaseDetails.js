@@ -10,12 +10,12 @@ const CaseDetails = () => {
 	const state = useSelector((state) => state);
     const [didCreate,setDidCreate] = useState(false);
 
-	// console.log("Printing store user");
-	// console.log(`User: ${JSON.stringify(state.user)}`);
+//	console.log("Printing store user");
+//	console.log(`User: ${JSON.stringify(state.user)}`);
 
 	//Get Caseid from url parameter
 	const { caseId } = useParams();
-	//console.log(caseId);
+//	console.log(caseId);
 	const { data, loading } = useQuery(GET_CASE_ById, {
 		variables: { id: caseId },
 	});
@@ -30,13 +30,7 @@ const CaseDetails = () => {
 	// }
     
 	const caseDetail = data?.getCaseById || {};
-    console.log(caseDetail)
-    // const S3_BUCKET = "missingone";
-    // const photoUrl = "https://"+S3_BUCKET+"."+"s3"+"."+"amazonaws.com/"+caseDetail.image[0];
-	//console.log(caseDetail);
-	//console.log("Sorting case details");
-	//console.log(geeks_outer(caseDetail.comments));
-
+	console.log(caseDetail);
 
     useEffect(() => {
         setDidCreate(caseDetail.creator_id === state.user._id);

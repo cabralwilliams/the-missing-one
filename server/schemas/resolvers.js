@@ -66,12 +66,8 @@ const resolvers = {
 
 		getCaseById: async (parent, { _id }) => {
 			console.log("resolver - getCaseById " + _id);
-			const casetemp = await Case.findOne({ _id })
-			.populate({
-				path: 'comments',
-			 sort: { 'created_at': 1 } 
-			});
-			console.log(casetemp.comments);
+			const casetemp = await Case.findOne({ _id }).populate("comments");
+			//		console.log(casetemp.comments);
 			return casetemp;
 		},
 
@@ -97,24 +93,24 @@ const resolvers = {
 			if (firstname) {
 				params.firstname = {
 					$regex: firstname,
-					$options: 'i'
+					$options: "i",
 				};
 			}
 			if (lastname) {
 				params.lastname = {
 					$regex: lastname,
-					$options: 'i'
+					$options: "i",
 				};
 			}
 
 			if (ncic) {
 				params.ncic = {
 					$regex: ncic,
-					$options: 'i'
+					$options: "i",
 				};
 			}
 			console.log(params);
-			return await Case.find(params).sort({ createdAt: -1 });;
+			return await Case.find(params).sort({ createdAt: -1 });
 			//	return await Case.find({ ...args });
 		},
 
@@ -270,15 +266,13 @@ const resolvers = {
 		updateCase: async (parent, args, context) => {
 			console.log(`Before checking context: ${JSON.stringify(args)}`);
 			//if(context.user) {
-				console.log(`After checking context: ${args}`);
-				const updatedCase = await Case.findByIdAndUpdate(
-					{ _id: args.id },
-					{ ...args },
-					{ new: true }
-				);
-				return updatedCase;
-			//}
-			return new AuthenticationError("You must be logged in to update a case");
+			console.log(`After checking context: ${args}`);
+			const updatedCase = await Case.findByIdAndUpdate(
+				{ _id: args.id },
+				{ ...args },
+				{ new: true }
+			);
+			return updatedCase;
 		},
 	},
 };
