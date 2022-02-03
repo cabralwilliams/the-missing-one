@@ -14,4 +14,19 @@ export function retrieveDonationAmount() {
 	return output;
 }
 
+export function storeCaseNames(firstName,lastName) {
+	localStorage.setItem('caseFirstName',firstName);
+	localStorage.setItem('caseLastName',lastName);
+}
 
+export function getCaseNames() {
+	return {
+		firstname: localStorage.getItem('caseFirstName'),
+		lastname: localStorage.getItem('caseLastName')
+	}
+}
+
+export function removeCaseNames() {
+	localStorage.removeItem('caseFirstName');
+	localStorage.removeItem('caseLastName');
+}

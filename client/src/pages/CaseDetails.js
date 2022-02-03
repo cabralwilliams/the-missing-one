@@ -6,6 +6,7 @@ import CommentsList from "../components/CommentsList";
 import { useSelector, useDispatch } from "react-redux";
 import CaseDetail from "../components/CaseDetail";
 import { UPDATE_CURRENT_CASE } from "../utils/actions";
+import { storeCaseNames } from "../utils/helpers";
 
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
@@ -38,11 +39,8 @@ const CaseDetails = () => {
     }, [caseDetail.creator_id,state]);
 
 	useEffect(() => {
-		dispatch({
-			type: UPDATE_CURRENT_CASE,
-			currentCase: caseDetail
-		})
-	}, [caseDetail,dispatch]);
+		storeCaseNames(caseDetail.firstname,caseDetail.lastname);
+	}, [caseDetail]);
 
 	if (loading) {
 		return <div>Loading...</div>;
