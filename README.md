@@ -5,7 +5,8 @@
   ## Description
   This project was inspired by a tragic loss that one of the members of the team experienced a short time ago.  Each year, the news is flooded with instances of missing persons.  Though there are many organizations out there that are dedicated to find such missing persons, we believed that a social media platform such as this could be benificial toward finding missing persons before the tragic occurs.  This application is built utilizing the MERN stack (MongoDB, Express.js, React, Node.js).
 
-![image](https://user-images.githubusercontent.com/88918693/152387913-36365243-5012-430c-aba3-542aeb0c2dd3.png)
+![image](https://user-images.githubusercontent.com/88918693/152407567-66e7c146-544d-4980-bb01-f7a1f2f8cd8a.png)
+
 
   ## Link
   [The Missing One](https://lit-scrubland-68499.herokuapp.com/)
