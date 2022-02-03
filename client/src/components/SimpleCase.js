@@ -22,6 +22,8 @@ const SimpleCase = (props) => {
 	const photoUrl = "https://"+S3_BUCKET+"."+"s3"+"."+"amazonaws.com/"+img_src;
 	console.log(photoUrl)
 
+	const commentStr = comment_count === 1 ? 'comment' : 'comments';
+
 	return (
 		<div className="card">
 			<div className="card-body">
@@ -51,7 +53,7 @@ const SimpleCase = (props) => {
 						</button>
 					</div>
 				</Link>
-				<small className="text-muted">{comment_count} comments</small>
+				<small className="text-muted">{comment_count} {commentStr}</small>
 			</div>
 		</div>
 	);
