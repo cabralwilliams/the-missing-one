@@ -39,8 +39,9 @@
   There were no structured tests used in creating this project; instead, we performed extensive trial and error and console logging of troubled procedures until we determined solutions for specific problems.
   
   ## Questions
-  [GitHub Profile: Ghalia](http://github.com/ghaliarose89)
-  [GitHub Profile: Ivonne](http://github.com/Ivonnor1975)
+  [GitHub Profile: Ghalia](http://github.com/ghaliarose89) | 
+  [GitHub Profile: Ivonne](http://github.com/Ivonnor1975) | 
+  [GitHub Profile: Sonali](http://github.com/sonali-sohoni) | 
   [GitHub Profile: Cabral](http://github.com/cabralwilliams)
   
-  For any questions concerning this application, please contact us at any of the following email addresses: ghaliarose89@gmail.com, Ivonnor@gmail.com, cabral.williams@gmail.com.
+  For any questions concerning this application, please contact us at any of the following email addresses: ghaliarose89@gmail.com, Ivonnor@gmail.com, sonali.sohoni@gmail.com, cabral.williams@gmail.com.

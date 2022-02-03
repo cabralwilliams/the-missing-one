@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import CommentsList from "../components/CommentsList";
 import { useSelector, useDispatch } from "react-redux";
 import CaseDetail from "../components/CaseDetail";
-import { Link } from "react-router-dom";
+
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
     const [didCreate,setDidCreate] = useState(false);
@@ -47,7 +47,7 @@ const CaseDetails = () => {
 
 	return (
 		<section className="about">
-            {didCreate && <button><Link to={`/edit/${caseId}`}>Edit Case</Link></button>}
+            {didCreate && <a class="btn btn-primary" href={`/edit/${caseId}`} role="button">Edit Case</a>}
 			<CaseDetail caseDetail={caseDetail} />
 			<CommentsList
 				comments={caseDetail.comments}
