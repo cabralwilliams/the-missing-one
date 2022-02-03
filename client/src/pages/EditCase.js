@@ -266,9 +266,28 @@ const CaseDetails = () => {
         }
     }
 
-    const toggleCaseStatus = event => {
+    const toggleCaseStatus = async event => {
         event.preventDefault();
-        setFormState({ ...formState, case_status: !formState.case_status });
+        const newStatus = !formState.case_status;
+        setFormState({ ...formState, case_status: newStatus });
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+        //Must be logged in to change case status
+        if(!token) {
+            return false;
+        }
+        try {
+            const updatedCase = await updateCase({ variables: { case_status: formState.case_status }});
+            if(!updatedCase) {
+                console.log('Something went terribly wrong.');
+            }
+        } catch(err) {
+            console.error(err);
+        }
+        dispatch({
+            type: UPDATE_CURRENT_CASE,
+            currentCase: {}
+        });
+        history.push(`/cases/${caseId}`);
     }
 
     //Submit Form
@@ -339,15 +358,14 @@ const CaseDetails = () => {
             type: UPDATE_CURRENT_CASE,
             currentCase: {}
         });
-        history.push('/');
         history.push(`/cases/${caseId}`);
     }
 
     //Get User details from Global store
-	let username = "Anonymous";
-	if (Object.keys(state.user).length > 0)
-		username = `${state.user.first_name} ${state.user.last_name}`;
-	console.log(username);
+	// let username = "Anonymous";
+	// if (Object.keys(state.user).length > 0)
+	// 	username = `${state.user.first_name} ${state.user.last_name}`;
+	// console.log(username);
     
     if (loading) {
         return <div>Loading...</div>;
@@ -361,24 +379,6 @@ const CaseDetails = () => {
                 <h2 className="text-secondary text-center">Case Status: {formState.case_status ? "Open" : "Closed"}</h2>
                 {
                     !didCreate ? (
-                        // <div className="d-flex flex-row justify-content-around flex-wrap">
-                        //     {caseDetail.firstname && <Detail detailTitle="First Name" detailValue={caseDetail.firstname} />}
-                        //     {caseDetail.lastname && <Detail detailTitle="Last Name" detailValue={caseDetail.lastname} />}
-                        //     {caseDetail.dob && <Detail detailTitle="Date of Birth" detailValue={caseDetail.dob} />}
-                        //     {caseDetail.age && <Detail detailTitle="Age" detailValue={caseDetail.age} />}
-                        //     {caseDetail.gender && <Detail detailTitle="Gender" detailValue={caseDetail.gender} />}
-                        //     {caseDetail.race && <Detail detailTitle="Race" detailValue={caseDetail.race} />}
-                        //     {caseDetail.address && <Detail detailTitle="Address" detailValue={caseDetail.address} />}
-                        //     {caseDetail.nationality && <Detail detailTitle="Nationality" detailValue={caseDetail.nationality} />}
-                        //     {caseDetail.last_known_location && <Detail detailTitle="Last Known Location" detailValue={caseDetail.last_known_location} />}
-                        //     {caseDetail.mobile && <Detail detailTitle="Mobile Number" detailValue={caseDetail.mobile} />}
-                        //     {caseDetail.licenseId && <Detail detailTitle="License/ID#" detailValue={caseDetail.licenseId} />}
-                        //     {caseDetail.issuedState && <Detail detailTitle="Issuing State" detailValue={caseDetail.issuedState} />}
-                        //     {caseDetail.licensePlate && <Detail detailTitle="License Plate" detailValue={caseDetail.licensePlate} />}
-                        //     {caseDetail.ncic && <Detail detailTitle="NCIC #" detailValue={caseDetail.ncic} />}
-                        //     {caseDetail.biograph && <Detail detailTitle="Biography" detailValue={caseDetail.biograph} />}
-                        //     {caseDetail.other_info && <Detail detailTitle="Other Information" detailValue={caseDetail.other_info} />}
-                        // </div>
                         <CaseDetail caseDetail={caseDetail} />
                     ) : (
                         <div className="container">
@@ -503,11 +503,11 @@ const CaseDetails = () => {
                 <div className="text-dark">
                     {/* Case Details: {`${JSON.stringify(caseDetail)}`} */}
                 </div>
-                <CommentsList
+                {/* <CommentsList
 				comments={caseDetail.comments}
 				case_id={caseDetail._id}
 				username={username}
-			/>
+			/> */}
             </div>
         </div>
     );

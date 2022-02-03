@@ -1,4 +1,3 @@
-import { FaAcquisitionsIncorporated } from "react-icons/fa";
 import {
 	UPDATE_CASES,
 	UPDATE_CASE_FILTER,
@@ -16,7 +15,7 @@ const initialState = {
 	cart: [],
 	caseFilter: {},
 	page: 0,
-	perPage: 5,
+	perPage: 6,
 	displayCases: [],
 	totalPages: 0,
 };
@@ -34,7 +33,7 @@ const reducer = (state = initialState, action) => {
 			while (i < action.cases.length) {
 				dc.push(action.cases[i]);
 				i++;
-				if (i % perPage == 0) {
+				if (i % perPage === 0) {
 					displayCases1.push(dc);
 					dc = [];
 					totalPages1++;
