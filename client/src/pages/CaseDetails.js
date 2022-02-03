@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 import CommentsList from "../components/CommentsList";
 import { useSelector, useDispatch } from "react-redux";
 import CaseDetail from "../components/CaseDetail";
+import { UPDATE_CURRENT_CASE } from "../utils/actions";
 
 const CaseDetails = () => {
 	const state = useSelector((state) => state);
+	const dispatch = useDispatch();
     const [didCreate,setDidCreate] = useState(false);
 
 //	console.log("Printing store user");
@@ -34,6 +36,13 @@ const CaseDetails = () => {
     useEffect(() => {
         setDidCreate(caseDetail.creator_id === state.user._id);
     }, [caseDetail.creator_id,state]);
+
+	useEffect(() => {
+		dispatch({
+			type: UPDATE_CURRENT_CASE,
+			currentCase: caseDetail
+		})
+	}, [caseDetail,dispatch]);
 
 	if (loading) {
 		return <div>Loading...</div>;
