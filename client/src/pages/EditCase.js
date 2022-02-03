@@ -361,6 +361,12 @@ const CaseDetails = () => {
         history.push(`/cases/${caseId}`);
     }
 
+    //Cancel Form
+    const cancelUpdate = e => {
+        e.preventDefault();
+        history.push(`/cases/${caseId}`);
+    }
+
     //Get User details from Global store
 	// let username = "Anonymous";
 	// if (Object.keys(state.user).length > 0)
@@ -492,7 +498,7 @@ const CaseDetails = () => {
                                     <hr className="my-4"></hr>
                                     <div className="d-grid gap-2 d-md-flex justify-content-md-center">
                                         <button className="btn btn-primary btn-lg me-md-2" type='submit'>Update Case</button>
-                                        <button className="btn btn-danger btn-lg" type="button" >Cancel</button>
+                                        <button className="btn btn-danger btn-lg" type="button" onClick={cancelUpdate}>Cancel</button>
                                         </div>
                                     </form>
                                 </div>

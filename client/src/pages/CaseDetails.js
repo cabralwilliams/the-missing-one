@@ -49,7 +49,7 @@ const CaseDetails = () => {
 
 	return (
 		<section className="about">
-            {didCreate && <button><Link to={`/edit/${caseId}`}>Edit Case</Link></button>}
+            {didCreate && <button className="btn btn-danger"><Link to={`/edit/${caseId}`}>Edit Case</Link></button>}
 			<CaseDetail caseDetail={caseDetail} />
 			<CommentsList
 				comments={caseDetail.comments}
