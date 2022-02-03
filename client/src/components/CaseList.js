@@ -75,7 +75,7 @@ const CaseList = () => {
 			<div className="clearfix">
 			<div className="row width-80">
           		<div className="col-md-3 my-3 animated fadeIn text-center rounded "></div>
-				<div className="col-md-6 my-3 animated fadeIn text-center rounded section-heading h3 ">Someone, Somewhere is Looking for Them! Let's Help!!</div>
+				<div className="col-md-6 my-3 animated fadeIn text-center rounded section-heading h3 ">Someone, Somewhere, is Looking for Them! Let's Help!!</div>
             	<div className="col-md-6 my-3 animated fadeIn text-center rounded "></div>
 			</div>
 				<div className="row width-80">
