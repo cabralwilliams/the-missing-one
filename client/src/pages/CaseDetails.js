@@ -17,6 +17,7 @@ const CaseDetails = () => {
 	const { data, loading } = useQuery(GET_CASE_ById, {
 		variables: { id: caseId },
 	});
+    //console.log(data)
 
 	// function geeks_outer(array) {
 	// 	array.sort(function (a, b) {
@@ -25,11 +26,13 @@ const CaseDetails = () => {
 
 	// 	return JSON.stringify(array);
 	// }
-
+    
 	const caseDetail = data?.getCaseById || {};
-
-	console.log(caseDetail);
-	console.log("Sorting case details");
+    console.log(caseDetail)
+    // const S3_BUCKET = "missingone";
+    // const photoUrl = "https://"+S3_BUCKET+"."+"s3"+"."+"amazonaws.com/"+caseDetail.image[0];
+	//console.log(caseDetail);
+	//console.log("Sorting case details");
 	//console.log(geeks_outer(caseDetail.comments));
 
 

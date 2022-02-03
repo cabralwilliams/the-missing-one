@@ -14,6 +14,8 @@ import CaseDetail from '../components/CaseDetail';
 import CommentsList from "../components/CommentsList";
 
 const S3_BUCKET = "missingone";
+
+  
 const photo = "https://missingone.s3.amazonaws.com/0.jpg";
 
 const Detail = props => {
@@ -188,7 +190,7 @@ const CaseDetails = () => {
            setSelectedFileType(fname);
         }
   	};
-
+      
     //if user remove image during previewing time
     const removeSelectedImage = () => {
         setPreview('');
@@ -379,7 +381,7 @@ const CaseDetails = () => {
                         //     {caseDetail.biograph && <Detail detailTitle="Biography" detailValue={caseDetail.biograph} />}
                         //     {caseDetail.other_info && <Detail detailTitle="Other Information" detailValue={caseDetail.other_info} />}
                         // </div>
-                        <CaseDetail caseDetail={caseDetail} />
+                        <CaseDetail caseDetail={caseDetail}  />
                     ) : (
                         <div className="container">
                             <div className="d-flex row justify-content-md-center p-3 my-3 text-white bg-purple rounded shadow-sm">
