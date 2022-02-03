@@ -306,14 +306,13 @@ const UploadImageToS3WithNativeSdk = () => {
                                     <input className="form-control" type='text' name='ncic' onChange={handleChange} />
                                 </div>
                                 <div className='col-md-12'>
-                                    <label className="form-label" htmlFor='other_info'>Other Information:</label>
+                                    <label className="form-label" htmlFor='other_info'>Contact Information:</label>
                                     <textarea className="form-control" name='other_info' onChange={updateOther}></textarea>
                                 </div>
                             </div>  
                         <hr className="my-4"></hr>
                         <div className="d-grid gap-2 d-md-flex justify-content-md-center">
                             <button className="btn btn-primary btn-lg me-md-2" type='submit'>Create Case</button>
-                            <button className="btn btn-danger btn-lg" type="button" >Cancel</button>
                          </div>
                         </form>
                     </div>
