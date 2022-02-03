@@ -148,6 +148,7 @@ const Profile = () => {
                                         disappearance_date={cases.disappearance_date}
                                         last_known_location={cases.last_known_location}
                                         img_src={cases.images[0]}
+                                        comment_count={cases.comments.length}
                                     ></SimpleCase>
                                   </div>         
                                ))}
