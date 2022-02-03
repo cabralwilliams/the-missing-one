@@ -3,12 +3,14 @@ import Moment from "react-moment";
 // const formatDate = dateStr => {
 //     return dateStr.split(' ')[0];
 // }
+const S3_BUCKET = "missingone";
 
 const CaseDetails = (props) => {
 	// console.log("new component ");
 	// console.log(props);
 	const { caseDetail } = props;
 	// console.log(caseDetail);
+    let photoUrl = `https://${S3_BUCKET}.s3.amazonaws.com/${caseDetail.images[0]}`;
 	return (
 		<section className="about">
 			<div className="container" data-aos="fade-up">
@@ -25,7 +27,7 @@ const CaseDetails = (props) => {
 				<div className="row my-3 ">
 					<div className="col-lg-4 bg-purple rounded shadow-sm p-3 my-3">
 						<img
-							src="{caseDetail.images}"
+							src={photoUrl}
 							className="img-fluid"
 							alt="CaseImage"
 						/>
