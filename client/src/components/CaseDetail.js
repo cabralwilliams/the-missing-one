@@ -168,7 +168,7 @@ const CaseDetails = (props) => {
 
 							<li>
 								<i className="bi bi-rounded-right">
-									<strong> Other Information:</strong>
+									<strong> Contact Information:</strong>
 								</i>{" "}
 								{caseDetail.other_info
 									? caseDetail.other_info
