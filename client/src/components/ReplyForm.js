@@ -19,7 +19,7 @@ const ReplyForm = (props) => {
 	let username = "Anonymous";
 	if (Object.keys(state.user).length > 0)
 		username = `${state.user.first_name} ${state.user.last_name}`;
-	console.log(username);
+//	console.log(username);
 
 	const [inputName, setInputName] = useState(username);
 	//validate form
@@ -36,14 +36,14 @@ const ReplyForm = (props) => {
 	// submit form
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
-		console.log("submitting reply form ");
+//		console.log("submitting reply form ");
 		if (!validateForm()) return false;
 
-		console.log(
-			replyBody,
-			" commentId  = " + commentId,
-			"commentId by " + username
-		);
+		// console.log(
+		// 	replyBody,
+		// 	" commentId  = " + commentId,
+		// 	"commentId by " + username
+		// );
 		try {
 			await addReply({
 				variables: {

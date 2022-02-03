@@ -25,7 +25,7 @@ const reducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_CASES:
 			const { page: prevPage, perPage } = state;
-			console.log("prevPage " + prevPage + " perPage = " + perPage);
+			//		console.log("prevPage " + prevPage + " perPage = " + perPage);
 			// const totalPages = action.cases.length % perPage;
 			let dc = [];
 			let displayCases1 = [];
@@ -38,18 +38,18 @@ const reducer = (state = initialState, action) => {
 					displayCases1.push(dc);
 					dc = [];
 					totalPages1++;
-					console.log("increment page " + dc);
+					//			console.log("increment page " + dc);
 				}
 
-				console.log("displayCases");
-				console.log(displayCases1);
-				console.log(totalPages1);
+				//		console.log("displayCases");
+				//		console.log(displayCases1);
+				//		console.log(totalPages1);
 			}
 			if (dc.length > 0) {
 				displayCases1.push(dc);
 			}
 
-			console.log("total pages " + totalPages1);
+			//		console.log("total pages " + totalPages1);
 			return {
 				...state,
 				totalPages: totalPages1,
@@ -58,7 +58,7 @@ const reducer = (state = initialState, action) => {
 			};
 
 		case UPDATE_CASE_FILTER:
-			console.log(action.caseFilter);
+			//		console.log(action.caseFilter);
 			return { ...state, caseFilter: { ...action.caseFilter } };
 
 		case UPDATE_CURRENT_CASE:
@@ -71,7 +71,7 @@ const reducer = (state = initialState, action) => {
 			return { ...state, loggedIn: true, user: {} };
 
 		case LOAD_NEXT_PAGE:
-			console.log("next page " + action.nextPage);
+			//		console.log("next page " + action.nextPage);
 			return { ...state, page: action.nextPage };
 
 		default:

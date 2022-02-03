@@ -13,17 +13,17 @@ const SingleComment = () => {
 		variables: { caseId: caseId, id: commentId },
 	});
 
-	console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
+	//console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
 	const comment = data?.getCommentById || {};
 
 	if (loading) {
 		return <div>Loading...</div>;
 	}
-	console.log("Comments ");
-	console.log(comment);
+	//console.log("Comments ");
+//	console.log(comment);
 	const repliesReverseArray = comment.replies.slice(0).reverse();
-	console.log("sorted replies");
-	console.log(repliesReverseArray);
+//	console.log("sorted replies");
+//	console.log(repliesReverseArray);
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 m-auto bg-purple rounded shadow-sm section-heading">

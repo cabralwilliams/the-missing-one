@@ -20,7 +20,7 @@ const SideBar = () => {
 	const [formState, setFormState] = useState(initialFormState);
 	const handleChange = (e) => {
 		var msg = "";
-		console.log(e.target.name + " " + e.target.value);
+	//	console.log(e.target.name + " " + e.target.value);
 		if (e.target.name === "firstname") {
 			setFormState({ ...formState, firstname: e.target.value.toLowerCase() });
 		} else if (e.target.name === "lastname") {
@@ -41,8 +41,8 @@ const SideBar = () => {
 	};
 
 	if (Object.keys(state.caseFilter).length > 0) {
-		console.log("Print state filter ");
-		console.log(state.caseFilter);
+	//	console.log("Print state filter ");
+	//	console.log(state.caseFilter);
 		history.push("/");
 	}
 

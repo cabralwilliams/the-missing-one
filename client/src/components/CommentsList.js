@@ -7,29 +7,20 @@ import moment from "moment";
 
 const CommentsList = (props) => {
 	const { comments, case_id, username } = props;
-	console.log("printing comments ");
-	console.log(comments);
+//	console.log("printing comments ");
+//	console.log(comments);
 
 	function sortComments(array) {
-		console.log(array);
+	//	console.log(array);
 		const sortedArray = array.sort(
 			(a, b) =>
 				moment(a.created_at, "YYYYMMDD") - moment(b.created_at, "YYYYMMDD")
-		);
-		// arr.sort(function (a, b) {
-		// 	console.log("first date");
-		// 	console.log(moment(a.created_at, "YYYY-MM-DD hh:mm:ss"));
-		// 	console.log("second date");
-		// 	console.log(moment(b.created_at, "YYYY-MM-DD hh:mm:ss"));
-		// 	var c = moment(a.created_at, "YYYY-MM-DD hh:mm:ss").diff(
-		// 		moment(a.created_at, "YYYY-MM-DD hh:mm:ss")
-		// 	);
-		console.log("sorted array for me");
-		console.log(sortedArray);
+		);	
+	
 	}
 	const commentsReveseArray = comments.slice(0).reverse();
-	console.log("sorted comments");
-	console.log(commentsReveseArray);
+	// console.log("sorted comments");
+	// console.log(commentsReveseArray);
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">

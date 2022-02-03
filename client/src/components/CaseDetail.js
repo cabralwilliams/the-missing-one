@@ -5,10 +5,10 @@ import Moment from "react-moment";
 // }
 
 const CaseDetails = (props) => {
-	console.log("new component ");
-	console.log(props);
+	// console.log("new component ");
+	// console.log(props);
 	const { caseDetail } = props;
-	console.log(caseDetail);
+	// console.log(caseDetail);
 	return (
 		<section className="about">
 			<div className="container" data-aos="fade-up">
@@ -33,7 +33,7 @@ const CaseDetails = (props) => {
 
 					<div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3 text-dark">
 						<ul>
-							<li >
+							<li>
 								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>First Name:</strong>
