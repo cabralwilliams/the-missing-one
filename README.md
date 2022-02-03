@@ -2,6 +2,8 @@
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+  ![The Missing One Landing Page.](./assets/images/missing_one_capture1.jpg)
+
   ## Description
   This project was inspired by a tragic loss that one of the members of the team experienced a short time ago.  Each year, the news is flooded with instances of missing persons.  Though there are many organizations out there that are dedicated to find such missing persons, we believed that a social media platform such as this could be benificial toward finding missing persons before the tragic occurs.  This application is built utilizing the MERN stack (MongoDB, Express.js, React, Node.js).
   
