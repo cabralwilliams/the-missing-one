@@ -4,9 +4,15 @@
 
   ## Description
   This project was inspired by a tragic loss that one of the members of the team experienced a short time ago.  Each year, the news is flooded with instances of missing persons.  Though there are many organizations out there that are dedicated to find such missing persons, we believed that a social media platform such as this could be benificial toward finding missing persons before the tragic occurs.  This application is built utilizing the MERN stack (MongoDB, Express.js, React, Node.js).
-  
+
+![image](https://user-images.githubusercontent.com/88918693/152407567-66e7c146-544d-4980-bb01-f7a1f2f8cd8a.png)
+
+
   ## Link
   [The Missing One](https://lit-scrubland-68499.herokuapp.com/)
+
+  ## Presentation Link
+  [Project Presentation](https://docs.google.com/presentation/d/1HeeXaT4TgnBXngz32779yp8HgsYanT2_7J6qFvJcUwA/edit?usp=sharing)
   
   ## Table of Contents
   
@@ -39,8 +45,9 @@
   There were no structured tests used in creating this project; instead, we performed extensive trial and error and console logging of troubled procedures until we determined solutions for specific problems.
   
   ## Questions
-  [GitHub Profile: Ghalia](http://github.com/ghaliarose89)
-  [GitHub Profile: Ivonne](http://github.com/Ivonnor1975)
+  [GitHub Profile: Ghalia](http://github.com/ghaliarose89) | 
+  [GitHub Profile: Ivonne](http://github.com/Ivonnor1975) | 
+  [GitHub Profile: Sonali](http://github.com/sonali-sohoni) | 
   [GitHub Profile: Cabral](http://github.com/cabralwilliams)
   
-  For any questions concerning this application, please contact us at any of the following email addresses: ghaliarose89@gmail.com, Ivonnor@gmail.com, cabral.williams@gmail.com.
+  For any questions concerning this application, please contact us at any of the following email addresses: ghaliarose89@gmail.com, Ivonnor@gmail.com, sonali.sohoni@gmail.com, cabral.williams@gmail.com.

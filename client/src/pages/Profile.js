@@ -84,7 +84,6 @@ const Profile = () => {
                             </h4>
                             <hr className="my-4"></hr>
                             <div className="col-12">
-                    
                               <h2 className="h5 mb-2  lh-1 text-left event-mgr-header">
                                  First Name: {user.first_name}
                               </h2>
@@ -149,6 +148,7 @@ const Profile = () => {
                                         disappearance_date={cases.disappearance_date}
                                         last_known_location={cases.last_known_location}
                                         img_src={cases.images[0]}
+                                        comment_count={cases.comments.length}
                                     ></SimpleCase>
                                   </div>         
                                ))}

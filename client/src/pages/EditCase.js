@@ -491,7 +491,7 @@ const CaseDetails = () => {
                                                 <input className="form-control" type='text' name='ncic' onChange={handleChange} />
                                             </div>
                                             <div className='col-md-12'>
-                                                <label className="form-label" htmlFor='other_info'>Other Information:</label>
+                                                <label className="form-label" htmlFor='other_info'>Contact Information:</label>
                                                 <textarea className="form-control" name='other_info' onChange={updateOther}></textarea>
                                             </div>
                                         </div>  
