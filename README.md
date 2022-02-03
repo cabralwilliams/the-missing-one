@@ -9,6 +9,9 @@
 
   ## Link
   [The Missing One](https://lit-scrubland-68499.herokuapp.com/)
+
+  ## Presentation Link
+  [Project Presentation](https://docs.google.com/presentation/d/1HeeXaT4TgnBXngz32779yp8HgsYanT2_7J6qFvJcUwA/edit?usp=sharing)
   
   ## Table of Contents
   
