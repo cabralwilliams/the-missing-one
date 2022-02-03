@@ -12,7 +12,6 @@ import "./index.css";
 //inport redux store
 import { Provider } from "react-redux";
 import store from "./utils/store";
-
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -24,14 +23,9 @@ import Profile from "./pages/Profile";
 import CreateCase from "./pages/CreateCase";
 import DonationCart from "./pages/DonationCart";
 import SideBar from "./components/SideBar";
-
-import { GoSearch } from "react-icons/go";
 import { BiArrowToLeft } from "react-icons/bi";
-
-
 import CaseDetails from "./pages/CaseDetails";
 import EditCase from "./pages/EditCase";
-
 import Success from "./pages/Success";
 
 const httpLink = createHttpLink({
@@ -93,7 +87,6 @@ function App() {
 									<BiArrowToLeft />
 									&nbsp;&nbsp; Search
 								</button>
-
 								<div className="container-fluid width-80">
 									<Switch>
 										<Route exact path="/" component={Home} />
@@ -106,23 +99,18 @@ function App() {
 											path="/DonationCart"
 											component={DonationCart}
 										/>
-
 										<Route exact path="/success" component={Success} />
-
 										<Route
 											exact
 											path="/cases/:caseId"
 											component={CaseDetails}
 										/>
-
 										<Route
 											exact
 											path="/comment/:caseId/:id"
 											component={SingleComment}
 										/>
-
 										<Route exact path="/edit/:caseId" component={EditCase} />
-
 										<Route component={NoMatch} />
 									</Switch>
 								</div>

@@ -3,12 +3,24 @@ import Moment from "react-moment";
 import CommentForm from "./CommentForm";
 import { Link } from "react-router-dom";
 import { FaComments } from "react-icons/fa";
+import moment from "moment";
 
 const CommentsList = (props) => {
 	const { comments, case_id, username } = props;
-	console.log("printing comments ");
-	console.log(comments);
+//	console.log("printing comments ");
+//	console.log(comments);
 
+	function sortComments(array) {
+	//	console.log(array);
+		const sortedArray = array.sort(
+			(a, b) =>
+				moment(a.created_at, "YYYYMMDD") - moment(b.created_at, "YYYYMMDD")
+		);	
+	
+	}
+	const commentsReveseArray = comments.slice(0).reverse();
+	// console.log("sorted comments");
+	// console.log(commentsReveseArray);
 	return (
 		<main className="container">
 			<div className="d-flex align-items-center p-3 my-3 text-white bg-purple rounded shadow-sm">
@@ -26,8 +38,8 @@ const CommentsList = (props) => {
 			<div className="my-3 p-3 bg-body rounded shadow-sm">
 				<CommentForm case_id={case_id} username={username} />
 				<h6 className="border-bottom pb-2 mb-0">Recent Comments</h6>
-				{comments &&
-					comments.map((comment) => (
+				{commentsReveseArray &&
+					commentsReveseArray.map((comment) => (
 						<div
 							className="d-flex text-muted pt-3 border-bottom "
 							key={comment._id}
@@ -75,8 +87,7 @@ const CommentsList = (props) => {
 								</div>
 							</div>{" "}
 						</div>
-          ))}
-        
+					))}
 			</div>
 
 			{/* <div className="my-3 p-3 bg-body rounded shadow-sm">

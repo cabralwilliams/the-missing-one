@@ -5,10 +5,10 @@ import Moment from "react-moment";
 // }
 
 const CaseDetails = (props) => {
-	console.log("new component ");
-	console.log(props);
+	// console.log("new component ");
+	// console.log(props);
 	const { caseDetail } = props;
-	console.log(caseDetail);
+	// console.log(caseDetail);
 	return (
 		<section className="about">
 			<div className="container" data-aos="fade-up">
@@ -33,61 +33,61 @@ const CaseDetails = (props) => {
 
 					<div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3 text-dark">
 						<ul>
-							<li >
-								<i class="bi bi-rounded-right">
+							<li>
+								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>First Name:</strong>
 								</i>{" "}
 								{props.caseDetail.firstname}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>Last Name:</strong>
 								</i>{" "}
 								{caseDetail.lastname}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>Age:</strong>
 								</i>{" "}
 								{caseDetail.age}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>Gender:</strong>
 								</i>{" "}
 								{caseDetail.gender}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									{" "}
 									<strong>Last Seen:</strong>
 								</i>{" "}
 								{caseDetail.last_known_location}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Race:</strong>
 								</i>
 								{caseDetail.race ? caseDetail.race : " Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong>Biograph:</strong>
 								</i>{" "}
 								{caseDetail.biograph ? caseDetail.biograph : "Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Case Status: </strong>
 								</i>{" "}
 								{caseDetail.case_status ? "Open" : "Closed"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Ncic Number:</strong>
 								</i>{" "}
 								{caseDetail.ncic ? caseDetail.ncic : "Not Available"}
@@ -95,16 +95,16 @@ const CaseDetails = (props) => {
 						</ul>
 					</div>
 
-					<div class="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3 text-dark">
+					<div className="col-lg-4 content bg-purple rounded shadow-sm p-3 my-3 text-dark">
 						<ul>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong>Address:</strong>
 								</i>
 								{caseDetail.address ? caseDetail.address : " Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Date of Disappearance:</strong>
 								</i>{" "}
 								{caseDetail.disappearance_date ? (
@@ -117,7 +117,7 @@ const CaseDetails = (props) => {
 								)}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Date of Birth:</strong>
 								</i>
 								{caseDetail.dob ? (
@@ -128,7 +128,7 @@ const CaseDetails = (props) => {
 							</li>
 
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Nationality:</strong>
 								</i>{" "}
 								{caseDetail.nationality
@@ -136,19 +136,19 @@ const CaseDetails = (props) => {
 									: "Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Mobile: </strong>
 								</i>{" "}
 								{caseDetail.mobile ? caseDetail.mobile : "Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> License Id:</strong>
 								</i>{" "}
 								{caseDetail.licenseId ? caseDetail.licenseId : "Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong>IssuedState: </strong>
 								</i>{" "}
 								{caseDetail.issuedState
@@ -156,7 +156,7 @@ const CaseDetails = (props) => {
 									: "Not Available"}
 							</li>
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> License Plate:</strong>
 								</i>{" "}
 								{caseDetail.licensePlate
@@ -165,7 +165,7 @@ const CaseDetails = (props) => {
 							</li>
 
 							<li>
-								<i class="bi bi-rounded-right">
+								<i className="bi bi-rounded-right">
 									<strong> Other Information:</strong>
 								</i>{" "}
 								{caseDetail.other_info

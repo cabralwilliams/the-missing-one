@@ -11,6 +11,7 @@ import {
 
 import { BiDonateHeart, BiShapePolygon } from "react-icons/bi";
 import { FaSignOutAlt, FaSignInAlt } from "react-icons/fa";
+import { FiUserPlus } from "react-icons/fi";
 
 const Header2 = () => {
 	const dispatch = useDispatch();
@@ -147,7 +148,10 @@ const Header2 = () => {
 										width="10"
 										height="17"
 									></svg>{" "}
-									<span className="btn btn-primary">Signup</span>
+									<span className="btn btn-primary">
+										<FiUserPlus />
+										Signup
+									</span>
 								</Link>
 							</li>
 						</ul>

@@ -11,8 +11,8 @@ const CaseList = () => {
 	const prevPage = state.page;
 	const totalPages = state.totalPages;
 
-	console.log("state now ");
-	console.log(state);
+	// console.log("state now ");
+	// console.log(state);
 	let firstname1 = "",
 		lastname1 = "",
 		ncic = "";
@@ -24,7 +24,7 @@ const CaseList = () => {
 		} else {
 			firstname1 = caseFilter.firstname;
 			lastname1 = caseFilter.lastname;
-			console.log(firstname1, lastname1);
+			//	console.log(firstname1, lastname1);
 		}
 	}
 	const { data, loading } = useQuery(SEARCH_CASES, {
@@ -32,12 +32,12 @@ const CaseList = () => {
 	});
 	const dispatch = useDispatch();
 
-	console.log("in caselist");
+	// console.log("in caselist");
 	const selectedPage = useSelector((state) => state.page);
-	console.log("Page Selected " + selectedPage);
+	// console.log("Page Selected " + selectedPage);
 	//Store cases under Global store
 	useEffect(() => {
-		console.log("use effect");
+		// console.log("use effect");
 		if (data) {
 			console.log("executing dispatch to update state");
 			dispatch({
@@ -57,9 +57,9 @@ const CaseList = () => {
 	if (!filterCases) {
 		return <h2>Cases are loading...</h2>;
 	}
-	console.log("filtering cases");
-	console.log(filterCases);
-	console.log("caselist component");
+	// console.log("filtering cases");
+	// console.log(filterCases);
+	// console.log("caselist component");
 
 	function loadMore() {
 		let nextPage = prevPage + 1;
@@ -96,7 +96,7 @@ const CaseList = () => {
 				<div className="row width-80">
 					<div className="col-md-3 my-3 animated fadeIn text-center rounded "></div>
 					<div className="col-md-6 my-3 animated fadeIn text-center rounded ">
-						{(state.totalPages)? (
+						{state.totalPages ? (
 							<button
 								className="btn  btn-block w-50 mx-auto load-more-btn "
 								onClick={(e) => {
@@ -105,7 +105,9 @@ const CaseList = () => {
 							>
 								Load More{" "}
 							</button>
-						):(<span></span>)}
+						) : (
+							<span></span>
+						)}
 					</div>
 					<div className="col-md-3 my-3 animated fadeIn text-center rounded "></div>
 				</div>
