@@ -5,9 +5,12 @@ import ReplyForm from "../components/ReplyForm";
 import Moment from "react-moment";
 import { useQuery } from "@apollo/client";
 import { QUERY_COMMENT_BYId } from "../utils/queries";
+import { useSelector } from "react-redux";
 
 const SingleComment = () => {
 	const { id: commentId, caseId: caseId } = useParams();
+	const state = useSelector(state => state);
+	console.log(state);
 
 	const { loading, data } = useQuery(QUERY_COMMENT_BYId, {
 		variables: { caseId: caseId, id: commentId },
@@ -15,6 +18,7 @@ const SingleComment = () => {
 
 	//console.log("Looking for caseId = " + caseId + " commentId = " + commentId);
 	const comment = data?.getCommentById || {};
+	console.log(comment);
 
 	if (loading) {
 		return <div>Loading...</div>;
@@ -28,8 +32,8 @@ const SingleComment = () => {
 		<main className="container">
 			<div className="d-flex align-items-center p-3 m-auto bg-purple rounded shadow-sm section-heading">
 				<p className="lead">
-					<span className="text-muted"> Case#: </span>
-					<strong>{caseId}</strong>
+					<span className="text-muted"> Case: </span>
+					<strong>{state.currentCase.firstname} {state.currentCase.lastname}</strong>
 				</p>
 			</div>
 
