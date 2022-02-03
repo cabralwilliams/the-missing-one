@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 //needed to connect to AWS s3 Bucket
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { s3Client } from "../utils/s3Client.js";
+import { Redirect, useHistory } from 'react-router-dom';
 //needed to check if useer is logged in
 import Auth from "../utils/auth";
 import { QUERY_ME } from "../utils/queries.js";
@@ -46,7 +47,8 @@ const UploadImageToS3WithNativeSdk = () => {
     const [otherState, setOtherState] = useState('');
     const { data, loading } = useQuery(QUERY_ME);
     const [createCase, { error }] = useMutation(CREATE_CASE);
-    
+    let history = useHistory();
+
     const userData = data?.me || {};
     // create a preview as a side effect, whenever user preview image (selected file is changed)
     useEffect(() => {
@@ -109,7 +111,7 @@ const UploadImageToS3WithNativeSdk = () => {
     const uploadFile = async (file,filename) => {
         // if (!file) { This was moved to sunmit button}
             // return alert("Choose a file to upload first.");
-        // }
+ 
         const params = {
             Body: file,
             Bucket: S3_BUCKET,
@@ -119,6 +121,7 @@ const UploadImageToS3WithNativeSdk = () => {
             const data = await s3Client.send(new PutObjectCommand(params));
             alert("Successfully uploaded photo.");
         }catch (err) {
+            console.log(err)
             return alert("There was an error uploading your photo: ", err.message);
         }
     }
@@ -194,7 +197,7 @@ const UploadImageToS3WithNativeSdk = () => {
         for(const el of textAreaEls) {
             el.value = '';
         }
-        window.location.replace('/');
+        history.push("/Profile");
     }
 
 	if (loading) {
